@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Normalize &#8212; iris_pipeline v0.3.dev274</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Description" href="description.html" />
+    <link rel="prev" title="DarkCurrentStep" href="../api/iris_pipeline.dark_current.DarkCurrentStep.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="description.html" title="Description">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="../api/iris_pipeline.dark_current.DarkCurrentStep.html" title="DarkCurrentStep">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">iris_pipeline v0.3.dev274</a>
+	 &#187;
+      </li>
+      <li><a href="../available-steps.html" accesskey="U">Package Index</a> &#187;</li>
+      
+      <li>Normalize</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <div class="section" id="normalize">
+<span id="normalize-step"></span><h1>Normalize<a class="headerlink" href="#normalize" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="description.html">Description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="description.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference_files.html">Reference File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arguments.html">Step Arguments</a></li>
+</ul>
+</div>
+<div class="section" id="module-iris_pipeline.normalize">
+<span id="iris-pipeline-normalize-package"></span><h2>iris_pipeline.normalize Package<a class="headerlink" href="#module-iris_pipeline.normalize" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/iris_pipeline.normalize.NormalizeStep.html#iris_pipeline.normalize.NormalizeStep" title="iris_pipeline.normalize.NormalizeStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalizeStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>NormalizeStep: Normalize a frame by dividing by its own mean, median or mode</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
+digraph inheritancec55569372a {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;NormalizeStep&quot; [URL=&quot;../../api/iris_pipeline.normalize.NormalizeStep.html#iris_pipeline.normalize.NormalizeStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;NormalizeStep: Normalize a frame by dividing&quot;];
+  &quot;Step&quot; -&gt; &quot;NormalizeStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Step&quot; [fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,tooltip=&quot;Step&quot;];
+}
+</div>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../0.2.0/index.html">0.2.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="index.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">Normalize</a><ul>
+<li><a class="reference internal" href="#module-iris_pipeline.normalize">iris_pipeline.normalize Package</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/normalize/index.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/normalize/index.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Last built 15 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

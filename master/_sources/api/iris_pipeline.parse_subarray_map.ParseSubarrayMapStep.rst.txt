@@ -1,0 +1,17 @@
+ParseSubarrayMapStep
+====================
+
+.. currentmodule:: iris_pipeline.parse_subarray_map
+
+.. autoclass:: ParseSubarrayMapStep
+   :show-inheritance:
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ParseSubarrayMapStep.process
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

@@ -1,0 +1,27 @@
+NormalizeStep
+=============
+
+.. currentmodule:: iris_pipeline
+
+.. autoclass:: NormalizeStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~NormalizeStep.spec
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~NormalizeStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: spec
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

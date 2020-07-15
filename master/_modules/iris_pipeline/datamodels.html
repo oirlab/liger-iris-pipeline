@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris_pipeline.datamodels &#8212; iris_pipeline v0.3.dev274</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../index.html">iris_pipeline v0.3.dev274</a>
+	 &#187;
+      </li>
+      <li><a href="../index.html" >Module code</a> &#187;</li>
+      <li><a href="../iris_pipeline.html" accesskey="U">iris_pipeline</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <h1>Source code for iris_pipeline.datamodels</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">registry</span>
+
+<span class="kn">from</span> <span class="nn">.iris</span> <span class="kn">import</span> <span class="n">IRISImageModel</span>
+<span class="kn">from</span> <span class="nn">.tmt_ramp</span> <span class="kn">import</span> <span class="n">TMTRampModel</span>
+<span class="kn">from</span> <span class="nn">.tmt_mask</span> <span class="kn">import</span> <span class="n">TMTMaskModel</span>
+<span class="kn">from</span> <span class="nn">.flat</span> <span class="kn">import</span> <span class="n">TMTFlatModel</span>
+<span class="kn">from</span> <span class="nn">.dark</span> <span class="kn">import</span> <span class="n">TMTDarkModel</span>
+<span class="kn">from</span> <span class="nn">.tmt_reference</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TMTReferenceImageModel</span><span class="p">,</span>
+    <span class="n">TMTReferenceCubeModel</span><span class="p">,</span>
+    <span class="n">TMTReferenceQuadModel</span><span class="p">,</span>
+    <span class="n">TMTReferenceFileModel</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;IRISImageModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTRampModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTMaskModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTReferenceImageModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTFlatModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTDarkModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTReferenceCubeModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTReferenceQuadModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TMTReferenceFileModel&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">_all_models</span> <span class="o">=</span> <span class="n">__all__</span>
+<span class="n">_local_dict</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+<span class="n">_defined_models</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_local_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_all_models</span><span class="p">}</span>
+
+<div class="viewcode-block" id="monkeypatch_jwst_datamodels"><a class="viewcode-back" href="../../api/iris_pipeline.monkeypatch_jwst_datamodels.html#iris_pipeline.monkeypatch_jwst_datamodels">[docs]</a><span class="k">def</span> <span class="nf">monkeypatch_jwst_datamodels</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">jwst.datamodels</span>
+
+    <span class="n">jwst</span><span class="o">.</span><span class="n">datamodels</span><span class="o">.</span><span class="n">_defined_models</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_defined_models</span><span class="p">)</span></div>
+</pre></div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../../0.2.0/index.html">0.2.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="datamodels.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Last built 15 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

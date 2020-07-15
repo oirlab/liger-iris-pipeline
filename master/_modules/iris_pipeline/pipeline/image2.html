@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris_pipeline.pipeline.image2 &#8212; iris_pipeline v0.3.dev274</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../../index.html">iris_pipeline v0.3.dev274</a>
+	 &#187;
+      </li>
+      <li><a href="../../index.html" >Module code</a> &#187;</li>
+      <li><a href="../../iris_pipeline.html" accesskey="U">iris_pipeline</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <h1>Source code for iris_pipeline.pipeline.image2</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
+
+<span class="kn">from</span> <span class="nn">jwst</span> <span class="kn">import</span> <span class="n">datamodels</span>
+<span class="kn">from</span> <span class="nn">jwst.associations.load_as_asn</span> <span class="kn">import</span> <span class="n">LoadAsLevel2Asn</span>
+<span class="kn">from</span> <span class="nn">jwst.stpipe</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="c1"># calwebb IMAGE2 step imports</span>
+<span class="kn">from</span> <span class="nn">..background</span> <span class="kn">import</span> <span class="n">background_step</span>
+<span class="kn">from</span> <span class="nn">..dark_current</span> <span class="kn">import</span> <span class="n">dark_current_step</span>
+<span class="kn">from</span> <span class="nn">jwst.assign_wcs</span> <span class="kn">import</span> <span class="n">assign_wcs_step</span>
+<span class="kn">from</span> <span class="nn">..flatfield</span> <span class="kn">import</span> <span class="n">flat_field_step</span>
+<span class="kn">from</span> <span class="nn">..parse_subarray_map</span> <span class="kn">import</span> <span class="n">parse_subarray_map_step</span>
+<span class="kn">from</span> <span class="nn">jwst.photom</span> <span class="kn">import</span> <span class="n">photom_step</span>
+<span class="kn">from</span> <span class="nn">jwst.resample</span> <span class="kn">import</span> <span class="n">resample_step</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ProcessImagerL2Pipeline&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="ProcessImagerL2Pipeline"><a class="viewcode-back" href="../../../api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline">[docs]</a><span class="k">class</span> <span class="nc">ProcessImagerL2Pipeline</span><span class="p">(</span><span class="n">Pipeline</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to</span>
+<span class="sd">    Level-2b.</span>
+
+<span class="sd">    Included steps are:</span>
+<span class="sd">    background_subtraction, assign_wcs, flat_field, photom and resample.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">spec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        save_bsub = boolean(default=False) # Save background-subracted science</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Define alias to steps</span>
+    <span class="n">step_defs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;bkg_subtract&quot;</span><span class="p">:</span> <span class="n">background_step</span><span class="o">.</span><span class="n">BackgroundStep</span><span class="p">,</span>
+        <span class="s2">&quot;assign_wcs&quot;</span><span class="p">:</span> <span class="n">assign_wcs_step</span><span class="o">.</span><span class="n">AssignWcsStep</span><span class="p">,</span>
+        <span class="s2">&quot;parse_subarray_map&quot;</span><span class="p">:</span> <span class="n">parse_subarray_map_step</span><span class="o">.</span><span class="n">ParseSubarrayMapStep</span><span class="p">,</span>
+        <span class="s2">&quot;dark_current&quot;</span><span class="p">:</span> <span class="n">dark_current_step</span><span class="o">.</span><span class="n">DarkCurrentStep</span><span class="p">,</span>
+        <span class="s2">&quot;flat_field&quot;</span><span class="p">:</span> <span class="n">flat_field_step</span><span class="o">.</span><span class="n">FlatFieldStep</span><span class="p">,</span>
+        <span class="s2">&quot;photom&quot;</span><span class="p">:</span> <span class="n">photom_step</span><span class="o">.</span><span class="n">PhotomStep</span><span class="p">,</span>
+        <span class="s2">&quot;resample&quot;</span><span class="p">:</span> <span class="n">resample_step</span><span class="o">.</span><span class="n">ResampleStep</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># List of normal imaging exp_types</span>
+    <span class="n">image_exptypes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MIR_IMAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;NRC_IMAGE&quot;</span><span class="p">,</span> <span class="s2">&quot;NIS_IMAGE&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ProcessImagerL2Pipeline.process"><a class="viewcode-back" href="../../../api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting calwebb_image2 ...&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Retrieve the input(s)</span>
+        <span class="n">asn</span> <span class="o">=</span> <span class="n">LoadAsLevel2Asn</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">basename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">)</span>
+
+        <span class="c1"># Each exposure is a product in the association.</span>
+        <span class="c1"># Process each exposure.</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="n">asn</span><span class="p">[</span><span class="s2">&quot;products&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing product </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_exposure_product</span><span class="p">(</span>
+                <span class="n">product</span><span class="p">,</span> <span class="n">asn</span><span class="p">[</span><span class="s2">&quot;asn_pool&quot;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">asn</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Save result</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;cal&quot;</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">CubeModel</span><span class="p">):</span>
+                <span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;calints&quot;</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_output_path</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;... ending calwebb_image2&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_use_model</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">results</span></div>
+
+    <span class="c1"># Process each exposure</span>
+<div class="viewcode-block" id="ProcessImagerL2Pipeline.process_exposure_product"><a class="viewcode-back" href="../../../api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline.process_exposure_product">[docs]</a>    <span class="k">def</span> <span class="nf">process_exposure_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exp_product</span><span class="p">,</span> <span class="n">pool_name</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">asn_file</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Process an exposure found in the association product</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        exp_product: dict</span>
+<span class="sd">            A Level2b association product.</span>
+
+<span class="sd">        pool_name: str</span>
+<span class="sd">            The pool file name. Used for recording purposes only.</span>
+
+<span class="sd">        asn_file: str</span>
+<span class="sd">            The name of the association file.</span>
+<span class="sd">            Used for recording purposes only.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Find all the member types in the product</span>
+        <span class="n">members_by_type</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">exp_product</span><span class="p">[</span><span class="s2">&quot;members&quot;</span><span class="p">]:</span>
+            <span class="n">members_by_type</span><span class="p">[</span><span class="n">member</span><span class="p">[</span><span class="s2">&quot;exptype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">member</span><span class="p">[</span><span class="s2">&quot;expname&quot;</span><span class="p">])</span>
+
+        <span class="c1"># Get the science member. Technically there should only be</span>
+        <span class="c1"># one. We&#39;ll just get the first one found.</span>
+        <span class="n">science</span> <span class="o">=</span> <span class="n">members_by_type</span><span class="p">[</span><span class="s2">&quot;science&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">science</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Wrong number of science files found in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exp_product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;    Using only first one.&quot;</span><span class="p">)</span>
+        <span class="n">science</span> <span class="o">=</span> <span class="n">science</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Working on input </span><span class="si">%s</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">science</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">science</span><span class="p">,</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">DataModel</span><span class="p">):</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="n">science</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">science</span><span class="p">)</span>
+
+        <span class="c1"># Record ASN pool and table names in output</span>
+        <span class="nb">input</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">asn</span><span class="o">.</span><span class="n">pool_name</span> <span class="o">=</span> <span class="n">pool_name</span>
+        <span class="nb">input</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">asn</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="n">asn_file</span>
+
+        <span class="c1"># Do background processing, if necessary</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">members_by_type</span><span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="c1"># Setup for saving</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bkg_subtract</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;bsub&quot;</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">CubeModel</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bkg_subtract</span><span class="o">.</span><span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;bsubints&quot;</span>
+
+            <span class="c1"># Backwards compatibility</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_bsub</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bkg_subtract</span><span class="o">.</span><span class="n">save_results</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="c1"># Call the background subtraction step</span>
+            <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bkg_subtract</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">members_by_type</span><span class="p">[</span><span class="s2">&quot;background&quot;</span><span class="p">])</span>
+
+        <span class="c1"># work on slope images</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_wcs</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_subarray_map</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark_current</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flat_field</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">photom</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+        <span class="c1"># Resample individual exposures, but only if it&#39;s one of the</span>
+        <span class="c1"># regular science image types.</span>
+        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">exposure</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_exptypes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+        <span class="c1"># That&#39;s all folks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Finished processing product </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exp_product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="nb">input</span></div></div>
+</pre></div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../../../0.2.0/index.html">0.2.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="image2.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Last built 15 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

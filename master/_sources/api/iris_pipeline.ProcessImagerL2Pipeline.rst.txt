@@ -1,0 +1,33 @@
+ProcessImagerL2Pipeline
+=======================
+
+.. currentmodule:: iris_pipeline
+
+.. autoclass:: ProcessImagerL2Pipeline
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~ProcessImagerL2Pipeline.image_exptypes
+      ~ProcessImagerL2Pipeline.spec
+      ~ProcessImagerL2Pipeline.step_defs
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ProcessImagerL2Pipeline.process
+      ~ProcessImagerL2Pipeline.process_exposure_product
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: image_exptypes
+   .. autoattribute:: spec
+   .. autoattribute:: step_defs
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process
+   .. automethod:: process_exposure_product

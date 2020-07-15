@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris_pipeline.dark_current.dark_current_step &#8212; iris_pipeline v0.3.dev274</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../../index.html">iris_pipeline v0.3.dev274</a>
+	 &#187;
+      </li>
+      <li><a href="../../index.html" >Module code</a> &#187;</li>
+      <li><a href="../../iris_pipeline.html" accesskey="U">iris_pipeline</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <h1>Source code for iris_pipeline.dark_current.dark_current_step</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">jwst.stpipe</span> <span class="kn">import</span> <span class="n">Step</span>
+<span class="kn">from</span> <span class="nn">jwst</span> <span class="kn">import</span> <span class="n">datamodels</span>
+<span class="kn">from</span> <span class="nn">..datamodels</span> <span class="kn">import</span> <span class="n">TMTDarkModel</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">dark_sub</span>
+
+<span class="kn">from</span> <span class="nn">..utils.subarray</span> <span class="kn">import</span> <span class="n">get_subarray_model</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DarkCurrentStep&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="DarkCurrentStep"><a class="viewcode-back" href="../../../api/iris_pipeline.dark_current.DarkCurrentStep.html#iris_pipeline.dark_current.DarkCurrentStep">[docs]</a><span class="k">class</span> <span class="nc">DarkCurrentStep</span><span class="p">(</span><span class="n">Step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    DarkCurrentStep: Performs dark current correction by subtracting</span>
+<span class="sd">    dark current reference data from the input science data model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">spec</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        dark_output = output_file(default = None) # Dark model subtracted</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">reference_file_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dark&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="DarkCurrentStep.process"><a class="viewcode-back" href="../../../api/iris_pipeline.dark_current.DarkCurrentStep.html#iris_pipeline.dark_current.DarkCurrentStep.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+
+        <span class="c1"># Open the input data model</span>
+        <span class="k">with</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_model</span><span class="p">:</span>
+
+            <span class="c1"># Get the name of the dark reference file to use</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dark_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_reference_file</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="s2">&quot;dark&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Using DARK reference file </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark_name</span><span class="p">)</span>
+
+            <span class="c1"># Check for a valid reference file</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark_name</span> <span class="o">==</span> <span class="s2">&quot;N/A&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No DARK reference file found&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Dark current step will be skipped&quot;</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">cal_step</span><span class="o">.</span><span class="n">dark</span> <span class="o">=</span> <span class="s2">&quot;SKIPPED&quot;</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+            <span class="c1"># Create name for the intermediate dark, if desired.</span>
+            <span class="n">dark_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dark_output</span>
+            <span class="k">if</span> <span class="n">dark_output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dark_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_output_path</span><span class="p">(</span>
+                    <span class="kc">None</span><span class="p">,</span> <span class="n">basepath</span><span class="o">=</span><span class="n">dark_output</span><span class="p">,</span> <span class="n">ignore_use_model</span><span class="o">=</span><span class="kc">True</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Open the dark ref file data model - based on Instrument</span>
+            <span class="n">dark_model</span> <span class="o">=</span> <span class="n">TMTDarkModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dark_name</span><span class="p">)</span>
+
+            <span class="n">dark_model</span> <span class="o">=</span> <span class="n">get_subarray_model</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">dark_model</span><span class="p">)</span>
+
+            <span class="c1"># Do the dark correction</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">dark_sub</span><span class="o">.</span><span class="n">do_correction</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">dark_model</span><span class="p">,</span> <span class="n">dark_output</span><span class="p">)</span>
+            <span class="n">dark_model</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">result</span></div></div>
+</pre></div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../../../0.2.0/index.html">0.2.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="dark_current_step.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Last built 15 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>
