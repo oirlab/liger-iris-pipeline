@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calibration &#8212; iris_pipeline v0.3.dev269</title>
+    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algorithms" href="algorithms.html" />
+    <link rel="prev" title="IRIS Data Reduction System design" href="design.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="genindex.html">Index</a></li>
+    <li><a title="Module Index" href="py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="algorithms.html" title="Algorithms">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="design.html" title="IRIS Data Reduction System design">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="index.html">iris_pipeline v0.3.dev269</a>
+	 &#187;
+      </li>
+      
+      <li>Calibration</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <div class="section" id="calibration">
+<h1>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="calibration-files">
+<h2>Calibration files<a class="headerlink" href="#calibration-files" title="Permalink to this headline">¶</a></h2>
+<p>Auxiliary data used in DRP algorithms are called calibration data. This includes both on-sky data (that is not of the astronomical target itself), daytime calibration frames, and other sub-component metadata. Metadata is non-image information that will typically come from the header of raw FITS files, or from IRIS, and/or the adaptive optics system via the observatory telemetry service. The NFIRAOS Science Calibration Unit (NSCU) will include a calibration system that will facilitate the taking of
+daytime calibration frames, such as arc lamp spectra, white light flat field images, and pinhole grids for measuring distortion.
+The following table summarizes the required calibration files necessary for the Data Reduction Software.</p>
+<p>Notes about the table: Note: * = SPEC only, PTG = pointing, D-Map = Distortion Map, Env = Environmental, DTC = Daytime calibration, NTC = Nightime calibration.</p>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Calibration frames</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Reference Type</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>Algorithms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Atm. Dispersion Residual</p></td>
+<td><p>Metadata</p></td>
+<td><p>IRIS ADC</p></td>
+<td><p>Atmospheric Correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arc lamp spectra*</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC (NSCU)</p></td>
+<td><p>Wavelength solution</p></td>
+</tr>
+<tr class="row-even"><td><p>Bad pixel map</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC</p></td>
+<td><p>Correction of detector artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dark Frame</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC and NTC</p></td>
+<td><p>Dark subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p>Env metadata</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fiber image</p></td>
+<td><p>CAL (2D, 3D)</p></td>
+<td><p>IRIS DTC (NSCU)</p></td>
+<td><p>PSF Calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Flux calibration star</p></td>
+<td><p>CAL (2D, 3D)</p></td>
+<td><p>IRIS On-sky</p></td>
+<td><p>Extract Star, Remove Absorption Lines</p></td>
+</tr>
+<tr class="row-odd"><td><p>Instrument config</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-even"><td><p>Lenslet scan*</p></td>
+<td><p>Rect Matrix CAL (2D)</p></td>
+<td><p>IRIS DTC (NSCU)</p></td>
+<td><p>Spectral Extraction</p></td>
+</tr>
+<tr class="row-odd"><td><p>NFIRAOS config</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-even"><td><p>Pinhole Grid (D-Map)</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC (NSCU)</p></td>
+<td><p>Field distortion correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>PSF metadata</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>PSF calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>PSF star</p></td>
+<td><p>CAL (2D, 3D)</p></td>
+<td><p>IRIS on-sky</p></td>
+<td><p>PSF calibration</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sky frame</p></td>
+<td><p>CAL (2D, 3D)</p></td>
+<td><p>IRIS on-sky</p></td>
+<td><p>Sky-subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p>Telescope config PTG</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id2">
+<caption><span class="caption-text">Real time Calibration frames</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Reference Type</p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>Algorithms</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Atm. Dispersion Residual</p></td>
+<td><p>Metadata</p></td>
+<td><p>IRIS ADC</p></td>
+<td><p>Atmospheric Correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>Arc lamp spectra*</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC (NSCU)</p></td>
+<td><p>Wavelength solution</p></td>
+</tr>
+<tr class="row-even"><td><p>Bad pixel map</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC</p></td>
+<td><p>Correction of detector artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dark Frame</p></td>
+<td><p>CAL (2D)</p></td>
+<td><p>IRIS DTC and NTC</p></td>
+<td><p>Dark subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p>Env metadata</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-odd"><td><p>Instrument config</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-even"><td><p>NFIRAOS config</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sky frame</p></td>
+<td><p>CAL (2D, 3D)</p></td>
+<td><p>IRIS on-sky</p></td>
+<td><p>Sky-subtraction</p></td>
+</tr>
+<tr class="row-even"><td><p>Telescope config PTG</p></td>
+<td><p>Metadata</p></td>
+<td><p>ESW, FITS header</p></td>
+<td><p>All</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="access-calibration-files-via-the-calibration-reference-data-system-crds">
+<h2>Access calibration files via the Calibration Reference Data System (CRDS)<a class="headerlink" href="#access-calibration-files-via-the-calibration-reference-data-system-crds" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://hst-crds.stsci.edu/static/users_guide/overview.html">Calibration Reference Data System
+(CRDS)</a>
+is a set of tools developed by Space Telescope to organize and retrieve
+calibration reference files, e.g. flat frames, dark frames, for JWST and
+HST. When <code class="docutils literal notranslate"><span class="pre">stpipe</span></code> is executing a pipeline, it can automatically
+connect to the JWST CRDS server and get the right flat based on the
+metadata in the header of the data FITS files. The logic necessary to
+choose the right file is encoded in text files. Those configuration
+files and the actual calibration FITS files are also cached locally so
+that the CRDS client library works even without any connection to a
+central server.</p>
+<p>We have created a CRDS cache folder in the Github repository
+<a class="reference external" href="https://github.com/oirlab/tmt-crds-cache">https://github.com/oirlab/tmt-crds-cache</a>,
+this includes in the <code class="docutils literal notranslate"><span class="pre">mappings/tmt</span></code>
+<a class="reference external" href="https://github.com/oirlab/tmt-crds-cache/tree/master/mappings/tmt">folder</a>
+the metadata for IRIS and the rules to choose the right flat-field
+frame, for now there is only a dummy rule but this can be easily
+customize querying the metadata in the input file.</p>
+<p>Currently we do not have any CRDS server running, but the users can
+download the CRDS cache locally and use it anyway, see the <a class="reference external" href="getting-started">Getting
+started</a> documentation.</p>
+<p>Also, the CRDS client library needs to have minimal knowledge about
+metadata for TMT, therefore we maintain a fork of that library which
+simply adds a submodule dedicated to IRIS, <a class="reference external" href="https://github.com/oirlab/tmt-crds">https://github.com/oirlab/tmt-crds</a>, it is quite
+easy to upgrade this to newer releases of CRDS by Space Telescope.</p>
+<p>If TMT decided to use CRDS as their Data Management System, it would
+leverage the extensive set of tools and documentation available and
+would not require modifications to <code class="docutils literal notranslate"><span class="pre">stpipe</span></code>; otherwise, we will
+implement support for the DMS API into (our own fork of) <code class="docutils literal notranslate"><span class="pre">stpipe</span></code>.</p>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="calibration-database.html">0.2.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/calibration-database.rst">Edit This Page on Github</a> &nbsp;
+    <a href="_sources/calibration-database.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.1.2. &nbsp;
+    Last built 15 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

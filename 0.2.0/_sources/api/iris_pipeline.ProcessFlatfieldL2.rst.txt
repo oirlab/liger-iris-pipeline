@@ -1,0 +1,29 @@
+ProcessFlatfieldL2
+==================
+
+.. currentmodule:: iris_pipeline
+
+.. autoclass:: ProcessFlatfieldL2
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~ProcessFlatfieldL2.step_defs
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ProcessFlatfieldL2.process
+      ~ProcessFlatfieldL2.process_exposure_product
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: step_defs
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process
+   .. automethod:: process_exposure_product
