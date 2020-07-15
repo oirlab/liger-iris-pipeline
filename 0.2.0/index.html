@@ -1,21 +1,20 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.3.dev269</title>
+    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.3.dev270</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
     <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
@@ -54,7 +53,7 @@
 	</a>
       </li>
       <li>
-	<a href="#">iris_pipeline v0.3.dev269</a>
+	<a href="#">iris_pipeline v0.3.dev270</a>
 	 &#187;
       </li>
       
@@ -219,33 +218,32 @@ to replace the <code class="docutils literal notranslate"><span class="pre">CRDS
 <div class="section" id="class-inheritance-diagram">
 <h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
 digraph inheritance3d0a69428c {
-bgcolor=transparent;
 rankdir=LR;
 size=&quot;8.0, 12.0&quot;;
-  &quot;BackgroundStep&quot; [URL=&quot;../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;BackgroundStep:  Subtract background exposures from target exposures.&quot;];
+  &quot;BackgroundStep&quot; [URL=&quot;../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;BackgroundStep:  Subtract background exposures from target exposures.&quot;];
   &quot;Step&quot; -&gt; &quot;BackgroundStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;DQInitStep&quot; [URL=&quot;../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Initialize the Data Quality extension from the&quot;];
+  &quot;DQInitStep&quot; [URL=&quot;../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Initialize the Data Quality extension from the&quot;];
   &quot;Step&quot; -&gt; &quot;DQInitStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;FlatFieldStep&quot; [URL=&quot;../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Flat-field a science image using a flatfield reference image.&quot;];
+  &quot;FlatFieldStep&quot; [URL=&quot;../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Flat-field a science image using a flatfield reference image.&quot;];
   &quot;Step&quot; -&gt; &quot;FlatFieldStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;MergeSubarraysStep&quot; [URL=&quot;../api/iris_pipeline.MergeSubarraysStep.html#iris_pipeline.MergeSubarraysStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
+  &quot;MergeSubarraysStep&quot; [URL=&quot;../api/iris_pipeline.MergeSubarraysStep.html#iris_pipeline.MergeSubarraysStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
   &quot;Step&quot; -&gt; &quot;MergeSubarraysStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;NormalizeStep&quot; [URL=&quot;../api/iris_pipeline.NormalizeStep.html#iris_pipeline.NormalizeStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;NormalizeStep: Normalize a frame by dividing&quot;];
+  &quot;NormalizeStep&quot; [URL=&quot;../api/iris_pipeline.NormalizeStep.html#iris_pipeline.NormalizeStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;NormalizeStep: Normalize a frame by dividing&quot;];
   &quot;Step&quot; -&gt; &quot;NormalizeStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ParseSubarrayMapStep&quot; [URL=&quot;../api/iris_pipeline.ParseSubarrayMapStep.html#iris_pipeline.ParseSubarrayMapStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
+  &quot;ParseSubarrayMapStep&quot; [URL=&quot;../api/iris_pipeline.ParseSubarrayMapStep.html#iris_pipeline.ParseSubarrayMapStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
   &quot;Step&quot; -&gt; &quot;ParseSubarrayMapStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;Pipeline&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;A Pipeline is a way of combining a number of steps together.&quot;];
+  &quot;Pipeline&quot; [fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,tooltip=&quot;A Pipeline is a way of combining a number of steps together.&quot;];
   &quot;Step&quot; -&gt; &quot;Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ProcessFlatfieldL2&quot; [URL=&quot;../api/iris_pipeline.ProcessFlatfieldL2.html#iris_pipeline.ProcessFlatfieldL2&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessFlatfieldL2: Remove dark and normalize exposure to create&quot;];
+  &quot;ProcessFlatfieldL2&quot; [URL=&quot;../api/iris_pipeline.ProcessFlatfieldL2.html#iris_pipeline.ProcessFlatfieldL2&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessFlatfieldL2: Remove dark and normalize exposure to create&quot;];
   &quot;Pipeline&quot; -&gt; &quot;ProcessFlatfieldL2&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ProcessImagerL2Pipeline&quot; [URL=&quot;../api/iris_pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to&quot;];
+  &quot;ProcessImagerL2Pipeline&quot; [URL=&quot;../api/iris_pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to&quot;];
   &quot;Pipeline&quot; -&gt; &quot;ProcessImagerL2Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ROPPipeline&quot; [URL=&quot;../api/iris_pipeline.ROPPipeline.html#iris_pipeline.ROPPipeline&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Detector1Pipeline for IRIS&quot;];
+  &quot;ROPPipeline&quot; [URL=&quot;../api/iris_pipeline.ROPPipeline.html#iris_pipeline.ROPPipeline&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Detector1Pipeline for IRIS&quot;];
   &quot;Pipeline&quot; -&gt; &quot;ROPPipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;Step&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Step&quot;];
-  &quot;SubtractImagesStep&quot; [URL=&quot;../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;SubtractImagesStep:  Subtract two exposures from one&quot;];
+  &quot;Step&quot; [fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,tooltip=&quot;Step&quot;];
+  &quot;SubtractImagesStep&quot; [URL=&quot;../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;SubtractImagesStep:  Subtract two exposures from one&quot;];
   &quot;Step&quot; -&gt; &quot;SubtractImagesStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;UnsupportedPythonError&quot; [URL=&quot;../api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
+  &quot;UnsupportedPythonError&quot; [URL=&quot;../api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;];
 }
 </div>
 </div>
@@ -254,7 +252,6 @@ size=&quot;8.0, 12.0&quot;;
 
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -280,7 +277,7 @@ size=&quot;8.0, 12.0&quot;;
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.1.2. &nbsp;
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
     Last built 15 Jul 2020. <br/>
   </p>
 </footer>
