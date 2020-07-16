@@ -1,0 +1,27 @@
+BackgroundStep
+==============
+
+.. currentmodule:: iris_pipeline.background
+
+.. autoclass:: BackgroundStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~BackgroundStep.spec
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~BackgroundStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: spec
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

@@ -1,0 +1,6 @@
+UnsupportedPythonError
+======================
+
+.. currentmodule:: iris_pipeline
+
+.. autoexception:: UnsupportedPythonError

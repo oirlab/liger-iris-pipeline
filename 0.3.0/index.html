@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.4.dev278</title>
+    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting-started.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="#"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="genindex.html">Index</a></li>
+    <li><a title="Module Index" href="py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="getting-started.html" title="Getting started">
+	  next &raquo;
+	</a>
+      </li>
+      <li>
+	<a href="#">iris_pipeline v0.4.dev278</a>
+	 &#187;
+      </li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+<p>
+  <strong>
+    
+    You're reading the documentation for a development version.
+    For the latest released version, please have a look at <a href="../master/index.html">master</a>.
+    
+  <strong>
+</p>
+
+
+  <div class="section" id="iris-pipeline-documentation">
+<h1>iris_pipeline Documentation<a class="headerlink" href="#iris-pipeline-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The IRIS Data Reduction System is based on the <code class="docutils literal notranslate"><span class="pre">stpipe</span></code> package released by Space Telescope
+for the James Webb Space Telescope.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">stpipe</span></code> we can configure each step of a pipeline through one or more text based .INI style files,
+then we provide one input FITS file or a set of multiple inputs defined in JSON (named <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/associations/overview.html">Associations</a>).
+Custom analysis steps and pipelines for IRIS are defined as classes in the current repository <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code></p>
+<p>Then execute the pipeline from the command line using the <code class="docutils literal notranslate"><span class="pre">tmtrun</span></code> executable or using
+directly the Python library.</p>
+<p>The pipeline also dynamically interfaces to the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> the Calibration References Data System,
+to retrieve the best calibration datasets given the metadata in the headers of the input FITS files.
+The <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> client can also load data from a local cache, so for now we do not have a actual
+<code class="docutils literal notranslate"><span class="pre">CRDS</span></code> server and we only rely on a local cache.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> is not under our control, the Thirty Meter Telescope will deliver a database system
+to replace the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> and we can adapt our code to that in the future.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#compilation-requirements">Compilation requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#development-install">Development install</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="example-run">
+<h2>Example run<a class="headerlink" href="#example-run" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example-run.html">Example pipeline execution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#setup-crds">Setup CRDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#get-input-simulations">Get input simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#preprocess-the-flat-frame">Preprocess the flat frame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#configure-the-image-processing-pipeline">Configure the image processing pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#define-the-input-data">Define the input data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#execute-the-pipeline-from-the-command-line">Execute the pipeline from the command line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example-run.html#run-on-subarrays">Run on subarrays</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="design.html">IRIS Data Reduction System design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#purpose">Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#software-infrastructure">Software infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#file-format">File format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#example-run">Example run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#access-calibration-files-via-the-calibration-reference-data-system-crds">Access calibration files via the Calibration Reference Data System (CRDS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html#metadata">Metadata</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="calibration-and-crds">
+<h2>Calibration and CRDS<a class="headerlink" href="#calibration-and-crds" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="calibration-database.html">Calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="calibration-database.html#calibration-files">Calibration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calibration-database.html#access-calibration-files-via-the-calibration-reference-data-system-crds">Access calibration files via the Calibration Reference Data System (CRDS)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html#imager-algorithms">Imager Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html#ifs-algorithms">IFS Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html#advanced-algorithms">Advanced Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html#calibration-algorithms">Calibration algorithms</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="available-steps">
+<h2>Available steps<a class="headerlink" href="#available-steps" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="available-steps.html">Package Index</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="subarrays">
+<h2>Subarrays<a class="headerlink" href="#subarrays" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="subarrays.html">Support for subarrays</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="reference-api">
+<h2>Reference/API<a class="headerlink" href="#reference-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-iris_pipeline">
+<span id="iris-pipeline-package"></span><h3>iris_pipeline Package<a class="headerlink" href="#module-iris_pipeline" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="functions">
+<h4>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h4>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.monkeypatch_jwst_datamodels.html#iris_pipeline.monkeypatch_jwst_datamodels" title="iris_pipeline.monkeypatch_jwst_datamodels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">monkeypatch_jwst_datamodels</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.test.html#iris_pipeline.test" title="iris_pipeline.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test</span></code></a>(**kwargs)</p></td>
+<td><p>Run the tests for the package.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="classes">
+<h4>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h4>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep" title="iris_pipeline.BackgroundStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackgroundStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>BackgroundStep:  Subtract background exposures from target exposures.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep" title="iris_pipeline.DQInitStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DQInitStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>Initialize the Data Quality extension from the mask reference file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep" title="iris_pipeline.FlatFieldStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlatFieldStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>Flat-field a science image using a flatfield reference image.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.MergeSubarraysStep.html#iris_pipeline.MergeSubarraysStep" title="iris_pipeline.MergeSubarraysStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeSubarraysStep</span></code></a>([name, parent, …])</p></td>
+<td><p>ParseSubarrayMapStep: Parse a subarray map extension, if available, and create header metadata and data quality flag accordingly</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.NormalizeStep.html#iris_pipeline.NormalizeStep" title="iris_pipeline.NormalizeStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalizeStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>NormalizeStep: Normalize a frame by dividing by its own mean, median or mode</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ParseSubarrayMapStep.html#iris_pipeline.ParseSubarrayMapStep" title="iris_pipeline.ParseSubarrayMapStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseSubarrayMapStep</span></code></a>([name, parent, …])</p></td>
+<td><p>ParseSubarrayMapStep: Parse a subarray map extension, if available, and create header metadata and data quality flag accordingly</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessFlatfieldL2.html#iris_pipeline.ProcessFlatfieldL2" title="iris_pipeline.ProcessFlatfieldL2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessFlatfieldL2</span></code></a>(*args, **kwargs)</p></td>
+<td><p>ProcessFlatfieldL2: Remove dark and normalize exposure to create a flat field to be later added to the CRDS.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline" title="iris_pipeline.ProcessImagerL2Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessImagerL2Pipeline</span></code></a>(*args, **kwargs)</p></td>
+<td><p>ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to Level-2b.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ROPPipeline.html#iris_pipeline.ROPPipeline" title="iris_pipeline.ROPPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ROPPipeline</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Detector1Pipeline for IRIS</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep" title="iris_pipeline.SubtractImagesStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubtractImagesStep</span></code></a>([name, parent, …])</p></td>
+<td><p>SubtractImagesStep:  Subtract two exposures from one another to accomplish background subtraction.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError" title="iris_pipeline.UnsupportedPythonError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnsupportedPythonError</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
+digraph inheritance3d0a69428c {
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;BackgroundStep&quot; [URL=&quot;../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;BackgroundStep:  Subtract background exposures from target exposures.&quot;];
+  &quot;Step&quot; -&gt; &quot;BackgroundStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;DQInitStep&quot; [URL=&quot;../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Initialize the Data Quality extension from the&quot;];
+  &quot;Step&quot; -&gt; &quot;DQInitStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;FlatFieldStep&quot; [URL=&quot;../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Flat-field a science image using a flatfield reference image.&quot;];
+  &quot;Step&quot; -&gt; &quot;FlatFieldStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;MergeSubarraysStep&quot; [URL=&quot;../api/iris_pipeline.merge_subarrays.MergeSubarraysStep.html#iris_pipeline.merge_subarrays.MergeSubarraysStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
+  &quot;Step&quot; -&gt; &quot;MergeSubarraysStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NormalizeStep&quot; [URL=&quot;../api/iris_pipeline.normalize.NormalizeStep.html#iris_pipeline.normalize.NormalizeStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;NormalizeStep: Normalize a frame by dividing&quot;];
+  &quot;Step&quot; -&gt; &quot;NormalizeStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ParseSubarrayMapStep&quot; [URL=&quot;../api/iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html#iris_pipeline.parse_subarray_map.ParseSubarrayMapStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
+  &quot;Step&quot; -&gt; &quot;ParseSubarrayMapStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Pipeline&quot; [fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,tooltip=&quot;A Pipeline is a way of combining a number of steps together.&quot;];
+  &quot;Step&quot; -&gt; &quot;Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ProcessFlatfieldL2&quot; [URL=&quot;../api/iris_pipeline.pipeline.ProcessFlatfieldL2.html#iris_pipeline.pipeline.ProcessFlatfieldL2&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessFlatfieldL2: Remove dark and normalize exposure to create&quot;];
+  &quot;Pipeline&quot; -&gt; &quot;ProcessFlatfieldL2&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ProcessImagerL2Pipeline&quot; [URL=&quot;../api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.pipeline.ProcessImagerL2Pipeline&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to&quot;];
+  &quot;Pipeline&quot; -&gt; &quot;ProcessImagerL2Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ROPPipeline&quot; [URL=&quot;../api/iris_pipeline.pipeline.ROPPipeline.html#iris_pipeline.pipeline.ROPPipeline&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;Detector1Pipeline for IRIS&quot;];
+  &quot;Pipeline&quot; -&gt; &quot;ROPPipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Step&quot; [fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,tooltip=&quot;Step&quot;];
+  &quot;SubtractImagesStep&quot; [URL=&quot;../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;,tooltip=&quot;SubtractImagesStep:  Subtract two exposures from one&quot;];
+  &quot;Step&quot; -&gt; &quot;SubtractImagesStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;UnsupportedPythonError&quot; [URL=&quot;../api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError&quot;,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5)&quot;,target=&quot;_top&quot;];
+}
+</div>
+</div>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../0.2.0/index.html">0.2.0</a></li>
+  <li><a href="index.html">0.3.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="../master/index.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">iris_pipeline Documentation</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#example-run">Example run</a></li>
+<li><a class="reference internal" href="#design">Design</a></li>
+<li><a class="reference internal" href="#calibration-and-crds">Calibration and CRDS</a></li>
+<li><a class="reference internal" href="#algorithms">Algorithms</a></li>
+<li><a class="reference internal" href="#available-steps">Available steps</a></li>
+<li><a class="reference internal" href="#subarrays">Subarrays</a></li>
+<li><a class="reference internal" href="#reference-api">Reference/API</a><ul>
+<li><a class="reference internal" href="#module-iris_pipeline">iris_pipeline Package</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/index.rst">Edit This Page on Github</a> &nbsp;
+    <a href="_sources/index.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Last built 16 Jul 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

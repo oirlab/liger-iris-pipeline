@@ -1,0 +1,6 @@
+test
+====
+
+.. currentmodule:: iris_pipeline
+
+.. autofunction:: test
