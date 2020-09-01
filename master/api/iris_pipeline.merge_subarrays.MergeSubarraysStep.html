@@ -1,20 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>MergeSubarraysStep &#8212; iris_pipeline v0.4.dev290</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MergeSubarraysStep &#8212; iris_pipeline v0.4.dev292</title>
     <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
     <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
@@ -60,7 +61,7 @@
 	 |
       </li>
       <li>
-	<a href="../index.html">iris_pipeline v0.4.dev290</a>
+	<a href="../index.html">iris_pipeline v0.4.dev292</a>
 	 &#187;
       </li>
       <li><a href="../available-steps.html" >Package Index</a> &#187;</li>
@@ -80,9 +81,9 @@
 
   <div class="section" id="mergesubarraysstep">
 <h1>MergeSubarraysStep<a class="headerlink" href="#mergesubarraysstep" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="iris_pipeline.merge_subarrays.MergeSubarraysStep">
-<em class="property">class </em><code class="sig-prename descclassname">iris_pipeline.merge_subarrays.</code><code class="sig-name descname">MergeSubarraysStep</code><span class="sig-paren">(</span><em class="sig-param">name=None</em>, <em class="sig-param">parent=None</em>, <em class="sig-param">config_file=None</em>, <em class="sig-param">_validate_kwds=True</em>, <em class="sig-param">**kws</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/merge_subarrays/merge_subarrays.html#MergeSubarraysStep"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/merge_subarrays/merge_subarrays.py#L9" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.merge_subarrays.MergeSubarraysStep" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris_pipeline.merge_subarrays.</code><code class="sig-name descname">MergeSubarraysStep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_validate_kwds</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/merge_subarrays/merge_subarrays.html#MergeSubarraysStep"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/merge_subarrays/merge_subarrays.py#L9" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.merge_subarrays.MergeSubarraysStep" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.stpipe.Step.html#jwst.stpipe.Step" title="jwst.stpipe.Step"><code class="docutils literal notranslate"><span class="pre">jwst.stpipe.Step</span></code></a></p>
 <p>ParseSubarrayMapStep: Parse a subarray map
 extension, if available, and create header metadata
@@ -121,9 +122,9 @@ variables on the new Step instance.</p>
 </tbody>
 </table>
 <p class="rubric">Methods Documentation</p>
-<dl class="method">
+<dl class="py method">
 <dt id="iris_pipeline.merge_subarrays.MergeSubarraysStep.process">
-<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param">input</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/merge_subarrays/merge_subarrays.html#MergeSubarraysStep.process"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/merge_subarrays/merge_subarrays.py#L16" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.merge_subarrays.MergeSubarraysStep.process" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/merge_subarrays/merge_subarrays.html#MergeSubarraysStep.process"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/merge_subarrays/merge_subarrays.py#L16" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.merge_subarrays.MergeSubarraysStep.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is where real work happens. Every Step subclass has to
 override this method. The default behaviour is to raise a
 NotImplementedError exception.</p>
@@ -135,6 +136,7 @@ NotImplementedError exception.</p>
 
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -168,7 +170,7 @@ NotImplementedError exception.</p>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
     Last built 01 Sep 2020. <br/>
   </p>
 </footer>
