@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>iris_pipeline.pipeline.image2 &#8212; iris_pipeline v0.4.dev280</title>
+    <title>iris_pipeline.pipeline.image2 &#8212; iris_pipeline v0.4.dev290</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -47,7 +47,7 @@
     <h3>Navigation</h3>
     <ul>
       <li>
-	<a href="../../../index.html">iris_pipeline v0.4.dev280</a>
+	<a href="../../../index.html">iris_pipeline v0.4.dev290</a>
 	 &#187;
       </li>
       <li><a href="../../index.html" >Module code</a> &#187;</li>
@@ -128,6 +128,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Processing product </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_results</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="n">asn</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">asn</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;singleton&quot;</span>
+
             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_exposure_product</span><span class="p">(</span>
                 <span class="n">product</span><span class="p">,</span> <span class="n">asn</span><span class="p">[</span><span class="s2">&quot;asn_pool&quot;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">asn</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
             <span class="p">)</span>
@@ -247,7 +252,7 @@
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
     Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 2.2.1. &nbsp;
-    Last built 16 Jul 2020. <br/>
+    Last built 01 Sep 2020. <br/>
   </p>
 </footer>
   </body>
