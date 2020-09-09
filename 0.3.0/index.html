@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.4.dev295</title>
+    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.4.dev296</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -54,7 +54,7 @@
 	</a>
       </li>
       <li>
-	<a href="#">iris_pipeline v0.4.dev295</a>
+	<a href="#">iris_pipeline v0.4.dev296</a>
 	 &#187;
       </li>
       
@@ -245,35 +245,8 @@ to replace the <code class="docutils literal notranslate"><span class="pre">CRDS
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
-digraph inheritance3d0a69428c {
-bgcolor=transparent;
-rankdir=LR;
-size=&quot;8.0, 12.0&quot;;
-  &quot;BackgroundStep&quot; [URL=&quot;../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;BackgroundStep:  Subtract background exposures from target exposures.&quot;];
-  &quot;Step&quot; -&gt; &quot;BackgroundStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;DQInitStep&quot; [URL=&quot;../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Initialize the Data Quality extension from the&quot;];
-  &quot;Step&quot; -&gt; &quot;DQInitStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;FlatFieldStep&quot; [URL=&quot;../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Flat-field a science image using a flatfield reference image.&quot;];
-  &quot;Step&quot; -&gt; &quot;FlatFieldStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;MergeSubarraysStep&quot; [URL=&quot;../api/iris_pipeline.merge_subarrays.MergeSubarraysStep.html#iris_pipeline.merge_subarrays.MergeSubarraysStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
-  &quot;Step&quot; -&gt; &quot;MergeSubarraysStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;NormalizeStep&quot; [URL=&quot;../api/iris_pipeline.normalize.NormalizeStep.html#iris_pipeline.normalize.NormalizeStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;NormalizeStep: Normalize a frame by dividing&quot;];
-  &quot;Step&quot; -&gt; &quot;NormalizeStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ParseSubarrayMapStep&quot; [URL=&quot;../api/iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html#iris_pipeline.parse_subarray_map.ParseSubarrayMapStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ParseSubarrayMapStep: Parse a subarray map&quot;];
-  &quot;Step&quot; -&gt; &quot;ParseSubarrayMapStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;Pipeline&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;A Pipeline is a way of combining a number of steps together.&quot;];
-  &quot;Step&quot; -&gt; &quot;Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ProcessFlatfieldL2&quot; [URL=&quot;../api/iris_pipeline.pipeline.ProcessFlatfieldL2.html#iris_pipeline.pipeline.ProcessFlatfieldL2&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessFlatfieldL2: Remove dark and normalize exposure to create&quot;];
-  &quot;Pipeline&quot; -&gt; &quot;ProcessFlatfieldL2&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ProcessImagerL2Pipeline&quot; [URL=&quot;../api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.pipeline.ProcessImagerL2Pipeline&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to&quot;];
-  &quot;Pipeline&quot; -&gt; &quot;ProcessImagerL2Pipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;ROPPipeline&quot; [URL=&quot;../api/iris_pipeline.pipeline.ROPPipeline.html#iris_pipeline.pipeline.ROPPipeline&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Detector1Pipeline for IRIS&quot;];
-  &quot;Pipeline&quot; -&gt; &quot;ROPPipeline&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;Step&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Step&quot;];
-  &quot;SubtractImagesStep&quot; [URL=&quot;../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;SubtractImagesStep:  Subtract two exposures from one&quot;];
-  &quot;Step&quot; -&gt; &quot;SubtractImagesStep&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
-  &quot;UnsupportedPythonError&quot; [URL=&quot;../api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
-}
+<div class="graphviz"><object data="_images/inheritance-ef90261eccda2bf17319b36d7c4d5ba9b1eba4c5.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of iris_pipeline.background.background_step.BackgroundStep, iris_pipeline.dq_init.dq_init_step.DQInitStep, iris_pipeline.flatfield.flat_field_step.FlatFieldStep, iris_pipeline.merge_subarrays.merge_subarrays.MergeSubarraysStep, iris_pipeline.normalize.normalize_step.NormalizeStep, iris_pipeline.parse_subarray_map.parse_subarray_map_step.ParseSubarrayMapStep, iris_pipeline.pipeline.preprocess_flatfield.ProcessFlatfieldL2, iris_pipeline.pipeline.image2.ProcessImagerL2Pipeline, iris_pipeline.pipeline.rop.ROPPipeline, iris_pipeline.background.subtract_images_step.SubtractImagesStep, iris_pipeline.UnsupportedPythonError</p></object></div>
 </div>
 </div>
 </div>
