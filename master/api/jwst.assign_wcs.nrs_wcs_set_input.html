@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nrs_wcs_set_input &#8212; iris_pipeline v0.4.dev310</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../index.html">iris_pipeline v0.4.dev310</a>
+	 &#187;
+      </li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <div class="section" id="nrs-wcs-set-input">
+<h1>nrs_wcs_set_input<a class="headerlink" href="#nrs-wcs-set-input" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="jwst.assign_wcs.nrs_wcs_set_input">
+<code class="sig-prename descclassname">jwst.assign_wcs.</code><code class="sig-name descname">nrs_wcs_set_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_model</span></em>, <em class="sig-param"><span class="n">slit_name</span></em>, <em class="sig-param"><span class="n">wavelength_range</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jwst/assign_wcs/nirspec.html#nrs_wcs_set_input"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/jwst/assign_wcs/nirspec.py#L1526" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#jwst.assign_wcs.nrs_wcs_set_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a WCS object for a specific slit, slice or shutter.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>input_model</strong><span class="classifier"><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.datamodels.DataModel.html#jwst.datamodels.DataModel" title="(in jwst v0.17.2.dev1+ga311ddc9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataModel</span></code></a></span></dt><dd><p>A WCS object for the all open slitlets in an observation.</p>
+</dd>
+<dt><strong>slit_name</strong><span class="classifier">int or str</span></dt><dd><p>Slit.name of an open slit.</p>
+</dd>
+<dt><strong>wavelength_range: list</strong></dt><dd><p>Wavelength range for the combination of fliter and grating.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl>
+<dt><strong>wcsobj</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WCS</span></code></span></dt><dd><p>WCS object for this slit.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../0.2.0/index.html">0.2.0</a></li>
+  <li><a href="../../0.3.0/index.html">0.3.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="jwst.assign_wcs.nrs_wcs_set_input.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">nrs_wcs_set_input</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/api/jwst.assign_wcs.nrs_wcs_set_input.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/jwst.assign_wcs.nrs_wcs_set_input.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 16 Sep 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

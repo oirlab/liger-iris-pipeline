@@ -1,0 +1,6 @@
+nrs_ifu_wcs
+===========
+
+.. currentmodule:: jwst.assign_wcs
+
+.. autofunction:: nrs_ifu_wcs

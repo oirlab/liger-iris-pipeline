@@ -1,0 +1,6 @@
+nrs_wcs_set_input
+=================
+
+.. currentmodule:: jwst.assign_wcs
+
+.. autofunction:: nrs_wcs_set_input

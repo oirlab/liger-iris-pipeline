@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.4.dev298</title>
+    <title>iris_pipeline Documentation &#8212; iris_pipeline v0.4.dev310</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -54,7 +54,7 @@
 	</a>
       </li>
       <li>
-	<a href="#">iris_pipeline v0.4.dev298</a>
+	<a href="#">iris_pipeline v0.4.dev310</a>
 	 &#187;
       </li>
       
@@ -207,37 +207,40 @@ to replace the <code class="docutils literal notranslate"><span class="pre">CRDS
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep" title="iris_pipeline.BackgroundStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackgroundStep</span></code></a>([name, parent, config_file, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.AssignWcsStep.html#iris_pipeline.AssignWcsStep" title="iris_pipeline.AssignWcsStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssignWcsStep</span></code></a>([name, parent, config_file, …])</p></td>
+<td><p>AssignWcsStep: Create a gWCS object and store it in <code class="docutils literal notranslate"><span class="pre">Model.meta</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep" title="iris_pipeline.BackgroundStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackgroundStep</span></code></a>([name, parent, config_file, …])</p></td>
 <td><p>BackgroundStep:  Subtract background exposures from target exposures.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep" title="iris_pipeline.DQInitStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DQInitStep</span></code></a>([name, parent, config_file, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep" title="iris_pipeline.DQInitStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DQInitStep</span></code></a>([name, parent, config_file, …])</p></td>
 <td><p>Initialize the Data Quality extension from the mask reference file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep" title="iris_pipeline.FlatFieldStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlatFieldStep</span></code></a>([name, parent, config_file, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep" title="iris_pipeline.FlatFieldStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlatFieldStep</span></code></a>([name, parent, config_file, …])</p></td>
 <td><p>Flat-field a science image using a flatfield reference image.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.MergeSubarraysStep.html#iris_pipeline.MergeSubarraysStep" title="iris_pipeline.MergeSubarraysStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeSubarraysStep</span></code></a>([name, parent, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.MergeSubarraysStep.html#iris_pipeline.MergeSubarraysStep" title="iris_pipeline.MergeSubarraysStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeSubarraysStep</span></code></a>([name, parent, …])</p></td>
 <td><p>ParseSubarrayMapStep: Parse a subarray map extension, if available, and create header metadata and data quality flag accordingly</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.NormalizeStep.html#iris_pipeline.NormalizeStep" title="iris_pipeline.NormalizeStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalizeStep</span></code></a>([name, parent, config_file, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.NormalizeStep.html#iris_pipeline.NormalizeStep" title="iris_pipeline.NormalizeStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalizeStep</span></code></a>([name, parent, config_file, …])</p></td>
 <td><p>NormalizeStep: Normalize a frame by dividing by its own mean, median or mode</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ParseSubarrayMapStep.html#iris_pipeline.ParseSubarrayMapStep" title="iris_pipeline.ParseSubarrayMapStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseSubarrayMapStep</span></code></a>([name, parent, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ParseSubarrayMapStep.html#iris_pipeline.ParseSubarrayMapStep" title="iris_pipeline.ParseSubarrayMapStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseSubarrayMapStep</span></code></a>([name, parent, …])</p></td>
 <td><p>ParseSubarrayMapStep: Parse a subarray map extension, if available, and create header metadata and data quality flag accordingly</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessFlatfieldL2.html#iris_pipeline.ProcessFlatfieldL2" title="iris_pipeline.ProcessFlatfieldL2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessFlatfieldL2</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessFlatfieldL2.html#iris_pipeline.ProcessFlatfieldL2" title="iris_pipeline.ProcessFlatfieldL2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessFlatfieldL2</span></code></a>(*args, **kwargs)</p></td>
 <td><p>ProcessFlatfieldL2: Remove dark and normalize exposure to create a flat field to be later added to the CRDS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline" title="iris_pipeline.ProcessImagerL2Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessImagerL2Pipeline</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ProcessImagerL2Pipeline.html#iris_pipeline.ProcessImagerL2Pipeline" title="iris_pipeline.ProcessImagerL2Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessImagerL2Pipeline</span></code></a>(*args, **kwargs)</p></td>
 <td><p>ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to Level-2b.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.ROPPipeline.html#iris_pipeline.ROPPipeline" title="iris_pipeline.ROPPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ROPPipeline</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.ROPPipeline.html#iris_pipeline.ROPPipeline" title="iris_pipeline.ROPPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ROPPipeline</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Detector1Pipeline for IRIS</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep" title="iris_pipeline.SubtractImagesStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubtractImagesStep</span></code></a>([name, parent, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep" title="iris_pipeline.SubtractImagesStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubtractImagesStep</span></code></a>([name, parent, …])</p></td>
 <td><p>SubtractImagesStep:  Subtract two exposures from one another to accomplish background subtraction.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError" title="iris_pipeline.UnsupportedPythonError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnsupportedPythonError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/iris_pipeline.UnsupportedPythonError.html#iris_pipeline.UnsupportedPythonError" title="iris_pipeline.UnsupportedPythonError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnsupportedPythonError</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -245,8 +248,8 @@ to replace the <code class="docutils literal notranslate"><span class="pre">CRDS
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
-<div class="graphviz"><object data="_images/inheritance-ef90261eccda2bf17319b36d7c4d5ba9b1eba4c5.svg" type="image/svg+xml" class="inheritance graphviz">
-<p class="warning">Inheritance diagram of iris_pipeline.background.background_step.BackgroundStep, iris_pipeline.dq_init.dq_init_step.DQInitStep, iris_pipeline.flatfield.flat_field_step.FlatFieldStep, iris_pipeline.merge_subarrays.merge_subarrays.MergeSubarraysStep, iris_pipeline.normalize.normalize_step.NormalizeStep, iris_pipeline.parse_subarray_map.parse_subarray_map_step.ParseSubarrayMapStep, iris_pipeline.pipeline.preprocess_flatfield.ProcessFlatfieldL2, iris_pipeline.pipeline.image2.ProcessImagerL2Pipeline, iris_pipeline.pipeline.rop.ROPPipeline, iris_pipeline.background.subtract_images_step.SubtractImagesStep, iris_pipeline.UnsupportedPythonError</p></object></div>
+<div class="graphviz"><object data="_images/inheritance-163347081397aa3d6c3f8ff50a8c44813f89ef46.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of iris_pipeline.assign_wcs.assign_wcs_step.AssignWcsStep, iris_pipeline.background.background_step.BackgroundStep, iris_pipeline.dq_init.dq_init_step.DQInitStep, iris_pipeline.flatfield.flat_field_step.FlatFieldStep, iris_pipeline.merge_subarrays.merge_subarrays.MergeSubarraysStep, iris_pipeline.normalize.normalize_step.NormalizeStep, iris_pipeline.parse_subarray_map.parse_subarray_map_step.ParseSubarrayMapStep, iris_pipeline.pipeline.preprocess_flatfield.ProcessFlatfieldL2, iris_pipeline.pipeline.image2.ProcessImagerL2Pipeline, iris_pipeline.pipeline.rop.ROPPipeline, iris_pipeline.background.subtract_images_step.SubtractImagesStep, iris_pipeline.UnsupportedPythonError</p></object></div>
 </div>
 </div>
 </div>
@@ -307,7 +310,7 @@ to replace the <code class="docutils literal notranslate"><span class="pre">CRDS
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
     Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
-    Last built 09 Sep 2020. <br/>
+    Last built 16 Sep 2020. <br/>
   </p>
 </footer>
   </body>

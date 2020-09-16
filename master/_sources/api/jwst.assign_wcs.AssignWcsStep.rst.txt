@@ -1,0 +1,29 @@
+AssignWcsStep
+=============
+
+.. currentmodule:: jwst.assign_wcs
+
+.. autoclass:: AssignWcsStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.reference_file_types
+      ~AssignWcsStep.spec
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: reference_file_types
+   .. autoattribute:: spec
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

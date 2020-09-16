@@ -1,0 +1,6 @@
+get_spectral_order_wrange
+=========================
+
+.. currentmodule:: jwst.assign_wcs
+
+.. autofunction:: get_spectral_order_wrange

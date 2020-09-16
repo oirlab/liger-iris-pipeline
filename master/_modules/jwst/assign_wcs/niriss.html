@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jwst.assign_wcs.niriss &#8212; iris_pipeline v0.4.dev310</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../../index.html">iris_pipeline v0.4.dev310</a>
+	 &#187;
+      </li>
+      <li><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <h1>Source code for jwst.assign_wcs.niriss</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">asdf</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">coordinates</span> <span class="k">as</span> <span class="n">coord</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astropy.modeling.models</span> <span class="kn">import</span> <span class="n">Const1D</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Identity</span><span class="p">,</span> <span class="n">Shift</span>
+<span class="kn">import</span> <span class="nn">gwcs.coordinate_frames</span> <span class="k">as</span> <span class="nn">cf</span>
+<span class="kn">from</span> <span class="nn">gwcs</span> <span class="kn">import</span> <span class="n">wcs</span>
+
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="p">(</span><span class="n">not_implemented_mode</span><span class="p">,</span> <span class="n">subarray_transform</span><span class="p">,</span>
+                   <span class="n">velocity_correction</span><span class="p">,</span> <span class="n">bounding_box_from_subarray</span><span class="p">,</span>
+                   <span class="n">transform_bbox_from_shape</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">pointing</span>
+<span class="kn">from</span> <span class="nn">..transforms.models</span> <span class="kn">import</span> <span class="p">(</span><span class="n">NirissSOSSModel</span><span class="p">,</span>
+                                 <span class="n">NIRISSForwardRowGrismDispersion</span><span class="p">,</span>
+                                 <span class="n">NIRISSBackwardGrismDispersion</span><span class="p">,</span>
+                                 <span class="n">NIRISSForwardColumnGrismDispersion</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..datamodels</span> <span class="kn">import</span> <span class="n">ImageModel</span><span class="p">,</span> <span class="n">NIRISSGrismModel</span><span class="p">,</span> <span class="n">DistortionModel</span>
+<span class="kn">from</span> <span class="nn">..lib</span> <span class="kn">import</span> <span class="n">s3_utils</span>
+<span class="kn">from</span> <span class="nn">..lib.reffile_utils</span> <span class="kn">import</span> <span class="n">find_row</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;create_pipeline&quot;</span><span class="p">,</span> <span class="s2">&quot;imaging&quot;</span><span class="p">,</span> <span class="s2">&quot;niriss_soss&quot;</span><span class="p">,</span> <span class="s2">&quot;niriss_soss_set_input&quot;</span><span class="p">,</span> <span class="s2">&quot;wfss&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">create_pipeline</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create the WCS pipeline based on EXP_TYPE.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_model : `~jwst.datamodel.DataModel`</span>
+<span class="sd">        Input datamodel for processing</span>
+<span class="sd">    reference_files : dict</span>
+<span class="sd">        The dictionary of reference file names and their associated files</span>
+<span class="sd">        {reftype: reference file name}.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pipeline : list</span>
+<span class="sd">        The pipeline list that is returned is suitable for</span>
+<span class="sd">        input into  gwcs.wcs.WCS to create a GWCS object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;reference files used in NIRISS WCS pipeline: </span><span class="si">{</span><span class="n">reference_files</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">exp_type</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">exposure</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">exp_type2transform</span><span class="p">[</span><span class="n">exp_type</span><span class="p">](</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pipeline</span>
+
+
+<div class="viewcode-block" id="niriss_soss_set_input"><a class="viewcode-back" href="../../../api/jwst.assign_wcs.niriss_soss_set_input.html#jwst.assign_wcs.niriss_soss_set_input">[docs]</a><span class="k">def</span> <span class="nf">niriss_soss_set_input</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">order_number</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract a WCS fr a specific spectral order.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : `~jwst.datamodels.ImageModel`</span>
+<span class="sd">        An instance of an ImageModel</span>
+<span class="sd">    order_number : int</span>
+<span class="sd">        the spectral order</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    WCS - the WCS corresponding to the spectral order.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Make sure the spectral order is available.</span>
+    <span class="k">if</span> <span class="n">order_number</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">order_number</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Order must be between 1 and 3&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Return the correct transform based on the order_number</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcs</span><span class="o">.</span><span class="n">forward_transform</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">order_number</span><span class="p">)</span>
+
+    <span class="c1"># use the size of the input subarray</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Frame2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;detector&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">))</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">SpectralFrame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">micron</span><span class="p">,),</span>
+                            <span class="n">axes_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,))</span>
+    <span class="n">sky</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">CelestialFrame</span><span class="p">(</span><span class="n">reference_frame</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">ICRS</span><span class="p">(),</span>
+                            <span class="n">axes_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ra&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">),</span>
+                            <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">CompositeFrame</span><span class="p">([</span><span class="n">sky</span><span class="p">,</span> <span class="n">spec</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[(</span><span class="n">detector</span><span class="p">,</span> <span class="n">obj</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">wcs</span><span class="o">.</span><span class="n">WCS</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">niriss_soss</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The NIRISS SOSS WCS pipeline.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_model : `~jwst.datamodel.DataModel`</span>
+<span class="sd">        Input datamodel for processing</span>
+<span class="sd">    reference_files : dict</span>
+<span class="sd">        The dictionary of reference file names and their associated files</span>
+<span class="sd">        {reftype: reference file name}.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pipeline : list</span>
+<span class="sd">        The pipeline list that is returned is suitable for</span>
+<span class="sd">        input into  gwcs.wcs.WCS to create a GWCS object.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    It includes tWO coordinate frames -</span>
+<span class="sd">    &quot;detector&quot; and &quot;world&quot;.</span>
+
+<span class="sd">    It uses the &quot;specwcs&quot; reference file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Get the target RA and DEC, they will be used for setting the WCS RA</span>
+    <span class="c1"># and DEC based on a conversation with Kevin Volk.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">target_ra</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">ra</span><span class="p">)</span>
+        <span class="n">target_dec</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># There was an error getting the target RA and DEC, so we are not going to continue.</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Problem getting the TARG_RA or TARG_DEC from input model </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_model</span><span class="p">))</span>
+
+    <span class="c1"># Define the frames</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Frame2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;detector&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">))</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">SpectralFrame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">micron</span><span class="p">,),</span>
+                            <span class="n">axes_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,))</span>
+    <span class="n">sky</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">CelestialFrame</span><span class="p">(</span><span class="n">reference_frame</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">ICRS</span><span class="p">(),</span>
+                            <span class="n">axes_names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ra&#39;</span><span class="p">,</span> <span class="s1">&#39;dec&#39;</span><span class="p">),</span>
+                            <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sky&#39;</span><span class="p">)</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">CompositeFrame</span><span class="p">([</span><span class="n">sky</span><span class="p">,</span> <span class="n">spec</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># We&#39;d like to open this file as a DataModel, so we can consolidate</span>
+        <span class="c1"># the S3 URI handling to one place.  The S3-related code here can</span>
+        <span class="c1"># be removed once that has been changed.</span>
+        <span class="k">if</span> <span class="n">s3_utils</span><span class="o">.</span><span class="n">is_s3_uri</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;specwcs&#39;</span><span class="p">]):</span>
+            <span class="n">wl</span> <span class="o">=</span> <span class="n">asdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">s3_utils</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;specwcs&#39;</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wl</span> <span class="o">=</span> <span class="n">asdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;specwcs&#39;</span><span class="p">])</span>
+        <span class="k">with</span> <span class="n">wl</span><span class="p">:</span>
+            <span class="n">wl1</span> <span class="o">=</span> <span class="n">wl</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">wl2</span> <span class="o">=</span> <span class="n">wl</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">wl3</span> <span class="o">=</span> <span class="n">wl</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;Error reading wavelength correction from </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;specwcs&#39;</span><span class="p">]))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">velosys</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcsinfo</span><span class="o">.</span><span class="n">velosys</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">velosys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">velocity_corr</span> <span class="o">=</span> <span class="n">velocity_correction</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcsinfo</span><span class="o">.</span><span class="n">velosys</span><span class="p">)</span>
+            <span class="n">wl1</span> <span class="o">=</span> <span class="n">wl1</span> <span class="o">|</span> <span class="n">velocity_corr</span>
+            <span class="n">wl2</span> <span class="o">=</span> <span class="n">wl2</span> <span class="o">|</span> <span class="n">velocity_corr</span>
+            <span class="n">wl2</span> <span class="o">=</span> <span class="n">wl3</span> <span class="o">|</span> <span class="n">velocity_corr</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Applied Barycentric velocity correction: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">velocity_corr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">amplitude</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+
+    <span class="c1"># Reverse the order of inputs passed to Tabular because it&#39;s in python order in modeling.</span>
+    <span class="c1"># Consider changing it in modelng ?</span>
+    <span class="n">cm_order1</span> <span class="o">=</span> <span class="p">(</span><span class="n">Mapping</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|</span> \
+                 <span class="p">(</span><span class="n">Const1D</span><span class="p">(</span><span class="n">target_ra</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Const1D</span><span class="p">(</span><span class="n">target_dec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">wl1</span><span class="p">)</span>
+                 <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Order1&#39;</span><span class="p">)</span>
+    <span class="n">cm_order2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Mapping</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|</span> \
+                 <span class="p">(</span><span class="n">Const1D</span><span class="p">(</span><span class="n">target_ra</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Const1D</span><span class="p">(</span><span class="n">target_dec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">wl2</span><span class="p">)</span>
+                 <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Order2&#39;</span><span class="p">)</span>
+    <span class="n">cm_order3</span> <span class="o">=</span> <span class="p">(</span><span class="n">Mapping</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|</span> \
+                 <span class="p">(</span><span class="n">Const1D</span><span class="p">(</span><span class="n">target_ra</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Const1D</span><span class="p">(</span><span class="n">target_dec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">wl3</span><span class="p">)</span>
+                 <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;Order3&#39;</span><span class="p">)</span>
+
+    <span class="n">subarray2full</span> <span class="o">=</span> <span class="n">subarray_transform</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">subarray2full</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cm_order1</span> <span class="o">=</span> <span class="n">subarray2full</span> <span class="o">|</span> <span class="n">cm_order1</span>
+        <span class="n">cm_order2</span> <span class="o">=</span> <span class="n">subarray2full</span> <span class="o">|</span> <span class="n">cm_order2</span>
+        <span class="n">cm_order3</span> <span class="o">=</span> <span class="n">subarray2full</span> <span class="o">|</span> <span class="n">cm_order3</span>
+
+        <span class="n">bbox</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">subarray</span><span class="o">.</span><span class="n">ysize</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span>
+                <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">subarray</span><span class="o">.</span><span class="n">xsize</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span>
+        <span class="n">cm_order1</span><span class="o">.</span><span class="n">bounding_box</span> <span class="o">=</span> <span class="n">bbox</span>
+        <span class="n">cm_order2</span><span class="o">.</span><span class="n">bounding_box</span> <span class="o">=</span> <span class="n">bbox</span>
+        <span class="n">cm_order3</span><span class="o">.</span><span class="n">bounding_box</span> <span class="o">=</span> <span class="n">bbox</span>
+
+    <span class="c1"># Define the transforms, they should accept (x,y) and return (ra, dec, lambda)</span>
+    <span class="n">soss_model</span> <span class="o">=</span> <span class="n">NirissSOSSModel</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                                 <span class="p">[</span><span class="n">cm_order1</span><span class="p">,</span> <span class="n">cm_order2</span><span class="p">,</span> <span class="n">cm_order3</span><span class="p">]</span>
+                                 <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;3-order SOSS Model&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Define the pipeline based on the frames and models above.</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[(</span><span class="n">detector</span><span class="p">,</span> <span class="n">soss_model</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">pipeline</span>
+
+
+<span class="k">def</span> <span class="nf">imaging</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The NIRISS imaging WCS pipeline.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_model : `~jwst.datamodel.DataModel`</span>
+<span class="sd">        Input datamodel for processing</span>
+<span class="sd">    reference_files : dict</span>
+<span class="sd">        The dictionary of reference file names and their associated files</span>
+<span class="sd">        {reftype: reference file name}.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pipeline : list</span>
+<span class="sd">        The pipeline list that is returned is suitable for</span>
+<span class="sd">        input into  gwcs.wcs.WCS to create a GWCS object.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    It includes three coordinate frames -</span>
+<span class="sd">    &quot;detector&quot; &quot;v2v3&quot; and &quot;world&quot;.</span>
+<span class="sd">    It uses the &quot;distortion&quot; reference file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Frame2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;detector&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">))</span>
+    <span class="n">v2v3</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Frame2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;v2v3&#39;</span><span class="p">,</span> <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">))</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">CelestialFrame</span><span class="p">(</span><span class="n">reference_frame</span><span class="o">=</span><span class="n">coord</span><span class="o">.</span><span class="n">ICRS</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+
+    <span class="n">distortion</span> <span class="o">=</span> <span class="n">imaging_distortion</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">)</span>
+
+    <span class="n">subarray2full</span> <span class="o">=</span> <span class="n">subarray_transform</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">subarray2full</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">distortion</span> <span class="o">=</span> <span class="n">subarray2full</span> <span class="o">|</span> <span class="n">distortion</span>
+        <span class="n">distortion</span><span class="o">.</span><span class="n">bounding_box</span> <span class="o">=</span> <span class="n">bounding_box_from_subarray</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+
+    <span class="n">tel2sky</span> <span class="o">=</span> <span class="n">pointing</span><span class="o">.</span><span class="n">v23tosky</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="p">[(</span><span class="n">detector</span><span class="p">,</span> <span class="n">distortion</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">v2v3</span><span class="p">,</span> <span class="n">tel2sky</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">world</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">pipeline</span>
+
+
+<span class="k">def</span> <span class="nf">imaging_distortion</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Create the transform from &quot;detector&quot; to &quot;v2v3&quot;.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_model : `~jwst.datamodel.DataModel`</span>
+<span class="sd">        Input datamodel for processing</span>
+<span class="sd">    reference_files : dict</span>
+<span class="sd">        The dictionary of reference file names and their associated files.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    The transform model</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">DistortionModel</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;distortion&#39;</span><span class="p">])</span>
+    <span class="n">distortion</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">model</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Check if the model has a bounding box.</span>
+        <span class="n">distortion</span><span class="o">.</span><span class="n">bounding_box</span>
+    <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+        <span class="n">distortion</span><span class="o">.</span><span class="n">bounding_box</span> <span class="o">=</span> <span class="n">transform_bbox_from_shape</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">dist</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># Add an offset for the filter</span>
+    <span class="k">if</span> <span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;filteroffset&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">obsfilter</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">filter</span>
+        <span class="n">obspupil</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">pupil</span>
+        <span class="k">with</span> <span class="n">asdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;filteroffset&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">filter_offset</span><span class="p">:</span>
+            <span class="n">filters</span> <span class="o">=</span> <span class="n">filter_offset</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="s1">&#39;filters&#39;</span><span class="p">]</span>
+
+        <span class="n">match_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="n">obsfilter</span><span class="p">,</span> <span class="s1">&#39;pupil&#39;</span><span class="p">:</span> <span class="n">obspupil</span><span class="p">}</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">find_row</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="n">match_keys</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">col_offset</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;col_offset&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">)</span>
+            <span class="n">row_offset</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;row_offset&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">col_offset</span> <span class="o">!=</span> <span class="s1">&#39;N/A&#39;</span> <span class="ow">and</span> <span class="n">row_offset</span> <span class="o">!=</span> <span class="s1">&#39;N/A&#39;</span><span class="p">:</span>
+                <span class="n">distortion</span> <span class="o">=</span> <span class="n">Shift</span><span class="p">(</span><span class="n">col_offset</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Shift</span><span class="p">(</span><span class="n">row_offset</span><span class="p">)</span> <span class="o">|</span> <span class="n">distortion</span>
+    <span class="k">return</span> <span class="n">distortion</span>
+
+
+<span class="k">def</span> <span class="nf">wfss</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create the WCS pipeline for a NIRISS grism observation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    input_model: `~jwst.datamodels.ImagingModel`</span>
+<span class="sd">        The input datamodel, derived from datamodels</span>
+<span class="sd">    reference_files: dict</span>
+<span class="sd">        Dictionary specifying reference file names</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pipeline : list</span>
+<span class="sd">        The pipeline list that is returned is suitable for</span>
+<span class="sd">        input into  gwcs.wcs.WCS to create a GWCS object.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    reference_files = {</span>
+<span class="sd">        &quot;specwcs&quot;: &#39;GR150C_F090W.asdf&#39;</span>
+<span class="sd">        &quot;distortion&quot;: &#39;NRCA1_FULL_distortion.asdf&#39;</span>
+<span class="sd">        }</span>
+
+<span class="sd">    The tree in the grism reference file has a section for each order/beam as</span>
+<span class="sd">    well as the link to the filter data file, not sure if there will be a</span>
+<span class="sd">    separate passband reference file needed for the wavelength scaling or the</span>
+<span class="sd">    wedge offsets. This file is currently created in</span>
+<span class="sd">    jwreftools/niriss/niriss_reftools.</span>
+
+<span class="sd">    The direct image the catalog has been created from was corrected for</span>
+<span class="sd">    distortion, but the dispersed images have not. This is OK if the trace and</span>
+<span class="sd">    dispersion solutions are defined with respect to the distortion-corrected</span>
+<span class="sd">    image. The catalog from the combined direct image has object locations in</span>
+<span class="sd">    in detector space and the RA DEC of the object on sky.</span>
+
+<span class="sd">    The WCS information for the grism image  plus the observed filter will be</span>
+<span class="sd">    used to translate these to pixel locations for each of the objects.</span>
+<span class="sd">    The grism images will then use their grism trace information to translate</span>
+<span class="sd">    to detector space. The translation is assumed to be one-to-one for purposes</span>
+<span class="sd">    of identifying the center of the object trace.</span>
+
+<span class="sd">    The extent of the trace for each object can then be calculated based on</span>
+<span class="sd">    the grism in use (row or column). Where the left/bottom of the trace starts</span>
+<span class="sd">    at t = 0 and the right/top of the trace ends at t = 1, as long as they</span>
+<span class="sd">    have been defined as such by th team.</span>
+
+<span class="sd">    The extraction box is calculated to be the minimum bounding box of the</span>
+<span class="sd">    object extent in the segmentation map associated with the direct image.</span>
+<span class="sd">    The values of the min and max corners are saved in the photometry</span>
+<span class="sd">    catalog in units of RA,DEC so they can be translated to pixels by</span>
+<span class="sd">    the dispersed image&#39;s imaging wcs.</span>
+
+<span class="sd">    The sensitivity information from the original aXe style configuration</span>
+<span class="sd">    file needs to be modified by the passband of the filter used for</span>
+<span class="sd">    the direct image to get the min and max wavelengths</span>
+<span class="sd">    which correspond to t=0 and t=1, this currently has been done by the team</span>
+<span class="sd">    and the min and max wavelengths to use to calculate t are stored in the</span>
+<span class="sd">    grism reference file as wrange, which can be selected by wrange_selector</span>
+<span class="sd">    which contains the filter names.</span>
+
+<span class="sd">    Source catalog use moved to extract_2d.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># The input is the grism image</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">ImageModel</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;The input data model must be an ImageModel.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># make sure this is a grism image</span>
+    <span class="k">if</span> <span class="s2">&quot;NIS_WFSS&quot;</span> <span class="o">!=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">exposure</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The input exposure is not NIRISS grism&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create the empty detector as a 2D coordinate frame in pixel units</span>
+    <span class="n">gdetector</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="n">Frame2D</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;grism_detector&#39;</span><span class="p">,</span>
+                           <span class="n">axes_order</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                           <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">))</span>
+
+    <span class="c1"># translate the x,y detector-in to x,y detector out coordinates</span>
+    <span class="c1"># Get the disperser parameters which are defined as a model for each</span>
+    <span class="c1"># spectral order</span>
+    <span class="k">with</span> <span class="n">NIRISSGrismModel</span><span class="p">(</span><span class="n">reference_files</span><span class="p">[</span><span class="s1">&#39;specwcs&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">dispx</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">dispx</span>
+        <span class="n">dispy</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">dispy</span>
+        <span class="n">displ</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">displ</span>
+        <span class="n">invdispl</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">invdispl</span>
+        <span class="n">orders</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">orders</span>
+        <span class="n">fwcpos_ref</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">fwcpos_ref</span>
+
+    <span class="c1"># This is the actual rotation from the input model</span>
+    <span class="n">fwcpos</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">filter_position</span>
+    <span class="k">if</span> <span class="n">fwcpos</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;FWCPOS keyword value not found in input image&#39;</span><span class="p">)</span>
+
+    <span class="c1"># sep the row and column grism models</span>
+    <span class="c1"># In &quot;DMS&quot; orientation (same parity as the sky), the GR150C spectra</span>
+    <span class="c1"># are aligned more closely with the rows, and the GR150R spectra are</span>
+    <span class="c1"># aligned more closely with the columns.</span>
+    <span class="k">if</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">):</span>
+        <span class="n">det2det</span> <span class="o">=</span> <span class="n">NIRISSForwardRowGrismDispersion</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span>
+                                                  <span class="n">lmodels</span><span class="o">=</span><span class="n">displ</span><span class="p">,</span>
+                                                  <span class="n">xmodels</span><span class="o">=</span><span class="n">dispx</span><span class="p">,</span>
+                                                  <span class="n">ymodels</span><span class="o">=</span><span class="n">dispy</span><span class="p">,</span>
+                                                  <span class="n">theta</span><span class="o">=</span><span class="n">fwcpos_ref</span> <span class="o">-</span> <span class="n">fwcpos</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">):</span>
+        <span class="n">det2det</span> <span class="o">=</span> <span class="n">NIRISSForwardColumnGrismDispersion</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span>
+                                                     <span class="n">lmodels</span><span class="o">=</span><span class="n">displ</span><span class="p">,</span>
+                                                     <span class="n">xmodels</span><span class="o">=</span><span class="n">dispx</span><span class="p">,</span>
+                                                     <span class="n">ymodels</span><span class="o">=</span><span class="n">dispy</span><span class="p">,</span>
+                                                     <span class="n">theta</span><span class="o">=</span><span class="n">fwcpos_ref</span> <span class="o">-</span> <span class="n">fwcpos</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;FILTER keyword </span><span class="si">{}</span><span class="s2"> is not valid.&quot;</span>
+                         <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">filter</span><span class="p">))</span>
+
+    <span class="n">backward</span> <span class="o">=</span> <span class="n">NIRISSBackwardGrismDispersion</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span>
+                                             <span class="n">lmodels</span><span class="o">=</span><span class="n">invdispl</span><span class="p">,</span>
+                                             <span class="n">xmodels</span><span class="o">=</span><span class="n">dispx</span><span class="p">,</span>
+                                             <span class="n">ymodels</span><span class="o">=</span><span class="n">dispy</span><span class="p">,</span>
+                                             <span class="n">theta</span><span class="o">=</span><span class="n">fwcpos_ref</span> <span class="o">-</span> <span class="n">fwcpos</span><span class="p">)</span>
+    <span class="n">det2det</span><span class="o">.</span><span class="n">inverse</span> <span class="o">=</span> <span class="n">backward</span>
+
+    <span class="c1"># Add in the wavelength shift from the velocity dispersion</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">velosys</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcsinfo</span><span class="o">.</span><span class="n">velosys</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">if</span> <span class="n">velosys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">velocity_corr</span> <span class="o">=</span> <span class="n">velocity_correction</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcsinfo</span><span class="o">.</span><span class="n">velosys</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Added Barycentric velocity correction: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">velocity_corr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">amplitude</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">det2det</span> <span class="o">=</span> <span class="n">det2det</span> <span class="o">|</span> <span class="n">Mapping</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">|</span> <span class="n">Identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">velocity_corr</span> <span class="o">&amp;</span> <span class="n">Identity</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># create the pipeline to construct a WCS object for the whole image</span>
+    <span class="c1"># which can translate ra,dec to image frame reference pixels</span>
+    <span class="c1"># it also needs to be part of the grism image wcs pipeline to</span>
+    <span class="c1"># go from detector to world coordinates. However, the grism image</span>
+    <span class="c1"># will be effectively translating pixel-&gt;world coordinates in a</span>
+    <span class="c1"># manner that gives you the originating pixels ra and dec, not the</span>
+    <span class="c1"># pure ra/dec on the sky from the pointing wcs.</span>
+
+    <span class="c1"># use the imaging_distortion reference file here</span>
+    <span class="n">image_pipeline</span> <span class="o">=</span> <span class="n">imaging</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="n">reference_files</span><span class="p">)</span>
+
+    <span class="c1"># forward input is (x,y,lam,order) -&gt; x, y</span>
+    <span class="c1"># backward input needs to be the same ra, dec, lam, order -&gt; x, y</span>
+    <span class="n">grism_pipeline</span> <span class="o">=</span> <span class="p">[(</span><span class="n">gdetector</span><span class="p">,</span> <span class="n">det2det</span><span class="p">)]</span>
+
+    <span class="c1"># pass through the wave, beam  and theta in the pipeline</span>
+    <span class="c1"># Theta is a constant for each grism exposure and is in the</span>
+    <span class="c1"># meta information for the input_model, pass it to the model</span>
+    <span class="c1"># so the user doesn&#39;t have to</span>
+
+    <span class="n">imagepipe</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">image_pipeline</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">cframe</span><span class="p">,</span> <span class="n">trans</span> <span class="ow">in</span> <span class="n">image_pipeline</span><span class="p">:</span>
+        <span class="n">trans</span> <span class="o">=</span> <span class="n">trans</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Identity</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">imagepipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cframe</span><span class="p">,</span> <span class="n">trans</span><span class="p">))</span>
+    <span class="n">imagepipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">world</span><span class="p">))</span>
+    <span class="n">grism_pipeline</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">imagepipe</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">grism_pipeline</span>
+
+
+<span class="n">exp_type2transform</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;nis_image&#39;</span><span class="p">:</span> <span class="n">imaging</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_wfss&#39;</span><span class="p">:</span> <span class="n">wfss</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_soss&#39;</span><span class="p">:</span> <span class="n">niriss_soss</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_ami&#39;</span><span class="p">:</span> <span class="n">imaging</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_tacq&#39;</span><span class="p">:</span> <span class="n">imaging</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_taconfirm&#39;</span><span class="p">:</span> <span class="n">imaging</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_focus&#39;</span><span class="p">:</span> <span class="n">imaging</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_dark&#39;</span><span class="p">:</span> <span class="n">not_implemented_mode</span><span class="p">,</span>
+                      <span class="s1">&#39;nis_lamp&#39;</span><span class="p">:</span> <span class="n">not_implemented_mode</span><span class="p">,</span>
+                      <span class="p">}</span>
+</pre></div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../../../0.2.0/index.html">0.2.0</a></li>
+  <li><a href="../../../../0.3.0/index.html">0.3.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="niriss.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 16 Sep 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

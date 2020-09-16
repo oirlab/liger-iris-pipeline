@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AssignWcsStep &#8212; iris_pipeline v0.4.dev310</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../index.html">iris_pipeline v0.4.dev310</a>
+	 &#187;
+      </li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+
+  <div class="section" id="assignwcsstep">
+<h1>AssignWcsStep<a class="headerlink" href="#assignwcsstep" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="jwst.assign_wcs.AssignWcsStep">
+<em class="property">class </em><code class="sig-prename descclassname">jwst.assign_wcs.</code><code class="sig-name descname">AssignWcsStep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_validate_kwds</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jwst/assign_wcs/assign_wcs_step.html#AssignWcsStep"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/jwst/assign_wcs/assign_wcs_step.py#L15" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#jwst.assign_wcs.AssignWcsStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.stpipe.Step.html#jwst.stpipe.Step" title="jwst.stpipe.Step"><code class="docutils literal notranslate"><span class="pre">jwst.stpipe.Step</span></code></a></p>
+<p>AssignWcsStep: Create a gWCS object and store it in <code class="docutils literal notranslate"><span class="pre">Model.meta</span></code>.</p>
+<p>Reference file types:</p>
+<p>camera             Camera model (NIRSPEC)
+collimator         Collimator Model (NIRSPEC)
+disperser          Disperser model (NIRSPEC)
+distortion         Spatial distortion model (FGS, MIRI, NIRCAM, NIRISS)
+filteroffset       Filter offsets (MIRI Imager)
+fore               Transform through the FORE optics (NIRSPEC)
+fpa                Transform in the FPA plane (NIRSPEC)
+ifufore            Transforms from the MSA plane to the plane of the IFU slicer (NIRSPEC)
+ifupost            Transforms from the slicer plane to the MSA plane (NIRSPEC)
+ifuslicer          Metrology of the IFU slicer (NIRSPEC)
+msa                Metrology of the MSA plane (NIRSPEC)
+ote                Transform through the Optical Telescope Element (NIRSPEC)
+specwcs            Wavelength calibration models (MIRI, NIRCAM, NIRISS)
+regions            Stores location of the regions on the detector (MIRI)
+wavelengthrange    Typical wavelength ranges (MIRI, NIRCAM, NIRISS, NIRSPEC)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>input</strong><span class="classifier"><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.datamodels.ImageModel.html#jwst.datamodels.ImageModel" title="(in jwst v0.17.2.dev1+ga311ddc9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageModel</span></code></a>, <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.datamodels.IFUImageModel.html#jwst.datamodels.IFUImageModel" title="(in jwst v0.17.2.dev1+ga311ddc9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IFUImageModel</span></code></a>, <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.datamodels.CubeModel.html#jwst.datamodels.CubeModel" title="(in jwst v0.17.2.dev1+ga311ddc9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CubeModel</span></code></a></span></dt><dd><p>Input exposure.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the Step instance.  Used in logging messages
+and in cache filenames.  If not provided, one will be
+generated based on the class name.</p>
+</dd>
+<dt><strong>parent</strong><span class="classifier">Step instance, optional</span></dt><dd><p>The parent step of this step.  Used to determine a
+fully-qualified name for this step, and to determine
+the mode in which to run this step.</p>
+</dd>
+<dt><strong>config_file</strong><span class="classifier">str path, optional</span></dt><dd><p>The path to the config file that this step was initialized
+with.  Use to determine relative path names of other config files.</p>
+</dd>
+<dt><strong>**kws</strong><span class="classifier">dict</span></dt><dd><p>Additional parameters to set.  These will be set as member
+variables on the new Step instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#jwst.assign_wcs.AssignWcsStep.reference_file_types" title="jwst.assign_wcs.AssignWcsStep.reference_file_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_file_types</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#jwst.assign_wcs.AssignWcsStep.spec" title="jwst.assign_wcs.AssignWcsStep.spec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spec</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#jwst.assign_wcs.AssignWcsStep.process" title="jwst.assign_wcs.AssignWcsStep.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input, *args, **kwargs)</p></td>
+<td><p>This is where real work happens.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt id="jwst.assign_wcs.AssignWcsStep.reference_file_types">
+<code class="sig-name descname">reference_file_types</code><em class="property"> = ['distortion', 'filteroffset', 'specwcs', 'regions', 'wavelengthrange', 'camera', 'collimator', 'disperser', 'fore', 'fpa', 'msa', 'ote', 'ifupost', 'ifufore', 'ifuslicer']</em><a class="headerlink" href="#jwst.assign_wcs.AssignWcsStep.reference_file_types" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="jwst.assign_wcs.AssignWcsStep.spec">
+<code class="sig-name descname">spec</code><em class="property"> = '\n        slit_y_low = float(default=-.55)  # The lower edge of a slit.\n        slit_y_high = float(default=.55)  # The upper edge of a slit.\n\n    '</em><a class="headerlink" href="#jwst.assign_wcs.AssignWcsStep.spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="jwst.assign_wcs.AssignWcsStep.process">
+<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/jwst/assign_wcs/assign_wcs_step.html#AssignWcsStep.process"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/jwst/assign_wcs/assign_wcs_step.py#L54" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#jwst.assign_wcs.AssignWcsStep.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is where real work happens. Every Step subclass has to
+override this method. The default behaviour is to raise a
+NotImplementedError exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="../../0.2.0/index.html">0.2.0</a></li>
+  <li><a href="../../0.3.0/index.html">0.3.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="jwst.assign_wcs.AssignWcsStep.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">AssignWcsStep</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/api/jwst.assign_wcs.AssignWcsStep.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/jwst.assign_wcs.AssignWcsStep.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 16 Sep 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>
