@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DRS-ROP Pipeline &#8212; iris_pipeline v0.4.dev312</title>
+    <title>DRS-ROP Pipeline &#8212; iris_pipeline v0.4.dev316</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -61,7 +61,7 @@
 	 |
       </li>
       <li>
-	<a href="index.html">iris_pipeline v0.4.dev312</a>
+	<a href="index.html">iris_pipeline v0.4.dev316</a>
 	 &#187;
       </li>
       <li><a href="available-steps.html" accesskey="U">Available algorithms</a> &#187;</li>
@@ -104,22 +104,15 @@
 <p>There is a example run in the iris_pipeline/readout/tests directory. The sample ramp is given in the sample_ramp.fits.
 sampling.cfg gives the configurations for the pipeline</p>
 <p><code class="docutils literal notranslate"><span class="pre">sampling.cfg</span></code>:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;rop&quot;</span>
+<span class="na">class</span> <span class="o">=</span> <span class="s">&quot;iris_pipeline.pipeline.ROPPipeline&quot;</span>
+<span class="na">save_results</span> <span class="o">=</span> <span class="s">True</span>
+<span class="s">    [steps]</span>
+<span class="s">      [[nonlincorr]]</span>
+<span class="s">      [[readoutsamp]]</span>
+<span class="s">       mode=&#39;mcds&#39;</span>
 </pre></div>
 </div>
-<p>name = “rop”
-class = “iris_pipeline.pipeline.ROPPipeline”
-save_results = True</p>
-<blockquote>
-<div><dl>
-<dt>[steps]</dt><dd><p>[[nonlincorr]]
-[[readoutsamp]]</p>
-<blockquote>
-<div><p>mode=’mcds’</p>
-</div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
 <p>The sampling mode is set by the <code class="docutils literal notranslate"><span class="pre">mode</span></code> keyword which can be <code class="docutils literal notranslate"><span class="pre">mcds</span></code> or <code class="docutils literal notranslate"><span class="pre">utr</span></code>. MCDS algorithm also requires the group number, the number of reads to be co-added. This is currently hardcoded in this version.</p>
 </div>
 <div class="section" id="execute-the-pipeline-from-the-command-line">
@@ -194,7 +187,7 @@ save_results = True</p>
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
     Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
-    Last built 28 Sep 2020. <br/>
+    Last built 08 Oct 2020. <br/>
   </p>
 </footer>
   </body>

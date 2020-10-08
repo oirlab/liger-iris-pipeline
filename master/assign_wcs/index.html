@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assign WCS &#8212; iris_pipeline v0.4.dev312</title>
+    <title>Assign WCS &#8212; iris_pipeline v0.4.dev316</title>
     <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -61,7 +61,7 @@
 	 |
       </li>
       <li>
-	<a href="../index.html">iris_pipeline v0.4.dev312</a>
+	<a href="../index.html">iris_pipeline v0.4.dev316</a>
 	 &#187;
       </li>
       <li><a href="../available-steps.html" accesskey="U">Available algorithms</a> &#187;</li>
@@ -88,31 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="exp_types.html">WCS reference file information per EXP_TYPE</a></li>
 </ul>
 </div>
-<div class="section" id="module-jwst.assign_wcs">
-<span id="jwst-assign-wcs-package"></span><h2>jwst.assign_wcs Package<a class="headerlink" href="#module-jwst.assign_wcs" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/jwst.assign_wcs.nrs_wcs_set_input.html#jwst.assign_wcs.nrs_wcs_set_input" title="jwst.assign_wcs.nrs_wcs_set_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nrs_wcs_set_input</span></code></a>(input_model, slit_name[, …])</p></td>
-<td><p>Returns a WCS object for a specific slit, slice or shutter.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api/jwst.assign_wcs.nrs_ifu_wcs.html#jwst.assign_wcs.nrs_ifu_wcs" title="jwst.assign_wcs.nrs_ifu_wcs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nrs_ifu_wcs</span></code></a>(input_model)</p></td>
-<td><p>Return a list of WCSs for all NIRSPEC IFU slits.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/jwst.assign_wcs.get_spectral_order_wrange.html#jwst.assign_wcs.get_spectral_order_wrange" title="jwst.assign_wcs.get_spectral_order_wrange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spectral_order_wrange</span></code></a>(input_model, …)</p></td>
-<td><p>Read the spectral order and wavelength range from the reference file.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api/jwst.assign_wcs.niriss_soss_set_input.html#jwst.assign_wcs.niriss_soss_set_input" title="jwst.assign_wcs.niriss_soss_set_input"><code class="xref py py-obj docutils literal notranslate"><span class="pre">niriss_soss_set_input</span></code></a>(model, order_number)</p></td>
-<td><p>Extract a WCS fr a specific spectral order.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="section" id="module-iris_pipeline.assign_wcs">
+<span id="iris-pipeline-assign-wcs-package"></span><h2>iris_pipeline.assign_wcs Package<a class="headerlink" href="#module-iris_pipeline.assign_wcs" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
@@ -121,7 +98,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/jwst.assign_wcs.AssignWcsStep.html#jwst.assign_wcs.AssignWcsStep" title="jwst.assign_wcs.AssignWcsStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssignWcsStep</span></code></a>([name, parent, config_file, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/iris_pipeline.assign_wcs.AssignWcsStep.html#iris_pipeline.assign_wcs.AssignWcsStep" title="iris_pipeline.assign_wcs.AssignWcsStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AssignWcsStep</span></code></a>([name, parent, config_file, …])</p></td>
 <td><p>AssignWcsStep: Create a gWCS object and store it in <code class="docutils literal notranslate"><span class="pre">Model.meta</span></code>.</p></td>
 </tr>
 </tbody>
@@ -129,8 +106,8 @@
 </div>
 <div class="section" id="class-inheritance-diagram">
 <h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
-<div class="graphviz"><object data="../_images/inheritance-2cc5da617baf516ef3f4807c06e92703c630c066.svg" type="image/svg+xml" class="inheritance graphviz">
-<p class="warning">Inheritance diagram of jwst.assign_wcs.assign_wcs_step.AssignWcsStep</p></object></div>
+<div class="graphviz"><object data="../_images/inheritance-fd90ce235da49f4b13fef5ff98ff4fcb7f2b14d5.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of iris_pipeline.assign_wcs.assign_wcs_step.AssignWcsStep</p></object></div>
 </div>
 </div>
 </div>
@@ -157,8 +134,7 @@
 <h3>Page Contents</h3>
 <ul>
 <li><a class="reference internal" href="#">Assign WCS</a><ul>
-<li><a class="reference internal" href="#module-jwst.assign_wcs">jwst.assign_wcs Package</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#module-iris_pipeline.assign_wcs">iris_pipeline.assign_wcs Package</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
 </ul>
@@ -180,7 +156,7 @@
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
     Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
-    Last built 28 Sep 2020. <br/>
+    Last built 08 Oct 2020. <br/>
   </p>
 </footer>
   </body>

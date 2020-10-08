@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iris_pipeline.assign_wcs.assign_wcs_step &#8212; iris_pipeline v0.4.dev312</title>
+    <title>iris_pipeline.assign_wcs.assign_wcs_step &#8212; iris_pipeline v0.4.dev316</title>
     <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -48,7 +48,7 @@
     <h3>Navigation</h3>
     <ul>
       <li>
-	<a href="../../../index.html">iris_pipeline v0.4.dev312</a>
+	<a href="../../../index.html">iris_pipeline v0.4.dev316</a>
 	 &#187;
       </li>
       <li><a href="../../index.html" >Module code</a> &#187;</li>
@@ -80,7 +80,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;AssignWcsStep&quot;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="AssignWcsStep"><a class="viewcode-back" href="../../../api/iris_pipeline.AssignWcsStep.html#iris_pipeline.AssignWcsStep">[docs]</a><span class="k">class</span> <span class="nc">AssignWcsStep</span><span class="p">(</span><span class="n">Step</span><span class="p">):</span>
+<div class="viewcode-block" id="AssignWcsStep"><a class="viewcode-back" href="../../../api/iris_pipeline.assign_wcs.AssignWcsStep.html#iris_pipeline.AssignWcsStep">[docs]</a><span class="k">class</span> <span class="nc">AssignWcsStep</span><span class="p">(</span><span class="n">Step</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    AssignWcsStep: Create a gWCS object and store it in ``Model.meta``.</span>
 
@@ -98,7 +98,7 @@
 
     <span class="n">reference_file_types</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># &#39;distortion&#39; , &#39;specwcs&#39;, &#39;wavelengthrange&#39;]</span>
 
-<div class="viewcode-block" id="AssignWcsStep.process"><a class="viewcode-back" href="../../../api/iris_pipeline.AssignWcsStep.html#iris_pipeline.AssignWcsStep.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="AssignWcsStep.process"><a class="viewcode-back" href="../../../api/iris_pipeline.assign_wcs.AssignWcsStep.html#iris_pipeline.AssignWcsStep.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">reference_file_names</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">with</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_model</span><span class="p">:</span>
             <span class="c1"># If input type is not supported, log warning, set to &#39;skipped&#39;, exit</span>
@@ -150,7 +150,7 @@
   <p>
     &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
     Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
-    Last built 28 Sep 2020. <br/>
+    Last built 08 Oct 2020. <br/>
   </p>
 </footer>
   </body>
