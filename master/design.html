@@ -134,7 +134,7 @@ the conventions by JWST, see <a class="reference external" href="https://jwst-do
 <p>The file format of all the FITS files used by <a class="reference internal" href="index.html#module-iris_pipeline" title="iris_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_pipeline</span></code></a> are defined in the
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_pipeline.datamodels</span></code> package and are encoded as schemas in YAML format.</p>
 <p>For example the FITS file format used for raw and reduced science frame is
-:py:class`IRISImageModel`, this is referenced in the FITS keyword <code class="xref py py-obj docutils literal notranslate"><span class="pre">DATAMODL</span></code>:</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">IRISImageModel</span></code>, this is referenced in the FITS keyword <code class="xref py py-obj docutils literal notranslate"><span class="pre">DATAMODL</span></code>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">DATAMODL</span><span class="o">=</span> <span class="s1">&#39;IRISImageModel&#39;</span>
 </pre></div>
 </div>
@@ -146,30 +146,10 @@ FITS headers, e.g. acquisition time, pupil, detector name.</p>
 <p>The currently implemented datamodels are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><dl class="field-list simple">
-<dt class="field-odd">py:class`IRISImageModel`</dt>
-<dd class="field-odd"><p>raw and reduced frames from the imagers</p>
-</dd>
-</dl>
-</li>
-<li><dl class="field-list simple">
-<dt class="field-odd">py:class`TMTRampModel`</dt>
-<dd class="field-odd"><p>raw readouts</p>
-</dd>
-</dl>
-</li>
-<li><dl class="field-list simple">
-<dt class="field-odd">py:class`TMTFlatModel`</dt>
-<dd class="field-odd"><p>flats</p>
-</dd>
-</dl>
-</li>
-<li><dl class="field-list simple">
-<dt class="field-odd">py:class`TMTDarkModel`</dt>
-<dd class="field-odd"><p>darks</p>
-</dd>
-</dl>
-</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">IRISImageModel</span></code>: raw and reduced frames from the imagers</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TMTRampModel</span></code>: raw readouts</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TMTFlatModel</span></code>: flats</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TMTDarkModel</span></code>: darks</p></li>
 </ul>
 </div></blockquote>
 <p>All models are defined in <a class="reference external" href="https://github.com/oirlab/iris_pipeline/blob/master/iris_pipeline/datamodels/__init__.py">iris_pipeline.datamodels</a>, and their schemas available <a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/datamodels/schemas">within the package itself</a>, some of those models are just abstractions to group similar functionality but
