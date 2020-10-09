@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example pipeline execution &#8212; iris_pipeline v0.4.dev323</title>
+    <title>Example pipeline execution &#8212; iris_pipeline v0.4.dev</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -63,7 +63,7 @@
 	 |
       </li>
       <li>
-	<a href="index.html">iris_pipeline v0.4.dev323</a>
+	<a href="index.html">iris_pipeline v0.4.dev</a>
 	 &#187;
       </li>
       
@@ -322,44 +322,30 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Get-input-simulations">
 <h2>Get input simulations<a class="headerlink" href="#Get-input-simulations" title="Permalink to this headline">¶</a></h2>
 <p>Download simulated input FITS files for the IRIS imager from <a class="reference external" href="https://figshare.com/articles/TMT_IRIS_test_simulations/9941939">Figshare</a>. It contains a raw science frame, a raw flat frame and a raw background frame.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
 
-<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span>
-    <span class="s2">&quot;https://ndownloader.figshare.com/articles/9941939/versions/1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;iris_example_data.zip&quot;</span>
-<span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;iris_example_data/raw_flat_frame_cal.fits&quot;</span><span class="p">):</span>
+    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span>
+        <span class="s2">&quot;https://ndownloader.figshare.com/articles/9941939/versions/1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;iris_example_data.zip&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;iris_example_data.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;iris_example_data&quot;</span><span class="p">)</span>
 
 <span class="c1"># this could take a few minutes</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(&#39;iris_example_data.zip&#39;, &lt;http.client.HTTPMessage at 0x7f7d5041e550&gt;)
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s2">&quot;iris_example_data.zip&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
-    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;iris_example_data&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -384,7 +370,7 @@ raw_flat_frame_cal.fits
 <p>We do not need to customize it so we can directly call it from tmtrun and pass the input FITS file:</p>
 <p>This will pickup the relevant dark frame from the CRDS and process the file:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -399,7 +385,7 @@ raw_flat_frame_cal.fits
 <div class="highlight"><pre>
 Traceback (most recent call last):
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/bin/tmtrun&#34;, line 11, in &lt;module&gt;
-    load_entry_point(&#39;iris-pipeline==0.4.dev323&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
+    load_entry_point(&#39;iris-pipeline==0.4.dev0&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 487, in load_entry_point
     return get_distribution(dist).load_entry_point(group, name)
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2728, in load_entry_point
@@ -408,7 +394,7 @@ Traceback (most recent call last):
     return self.resolve()
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2352, in resolve
     module = __import__(self.module_name, fromlist=[&#39;__name__&#39;], level=0)
-ModuleNotFoundError: No module named &#39;scripts&#39;
+ModuleNotFoundError: No module named &#39;iris_pipeline.scripts&#39;
 </pre></div></div>
 </div>
 </div>
@@ -416,7 +402,7 @@ ModuleNotFoundError: No module named &#39;scripts&#39;
 <h2>Configure the image processing pipeline<a class="headerlink" href="#Configure-the-image-processing-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">`ProcessImagerL2Pipeline</span></code> &lt;api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.rst#iris_pipeline.ProcessImagerL2Pipeline&gt;`__ can be configured using a INI-style configuration file:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -450,7 +436,7 @@ Writing image2_iris.cfg
 </div>
 <p>first we specify that we want to execute the pipeline defined in the pipeline, then we can configure each of the steps, for example skip some of them. Also we can import the configuration of a step from another file, in this case flat_field.cfg:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -476,7 +462,7 @@ Writing flat_field.cfg
 <p>JWST created a specification for defining how input files should be used by a pipeline, it is a JSON file named an association, see the <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/associations/overview.html">JWST documentation</a>.</p>
 <p>In our example we need to specify a input raw science frame ad a background to be subtracted:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -518,7 +504,7 @@ Writing association.json
 <h2>Execute the pipeline from the command line<a class="headerlink" href="#Execute-the-pipeline-from-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Execute the pipeline from the command line We can use tmtrun from a terminal to execute the pipeline:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -533,7 +519,7 @@ Writing association.json
 <div class="highlight"><pre>
 Traceback (most recent call last):
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/bin/tmtrun&#34;, line 11, in &lt;module&gt;
-    load_entry_point(&#39;iris-pipeline==0.4.dev323&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
+    load_entry_point(&#39;iris-pipeline==0.4.dev0&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 487, in load_entry_point
     return get_distribution(dist).load_entry_point(group, name)
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2728, in load_entry_point
@@ -542,7 +528,7 @@ Traceback (most recent call last):
     return self.resolve()
   File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2352, in resolve
     module = __import__(self.module_name, fromlist=[&#39;__name__&#39;], level=0)
-ModuleNotFoundError: No module named &#39;scripts&#39;
+ModuleNotFoundError: No module named &#39;iris_pipeline.scripts&#39;
 </pre></div></div>
 </div>
 </div>
@@ -550,7 +536,7 @@ ModuleNotFoundError: No module named &#39;scripts&#39;
 <h2>Plot the reduced frame<a class="headerlink" href="#Plot-the-reduced-frame" title="Permalink to this headline">¶</a></h2>
 <p>Finally we can use <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> to load the data and plot them:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -582,14 +568,14 @@ ModuleNotFoundError: No module named &#39;scripts&#39;
 <span class="ansi-green-intense-fg ansi-bold">      4</span>     get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev323-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/iris.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, **kwargs)</span>
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev0-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/iris.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">     46</span>     <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> init<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     47</span>
 <span class="ansi-green-fg">---&gt; 48</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>init<span class="ansi-blue-fg">=</span>init<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     49</span>
 <span class="ansi-green-intense-fg ansi-bold">     50</span>         <span class="ansi-red-fg"># Implicitly create arrays</span>
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev323-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, extensions, pass_invalid_values, strict_validation, **kwargs)</span>
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev0-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, extensions, pass_invalid_values, strict_validation, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">     90</span>         super().__init__(init=init, schema=schema, extensions=extensions,
 <span class="ansi-green-intense-fg ansi-bold">     91</span>                  pass_invalid_values<span class="ansi-blue-fg">=</span>pass_invalid_values<span class="ansi-blue-fg">,</span> strict_validation<span class="ansi-blue-fg">=</span>strict_validation<span class="ansi-blue-fg">,</span>
 <span class="ansi-green-fg">---&gt; 92</span><span class="ansi-red-fg">                  **kwargs)
@@ -675,8 +661,6 @@ ModuleNotFoundError: No module named &#39;scripts&#39;
         <div class="sphinxsidebarwrapper">
 <h3>Releases</h3>
 <ul>
-  <li><a href="../0.2.0/example-run.html">0.2.0</a></li>
-  <li><a href="../0.3.0/example-run.html">0.3.0</a></li>
 </ul>
 <h3>In Development</h3>
 <ul>
