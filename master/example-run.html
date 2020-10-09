@@ -317,13 +317,22 @@ div.rendered_html tbody tr:hover {
 <p>Here is an example of what it takes to configure and run a pipeline with flat-fielding and background subtraction.</p>
 <div class="section" id="Setup-CRDS">
 <h2>Setup CRDS<a class="headerlink" href="#Setup-CRDS" title="Permalink to this headline">¶</a></h2>
-<p>Make sure you have a local checkout of the CRDS cache as explained in the <a class="reference internal" href="getting-started.html"><span class="doc">Getting started page</span></a>. Run the <code class="docutils literal notranslate"><span class="pre">setup_local_crds.sh</span></code> to setup the enviroment variables needed to point the crds software to the CRDS cache. Optionally source this in your shell configuration to automatically set this up.</p>
+<p>Make sure you have a local checkout of the CRDS cache as explained in the <a class="reference internal" href="getting-started.html"><span class="doc">Getting started page</span></a>. Either run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">setup_local_crds.sh</span></code> to setup the enviroment variables in the shell or execute <code class="docutils literal notranslate"><span class="pre">setup_local_crds.py</span></code> for Python. This is needed to point the CRDS software to the CRDS cache. Optionally source this in your shell configuration to automatically set this up.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">run</span> ../setup_local_crds.py
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="Get-input-simulations">
 <h2>Get input simulations<a class="headerlink" href="#Get-input-simulations" title="Permalink to this headline">¶</a></h2>
 <p>Download simulated input FITS files for the IRIS imager from <a class="reference external" href="https://figshare.com/articles/TMT_IRIS_test_simulations/9941939">Figshare</a>. It contains a raw science frame, a raw flat frame and a raw background frame.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -345,7 +354,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -370,7 +379,7 @@ raw_flat_frame_cal.fits
 <p>We do not need to customize it so we can directly call it from tmtrun and pass the input FITS file:</p>
 <p>This will pickup the relevant dark frame from the CRDS and process the file:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -383,9 +392,33 @@ raw_flat_frame_cal.fits
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-10-09 17:10:13,143 - CRDS - ERROR -  (FATAL) CRDS server connection and cache load FAILED.  Cannot continue.
-2020-10-09 17:10:13,143 - CRDS - ERROR -  See https://hst-crds.stsci.edu/docs/cmdline_bestrefs/ or https://jwst-crds.stsci.edu/docs/cmdline_bestrefs/
-2020-10-09 17:10:13,143 - CRDS - ERROR -  for more information on configuring CRDS,  particularly CRDS_PATH and CRDS_SERVER_URL. : [Errno 2] No such file or directory: &#39;/grp/crds/cache/config/tmt/server_config&#39;
+2020-10-09 17:22:27,553 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
+2020-10-09 17:22:27,562 - CRDS - ERROR -  Error determining best reference for &#39;pars-normalizestep&#39;  =   Unknown reference type &#39;pars-normalizestep&#39;
+2020-10-09 17:22:27,570 - CRDS - ERROR -  Error determining best reference for &#39;pars-processflatfieldl2&#39;  =   Unknown reference type &#39;pars-processflatfieldl2&#39;
+2020-10-09 17:22:27,571 - stpipe.ProcessFlatfieldL2 - INFO - ProcessFlatfieldL2 instance created.
+2020-10-09 17:22:27,572 - stpipe.ProcessFlatfieldL2.dark_current - INFO - DarkCurrentStep instance created.
+2020-10-09 17:22:27,573 - stpipe.ProcessFlatfieldL2.normalize - INFO - NormalizeStep instance created.
+2020-10-09 17:22:27,573 - stpipe - INFO - Hostname: fv-az58
+2020-10-09 17:22:27,573 - stpipe - INFO - OS: Linux
+2020-10-09 17:22:27,608 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 running with args (&#39;iris_example_data/raw_flat_frame_cal.fits&#39;,).
+2020-10-09 17:22:27,610 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;steps&#39;: {&#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}, &#39;normalize&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}}}
+2020-10-09 17:22:27,799 - stpipe.ProcessFlatfieldL2 - INFO - Prefetching reference files for dataset: &#39;raw_flat_frame_cal.fits&#39; reftypes = [&#39;dark&#39;]
+2020-10-09 17:22:27,806 - stpipe.ProcessFlatfieldL2 - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
+2020-10-09 17:22:27,807 - stpipe.ProcessFlatfieldL2 - INFO - Starting preprocess flatfield ...
+2020-10-09 17:22:27,807 - stpipe.ProcessFlatfieldL2 - INFO - Processing product iris_example_data/raw_flat_frame
+2020-10-09 17:22:27,807 - stpipe.ProcessFlatfieldL2 - INFO - Working on input iris_example_data/raw_flat_frame_cal.fits ...
+2020-10-09 17:22:28,024 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
+2020-10-09 17:22:28,025 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}
+2020-10-09 17:22:28,044 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
+2020-10-09 17:22:28,627 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current done
+2020-10-09 17:22:28,670 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
+2020-10-09 17:22:28,671 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}
+2020-10-09 17:22:29,166 - stpipe.ProcessFlatfieldL2.normalize - INFO - running normalize with method median
+2020-10-09 17:22:29,201 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize done
+2020-10-09 17:22:29,201 - stpipe.ProcessFlatfieldL2 - INFO - Finished processing product iris_example_data/raw_flat_frame
+2020-10-09 17:22:29,201 - stpipe.ProcessFlatfieldL2 - INFO - ... ending preprocess flatfield
+2020-10-09 17:22:30,292 - stpipe.ProcessFlatfieldL2 - INFO - Saved model in raw_flat_frame_flat.fits
+2020-10-09 17:22:30,292 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 done
 </pre></div></div>
 </div>
 </div>
@@ -393,7 +426,7 @@ raw_flat_frame_cal.fits
 <h2>Configure the image processing pipeline<a class="headerlink" href="#Configure-the-image-processing-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">`ProcessImagerL2Pipeline</span></code> &lt;api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.rst#iris_pipeline.ProcessImagerL2Pipeline&gt;`__ can be configured using a INI-style configuration file:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -427,7 +460,7 @@ Writing image2_iris.cfg
 </div>
 <p>first we specify that we want to execute the pipeline defined in the pipeline, then we can configure each of the steps, for example skip some of them. Also we can import the configuration of a step from another file, in this case flat_field.cfg:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -453,7 +486,7 @@ Writing flat_field.cfg
 <p>JWST created a specification for defining how input files should be used by a pipeline, it is a JSON file named an association, see the <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/associations/overview.html">JWST documentation</a>.</p>
 <p>In our example we need to specify a input raw science frame ad a background to be subtracted:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -495,7 +528,7 @@ Writing association.json
 <h2>Execute the pipeline from the command line<a class="headerlink" href="#Execute-the-pipeline-from-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Execute the pipeline from the command line We can use tmtrun from a terminal to execute the pipeline:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -508,9 +541,58 @@ Writing association.json
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2020-10-09 17:10:16,630 - CRDS - ERROR -  (FATAL) CRDS server connection and cache load FAILED.  Cannot continue.
-2020-10-09 17:10:16,630 - CRDS - ERROR -  See https://hst-crds.stsci.edu/docs/cmdline_bestrefs/ or https://jwst-crds.stsci.edu/docs/cmdline_bestrefs/
-2020-10-09 17:10:16,630 - CRDS - ERROR -  for more information on configuring CRDS,  particularly CRDS_PATH and CRDS_SERVER_URL. : [Errno 2] No such file or directory: &#39;/grp/crds/cache/config/tmt/server_config&#39;
+2020-10-09 17:22:33,876 - CRDS - ERROR -  Error determining best reference for &#39;pars-backgroundstep&#39;  =   Unknown reference type &#39;pars-backgroundstep&#39;
+2020-10-09 17:22:34,224 - CRDS - ERROR -  Error determining best reference for &#39;pars-assignwcsstep&#39;  =   Unknown reference type &#39;pars-assignwcsstep&#39;
+2020-10-09 17:22:34,499 - CRDS - ERROR -  Error determining best reference for &#39;pars-parsesubarraymapstep&#39;  =   Unknown reference type &#39;pars-parsesubarraymapstep&#39;
+2020-10-09 17:22:34,832 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
+2020-10-09 17:22:35,145 - CRDS - ERROR -  Error determining best reference for &#39;pars-flatfieldstep&#39;  =   Unknown reference type &#39;pars-flatfieldstep&#39;
+2020-10-09 17:22:35,479 - CRDS - ERROR -  Error determining best reference for &#39;pars-photomstep&#39;  =   Unknown reference type &#39;pars-photomstep&#39;
+2020-10-09 17:22:35,766 - CRDS - ERROR -  Error determining best reference for &#39;pars-resamplestep&#39;  =   Unknown reference type &#39;pars-resamplestep&#39;
+2020-10-09 17:22:36,133 - CRDS - ERROR -  Error determining best reference for &#39;pars-processimagerl2pipeline&#39;  =   Unknown reference type &#39;pars-processimagerl2pipeline&#39;
+2020-10-09 17:22:36,141 - stpipe.ProcessImagerL2Pipeline - INFO - ProcessImagerL2Pipeline instance created.
+2020-10-09 17:22:36,142 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - BackgroundStep instance created.
+2020-10-09 17:22:36,143 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - AssignWcsStep instance created.
+2020-10-09 17:22:36,143 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - ParseSubarrayMapStep instance created.
+2020-10-09 17:22:36,144 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - DarkCurrentStep instance created.
+2020-10-09 17:22:36,145 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - FlatFieldStep instance created.
+2020-10-09 17:22:36,158 - stpipe.ProcessImagerL2Pipeline.photom - INFO - PhotomStep instance created.
+2020-10-09 17:22:36,159 - stpipe.ProcessImagerL2Pipeline.resample - INFO - ResampleStep instance created.
+2020-10-09 17:22:36,159 - stpipe - INFO - Hostname: fv-az58
+2020-10-09 17:22:36,159 - stpipe - INFO - OS: Linux
+2020-10-09 17:22:36,217 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline running with args (&#39;association.json&#39;,).
+2020-10-09 17:22:36,222 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;save_bsub&#39;: False, &#39;steps&#39;: {&#39;bkg_subtract&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}, &#39;assign_wcs&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}, &#39;parse_subarray_map&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}, &#39;flat_field&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;photom&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;resample&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;pixfrac&#39;: 1.0, &#39;kernel&#39;: &#39;square&#39;, &#39;fillval&#39;: &#39;INDEF&#39;, &#39;weight_type&#39;: &#39;exptime&#39;, &#39;single&#39;: False, &#39;blendheaders&#39;: True}}}
+2020-10-09 17:22:36,464 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetching reference files for dataset: &#39;raw_science_frame_sci.fits&#39; reftypes = [&#39;dark&#39;]
+2020-10-09 17:22:36,471 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
+2020-10-09 17:22:36,471 - stpipe.ProcessImagerL2Pipeline - INFO - Override for FLAT reference file is &#39;/tmp/tmpe4xwe12_/29e13c55bf78a0195dc238e160209fc89ba5a0da/docs/raw_flat_frame_flat.fits&#39;.
+2020-10-09 17:22:36,472 - stpipe.ProcessImagerL2Pipeline - INFO - Starting calwebb_image2 ...
+2020-10-09 17:22:36,480 - stpipe.ProcessImagerL2Pipeline - INFO - Processing product test_iris_subtract_bg_flat
+2020-10-09 17:22:36,480 - stpipe.ProcessImagerL2Pipeline - INFO - Working on input iris_example_data/raw_science_frame_sci.fits ...
+2020-10-09 17:22:36,743 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;, [&#39;iris_example_data/raw_background_frame_cal.fits&#39;]).
+2020-10-09 17:22:36,744 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: &#39;bsub&#39;, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}
+2020-10-09 17:22:46,680 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract done
+2020-10-09 17:22:46,724 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2020-10-09 17:22:46,725 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}
+2020-10-09 17:22:46,725 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step skipped.
+2020-10-09 17:22:46,725 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs done
+2020-10-09 17:22:46,750 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2020-10-09 17:22:46,751 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2020-10-09 17:22:46,762 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - No SUBARR_MAP extension found
+2020-10-09 17:22:46,762 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map done
+2020-10-09 17:22:46,785 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2020-10-09 17:22:46,786 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}
+2020-10-09 17:22:46,805 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
+2020-10-09 17:22:47,174 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current done
+2020-10-09 17:22:47,214 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2020-10-09 17:22:47,215 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2020-10-09 17:22:47,887 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field done
+2020-10-09 17:22:47,926 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2020-10-09 17:22:47,927 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2020-10-09 17:22:47,927 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step skipped.
+2020-10-09 17:22:47,927 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom done
+2020-10-09 17:22:47,927 - stpipe.ProcessImagerL2Pipeline - INFO - Finished processing product test_iris_subtract_bg_flat
+2020-10-09 17:22:47,928 - stpipe.ProcessImagerL2Pipeline - INFO - ... ending calwebb_image2
+2020-10-09 17:22:48,257 - stpipe.ProcessImagerL2Pipeline - INFO - Saved model in test_iris_subtract_bg_flat_cal.fits
+2020-10-09 17:22:48,257 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline done
 </pre></div></div>
 </div>
 </div>
@@ -518,7 +600,7 @@ Writing association.json
 <h2>Plot the reduced frame<a class="headerlink" href="#Plot-the-reduced-frame" title="Permalink to this headline">¶</a></h2>
 <p>Finally we can use <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> to load the data and plot them:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -540,89 +622,11 @@ Writing association.json
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-3ce251232da6&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> iris_pipeline
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>reduced_science_frame <span class="ansi-blue-fg">=</span> iris_pipeline<span class="ansi-blue-fg">.</span>datamodels<span class="ansi-blue-fg">.</span>IRISImageModel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;test_iris_subtract_bg_flat_cal.fits&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.5.dev0-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/iris.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     46</span>     <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> init<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     47</span>
-<span class="ansi-green-fg">---&gt; 48</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>init<span class="ansi-blue-fg">=</span>init<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     49</span>
-<span class="ansi-green-intense-fg ansi-bold">     50</span>         <span class="ansi-red-fg"># Implicitly create arrays</span>
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.5.dev0-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, extensions, pass_invalid_values, strict_validation, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     90</span>         super().__init__(init=init, schema=schema, extensions=extensions,
-<span class="ansi-green-intense-fg ansi-bold">     91</span>                  pass_invalid_values<span class="ansi-blue-fg">=</span>pass_invalid_values<span class="ansi-blue-fg">,</span> strict_validation<span class="ansi-blue-fg">=</span>strict_validation<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 92</span><span class="ansi-red-fg">                  **kwargs)
-</span>
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/jwst/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, memmap, pass_invalid_values, strict_validation, ignore_missing_extensions, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    183</span>                     init_fitsopen <span class="ansi-blue-fg">=</span> init
-<span class="ansi-green-intense-fg ansi-bold">    184</span>
-<span class="ansi-green-fg">--&gt; 185</span><span class="ansi-red-fg">                 </span>hdulist <span class="ansi-blue-fg">=</span> fits<span class="ansi-blue-fg">.</span>open<span class="ansi-blue-fg">(</span>init_fitsopen<span class="ansi-blue-fg">,</span> memmap<span class="ansi-blue-fg">=</span>memmap<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    186</span>                 asdffile = fits_support.from_fits(
-<span class="ansi-green-intense-fg ansi-bold">    187</span>                     hdulist<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>_schema<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>_ctx<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/hdu/hdulist.py</span> in <span class="ansi-cyan-fg">fitsopen</span><span class="ansi-blue-fg">(name, mode, memmap, save_backup, cache, lazy_load_hdus, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    163</span>
-<span class="ansi-green-intense-fg ansi-bold">    164</span>     return HDUList.fromfile(name, mode, memmap, save_backup, cache,
-<span class="ansi-green-fg">--&gt; 165</span><span class="ansi-red-fg">                             lazy_load_hdus, **kwargs)
-</span><span class="ansi-green-intense-fg ansi-bold">    166</span>
-<span class="ansi-green-intense-fg ansi-bold">    167</span>
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/hdu/hdulist.py</span> in <span class="ansi-cyan-fg">fromfile</span><span class="ansi-blue-fg">(cls, fileobj, mode, memmap, save_backup, cache, lazy_load_hdus, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    403</span>         return cls._readfrom(fileobj=fileobj, mode=mode, memmap=memmap,
-<span class="ansi-green-intense-fg ansi-bold">    404</span>                              save_backup<span class="ansi-blue-fg">=</span>save_backup<span class="ansi-blue-fg">,</span> cache<span class="ansi-blue-fg">=</span>cache<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 405</span><span class="ansi-red-fg">                              lazy_load_hdus=lazy_load_hdus, **kwargs)
-</span><span class="ansi-green-intense-fg ansi-bold">    406</span>
-<span class="ansi-green-intense-fg ansi-bold">    407</span>     <span class="ansi-blue-fg">@</span>classmethod
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/hdu/hdulist.py</span> in <span class="ansi-cyan-fg">_readfrom</span><span class="ansi-blue-fg">(cls, fileobj, data, mode, memmap, save_backup, cache, lazy_load_hdus, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1052</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isinstance<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> _File<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1053</span>                 <span class="ansi-red-fg"># instantiate a FITS file object (ffo)</span>
-<span class="ansi-green-fg">-&gt; 1054</span><span class="ansi-red-fg">                 </span>fileobj <span class="ansi-blue-fg">=</span> _File<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">=</span>mode<span class="ansi-blue-fg">,</span> memmap<span class="ansi-blue-fg">=</span>memmap<span class="ansi-blue-fg">,</span> cache<span class="ansi-blue-fg">=</span>cache<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1055</span>             <span class="ansi-red-fg"># The Astropy mode is determined by the _File initializer if the</span>
-<span class="ansi-green-intense-fg ansi-bold">   1056</span>             <span class="ansi-red-fg"># supplied mode was None</span>
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/utils/decorators.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    533</span>                     warnings<span class="ansi-blue-fg">.</span>warn<span class="ansi-blue-fg">(</span>message<span class="ansi-blue-fg">,</span> warning_type<span class="ansi-blue-fg">,</span> stacklevel<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    534</span>
-<span class="ansi-green-fg">--&gt; 535</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> function<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    536</span>
-<span class="ansi-green-intense-fg ansi-bold">    537</span>         <span class="ansi-green-fg">return</span> wrapper
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/file.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, fileobj, mode, memmap, overwrite, cache)</span>
-<span class="ansi-green-intense-fg ansi-bold">    191</span>             self<span class="ansi-blue-fg">.</span>_open_fileobj<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">,</span> overwrite<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    192</span>         <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 193</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_open_filename<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">,</span> overwrite<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    194</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    195</span>             self<span class="ansi-blue-fg">.</span>_open_filelike<span class="ansi-blue-fg">(</span>fileobj<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">,</span> overwrite<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/file.py</span> in <span class="ansi-cyan-fg">_open_filename</span><span class="ansi-blue-fg">(self, filename, mode, overwrite)</span>
-<span class="ansi-green-intense-fg ansi-bold">    572</span>
-<span class="ansi-green-intense-fg ansi-bold">    573</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_try_read_compressed<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>name<span class="ansi-blue-fg">,</span> magic<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">,</span> ext<span class="ansi-blue-fg">=</span>ext<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 574</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_file <span class="ansi-blue-fg">=</span> fileobj_open<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>name<span class="ansi-blue-fg">,</span> IO_FITS_MODES<span class="ansi-blue-fg">[</span>mode<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    575</span>             self<span class="ansi-blue-fg">.</span>close_on_error <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span>
-<span class="ansi-green-intense-fg ansi-bold">    576</span>
-
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/astropy/io/fits/util.py</span> in <span class="ansi-cyan-fg">fileobj_open</span><span class="ansi-blue-fg">(filename, mode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    394</span>     &#34;&#34;&#34;
-<span class="ansi-green-intense-fg ansi-bold">    395</span>
-<span class="ansi-green-fg">--&gt; 396</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> open<span class="ansi-blue-fg">(</span>filename<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">,</span> buffering<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    397</span>
-<span class="ansi-green-intense-fg ansi-bold">    398</span>
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;test_iris_subtract_bg_flat_cal.fits&#39;
-</pre></div></div>
+<img alt="_images/example-run_16_0.png" src="_images/example-run_16_0.png" />
+</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
