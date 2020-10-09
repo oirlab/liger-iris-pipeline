@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example pipeline execution &#8212; iris_pipeline v0.4.dev322</title>
+    <title>Example pipeline execution &#8212; iris_pipeline v0.4.dev323</title>
     <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -63,7 +63,7 @@
 	 |
       </li>
       <li>
-	<a href="index.html">iris_pipeline v0.4.dev322</a>
+	<a href="index.html">iris_pipeline v0.4.dev323</a>
 	 &#187;
       </li>
       
@@ -344,7 +344,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(&#39;iris_example_data.zip&#39;, &lt;http.client.HTTPMessage at 0x7f46c5748588&gt;)
+(&#39;iris_example_data.zip&#39;, &lt;http.client.HTTPMessage at 0x7f7d5041e550&gt;)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -397,7 +397,18 @@ raw_flat_frame_cal.fits
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-/bin/sh: 1: tmtrun: not found
+Traceback (most recent call last):
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/bin/tmtrun&#34;, line 11, in &lt;module&gt;
+    load_entry_point(&#39;iris-pipeline==0.4.dev323&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 487, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2728, in load_entry_point
+    return ep.load()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2346, in load
+    return self.resolve()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2352, in resolve
+    module = __import__(self.module_name, fromlist=[&#39;__name__&#39;], level=0)
+ModuleNotFoundError: No module named &#39;scripts&#39;
 </pre></div></div>
 </div>
 </div>
@@ -520,7 +531,18 @@ Writing association.json
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-/bin/sh: 1: tmtrun: not found
+Traceback (most recent call last):
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/bin/tmtrun&#34;, line 11, in &lt;module&gt;
+    load_entry_point(&#39;iris-pipeline==0.4.dev323&#39;, &#39;console_scripts&#39;, &#39;tmtrun&#39;)()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 487, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2728, in load_entry_point
+    return ep.load()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2346, in load
+    return self.resolve()
+  File &#34;/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/pkg_resources/__init__.py&#34;, line 2352, in resolve
+    module = __import__(self.module_name, fromlist=[&#39;__name__&#39;], level=0)
+ModuleNotFoundError: No module named &#39;scripts&#39;
 </pre></div></div>
 </div>
 </div>
@@ -560,14 +582,14 @@ Writing association.json
 <span class="ansi-green-intense-fg ansi-bold">      4</span>     get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-green-fg">import</span> matplotlib<span class="ansi-blue-fg">.</span>pyplot <span class="ansi-green-fg">as</span> plt
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev322-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/iris.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, **kwargs)</span>
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev323-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/iris.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">     46</span>     <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> init<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">     47</span>
 <span class="ansi-green-fg">---&gt; 48</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>init<span class="ansi-blue-fg">=</span>init<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     49</span>
 <span class="ansi-green-intense-fg ansi-bold">     50</span>         <span class="ansi-red-fg"># Implicitly create arrays</span>
 
-<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev322-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, extensions, pass_invalid_values, strict_validation, **kwargs)</span>
+<span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages/iris_pipeline-0.4.dev323-py3.6-linux-x86_64.egg/iris_pipeline/datamodels/model_base.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, init, schema, extensions, pass_invalid_values, strict_validation, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">     90</span>         super().__init__(init=init, schema=schema, extensions=extensions,
 <span class="ansi-green-intense-fg ansi-bold">     91</span>                  pass_invalid_values<span class="ansi-blue-fg">=</span>pass_invalid_values<span class="ansi-blue-fg">,</span> strict_validation<span class="ansi-blue-fg">=</span>strict_validation<span class="ansi-blue-fg">,</span>
 <span class="ansi-green-fg">---&gt; 92</span><span class="ansi-red-fg">                  **kwargs)
