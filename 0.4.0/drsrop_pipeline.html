@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRS-ROP Pipeline &#8212; IRISpipeline v0.4.0</title>
+    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Quality (DQ) Initialization" href="dq_init/index.html" />
+    <link rel="prev" title="Available algorithms" href="available-steps.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="genindex.html">Index</a></li>
+    <li><a title="Module Index" href="py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="dq_init/index.html" title="Data Quality (DQ) Initialization">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="available-steps.html" title="Available algorithms">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="index.html">IRISpipeline v0.4.0</a>
+	 &#187;
+      </li>
+      <li><a href="available-steps.html" accesskey="U">Available algorithms</a> &#187;</li>
+      
+      <li>DRS-ROP Pipeline</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+<p>
+  <strong>
+    
+    You're reading an old version of this documentation.
+    If you want up-to-date information, please have a look at <a href="../master/drsrop_pipeline.html">master</a>.
+    
+  <strong>
+</p>
+
+
+  <div class="section" id="drs-rop-pipeline">
+<h1>DRS-ROP Pipeline<a class="headerlink" href="#drs-rop-pipeline" title="Permalink to this headline">¶</a></h1>
+<p>The DRS_ROP Pipeline works on detector level readouts. The current steps implemented in the pipeline are
+- Non-linearity Correction
+- Detector Readout Sampling</p>
+<div class="section" id="non-linearity-correction">
+<h2>Non-linearity Correction<a class="headerlink" href="#non-linearity-correction" title="Permalink to this headline">¶</a></h2>
+<p>Non-linearity correction step corrects for the non-linear response of the detector to incoming flux. This step is executed before sampling algorithms.</p>
+</div>
+<div class="section" id="detector-readout-sampling">
+<h2>Detector Readout Sampling<a class="headerlink" href="#detector-readout-sampling" title="Permalink to this headline">¶</a></h2>
+<p>The H4RG detecors are readout in non-destructive reads and sampling algorithms are used to estimate the accumulated electrons in the detector for an integration time. The sampling algorithms currently implemented in the pipeline are
+- Correlated Double Sampling
+- Multi Correlated Double Sampling
+- Up-the-Ramp Sampling</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The sampling algorithms use the drsrop_clib module.
+<a class="reference external" href="https://github.com/oirlab/iris_readout">https://github.com/oirlab/iris_readout</a></p>
+</div>
+<div class="section" id="running-the-examples">
+<h2>Running the Examples<a class="headerlink" href="#running-the-examples" title="Permalink to this headline">¶</a></h2>
+<p>There is a example run in the iris_pipeline/readout/tests directory. The sample ramp is given in the sample_ramp.fits.
+sampling.cfg gives the configurations for the pipeline</p>
+<p><code class="docutils literal notranslate"><span class="pre">sampling.cfg</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;rop&quot;</span>
+<span class="na">class</span> <span class="o">=</span> <span class="s">&quot;iris_pipeline.pipeline.ROPPipeline&quot;</span>
+<span class="na">save_results</span> <span class="o">=</span> <span class="s">True</span>
+<span class="s">    [steps]</span>
+<span class="s">      [[nonlincorr]]</span>
+<span class="s">      [[readoutsamp]]</span>
+<span class="s">       mode=&#39;mcds&#39;</span>
+</pre></div>
+</div>
+<p>The sampling mode is set by the <code class="docutils literal notranslate"><span class="pre">mode</span></code> keyword which can be <code class="docutils literal notranslate"><span class="pre">mcds</span></code> or <code class="docutils literal notranslate"><span class="pre">utr</span></code>. MCDS algorithm also requires the group number, the number of reads to be co-added. This is currently hardcoded in this version.</p>
+</div>
+<div class="section" id="execute-the-pipeline-from-the-command-line">
+<h2>Execute the pipeline from the command line<a class="headerlink" href="#execute-the-pipeline-from-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">strun</span></code> from a terminal to execute the pipeline:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmtrun</span> <span class="n">sampling</span><span class="o">.</span><span class="n">cfg</span> <span class="n">sample_ramp</span><span class="o">.</span><span class="n">fits</span>
+</pre></div>
+</div>
+<p>here is the output log:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,309 - stpipe.rop - INFO - ROPPipeline instance created.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,310 - stpipe.rop.nonlincorr - INFO - NonlincorrStep instance created.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,311 - stpipe.rop.readoutsamp - INFO - ReadoutsampStep instance created.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,311 - stpipe - INFO - Hostname: arun-ThinkPad-X1-Carbon-6th
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,311 - stpipe - INFO - OS: Linux
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,335 - stpipe.rop - INFO - Step rop running with args <span class="o">(</span><span class="s1">&#39;sample_ramp.fits&#39;</span>,<span class="o">)</span>.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,335 - stpipe.rop - INFO - Starting ROP Pipeline ...
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,499 - stpipe.rop.nonlincorr - INFO - Step nonlincorr running with args <span class="o">(</span>&lt;RampModel<span class="o">(</span><span class="m">1</span>, <span class="m">4</span>, <span class="m">10</span>, <span class="m">10</span><span class="o">)</span> from sample_ramp.fits&gt;,<span class="o">)</span>.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,577 - stpipe.rop.nonlincorr - INFO - Step nonlincorr <span class="k">done</span>
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,603 - stpipe.rop.readoutsamp - INFO - Step readoutsamp running with args <span class="o">(</span>&lt;RampModel<span class="o">(</span><span class="m">1</span>, <span class="m">4</span>, <span class="m">10</span>, <span class="m">10</span><span class="o">)</span> from sample_ramp.fits&gt;,<span class="o">)</span>.
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,618 - stpipe.rop.readoutsamp - INFO - MCDS Sampling Selected
+<span class="o">(</span><span class="m">10</span>, <span class="m">10</span><span class="o">)</span>
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,640 - stpipe.rop.readoutsamp - INFO - Step readoutsamp <span class="k">done</span>
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,665 - stpipe.rop - INFO - Saved model in sample_rop.fits
+<span class="m">2019</span>-04-26 <span class="m">10</span>:09:21,665 - stpipe.rop - INFO - Step rop <span class="k">done</span>
+</pre></div>
+</div>
+<p>This creates a sample_rop.fits file in the working directory that is the processed</p>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="drsrop_pipeline.html">0.4.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="../master/drsrop_pipeline.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">DRS-ROP Pipeline</a><ul>
+<li><a class="reference internal" href="#non-linearity-correction">Non-linearity Correction</a></li>
+<li><a class="reference internal" href="#detector-readout-sampling">Detector Readout Sampling</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#running-the-examples">Running the Examples</a></li>
+<li><a class="reference internal" href="#execute-the-pipeline-from-the-command-line">Execute the pipeline from the command line</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/drsrop_pipeline.rst">Edit This Page on Github</a> &nbsp;
+    <a href="_sources/drsrop_pipeline.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 09 Oct 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

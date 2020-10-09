@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available algorithms &#8212; IRISpipeline v0.4.0</title>
+    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DRS-ROP Pipeline" href="drsrop_pipeline.html" />
+    <link rel="prev" title="Calibration" href="calibration-database.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="genindex.html">Index</a></li>
+    <li><a title="Module Index" href="py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="drsrop_pipeline.html" title="DRS-ROP Pipeline">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="calibration-database.html" title="Calibration">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="index.html">IRISpipeline v0.4.0</a>
+	 &#187;
+      </li>
+      
+      <li>Available algorithms</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+<p>
+  <strong>
+    
+    You're reading an old version of this documentation.
+    If you want up-to-date information, please have a look at <a href="../master/available-steps.html">master</a>.
+    
+  <strong>
+</p>
+
+
+  <div class="section" id="available-algorithms">
+<h1>Available algorithms<a class="headerlink" href="#available-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="drsrop_pipeline.html">DRS-ROP Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="drsrop_pipeline.html#non-linearity-correction">Non-linearity Correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drsrop_pipeline.html#detector-readout-sampling">Detector Readout Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drsrop_pipeline.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drsrop_pipeline.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drsrop_pipeline.html#execute-the-pipeline-from-the-command-line">Execute the pipeline from the command line</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dq_init/index.html">Data Quality (DQ) Initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dq_init/description.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dq_init/arguments.html">Step Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dq_init/reference_files.html">Reference Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dq_init/index.html#module-iris_pipeline.dq_init">iris_pipeline.dq_init Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="background/index.html">Background Image Subtraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="background/description.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/arguments.html">Step Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/reference_files.html">Reference Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background/index.html#module-iris_pipeline.background">iris_pipeline.background Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dark_current/index.html">Dark Current Subtraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dark_current/description.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dark_current/reference_files.html">Reference File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dark_current/arguments.html">Step Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dark_current/index.html#module-iris_pipeline.dark_current">iris_pipeline.dark_current Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="normalize/index.html">Normalize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="normalize/description.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normalize/reference_files.html">Reference File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normalize/arguments.html">Step Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normalize/index.html#module-iris_pipeline.normalize">iris_pipeline.normalize Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline/index.html">Pipeline Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/main.html">Pipeline Stages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/main.html#pipeline-classes-and-configuration-files">Pipeline Classes and Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/main.html#pipelines-vs-exposure-type">Pipelines vs. Exposure Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/image2.html">image2: Stage 2 Imaging Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/preprocess_flatfield.html">preprocess_flatfield: Preprocess Flat fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/index.html#module-iris_pipeline.pipeline">iris_pipeline.pipeline Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flatfield/index.html">Flatfield Correction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flatfield/main.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatfield/reference_files.html">Reference Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatfield/arguments.html">Step Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flatfield/index.html#module-iris_pipeline.flatfield">iris_pipeline.flatfield Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parse_subarray_map/index.html">Parse Subarray Map</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parse_subarray_map/index.html#description">Description</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="merge_subarrays/index.html">Merge subarrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="merge_subarrays/index.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_subarrays/index.html#input">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_subarrays/index.html#merging-algorithm">Merging algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge_subarrays/index.html#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="assign_wcs/index.html">Assign WCS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="assign_wcs/main.html">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assign_wcs/reference_files.html">Reference Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assign_wcs/asdf-howto.html">How To Create Reference files in ASDF format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assign_wcs/exp_types.html">WCS reference file information per EXP_TYPE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assign_wcs/index.html#module-iris_pipeline.assign_wcs">iris_pipeline.assign_wcs Package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="available-steps.html">0.4.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="../master/available-steps.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">Available algorithms</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/available-steps.rst">Edit This Page on Github</a> &nbsp;
+    <a href="_sources/available-steps.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 09 Oct 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>

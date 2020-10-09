@@ -1,0 +1,27 @@
+AssignWcsStep
+=============
+
+.. currentmodule:: iris_pipeline
+
+.. autoclass:: AssignWcsStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.reference_file_types
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: reference_file_types
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

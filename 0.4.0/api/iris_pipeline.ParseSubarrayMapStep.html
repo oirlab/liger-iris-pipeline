@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ParseSubarrayMapStep &#8212; IRISpipeline v0.4.0</title>
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ProcessFlatfieldL2" href="iris_pipeline.ProcessFlatfieldL2.html" />
+    <link rel="prev" title="NormalizeStep" href="iris_pipeline.NormalizeStep.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="iris_pipeline.ProcessFlatfieldL2.html" title="ProcessFlatfieldL2">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="iris_pipeline.NormalizeStep.html" title="NormalizeStep">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">IRISpipeline v0.4.0</a>
+	 &#187;
+      </li>
+      
+      <li>ParseSubarrayMapStep</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+
+<p>
+  <strong>
+    
+    You're reading an old version of this documentation.
+    If you want up-to-date information, please have a look at <a href="../../master/index.html">master</a>.
+    
+  <strong>
+</p>
+
+
+  <div class="section" id="parsesubarraymapstep">
+<h1>ParseSubarrayMapStep<a class="headerlink" href="#parsesubarraymapstep" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="iris_pipeline.ParseSubarrayMapStep">
+<em class="property">class </em><code class="sig-prename descclassname">iris_pipeline.</code><code class="sig-name descname">ParseSubarrayMapStep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_file</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">_validate_kwds</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kws</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/parse_subarray_map/parse_subarray_map_step.html#ParseSubarrayMapStep"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/parse_subarray_map/parse_subarray_map_step.py#L28" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.ParseSubarrayMapStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="https://jwst-pipeline.readthedocs.io/en/latest/api/jwst.stpipe.Step.html#jwst.stpipe.Step" title="jwst.stpipe.Step"><code class="docutils literal notranslate"><span class="pre">jwst.stpipe.Step</span></code></a></p>
+<p>ParseSubarrayMapStep: Parse a subarray map
+extension, if available, and create header metadata
+and data quality flag accordingly</p>
+<p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the Step instance.  Used in logging messages
+and in cache filenames.  If not provided, one will be
+generated based on the class name.</p>
+</dd>
+<dt><strong>parent</strong><span class="classifier">Step instance, optional</span></dt><dd><p>The parent step of this step.  Used to determine a
+fully-qualified name for this step, and to determine
+the mode in which to run this step.</p>
+</dd>
+<dt><strong>config_file</strong><span class="classifier">str path, optional</span></dt><dd><p>The path to the config file that this step was initialized
+with.  Use to determine relative path names of other config files.</p>
+</dd>
+<dt><strong>**kws</strong><span class="classifier">dict</span></dt><dd><p>Additional parameters to set.  These will be set as member
+variables on the new Step instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iris_pipeline.ParseSubarrayMapStep.process" title="iris_pipeline.ParseSubarrayMapStep.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input)</p></td>
+<td><p>This is where real work happens.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="iris_pipeline.ParseSubarrayMapStep.process">
+<code class="sig-name descname">process</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/parse_subarray_map/parse_subarray_map_step.html#ParseSubarrayMapStep.process"><span class="viewcode-link">[source]</span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/parse_subarray_map/parse_subarray_map_step.py#L35" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;[edit on github]</span></a><a class="headerlink" href="#iris_pipeline.ParseSubarrayMapStep.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is where real work happens. Every Step subclass has to
+override this method. The default behaviour is to raise a
+NotImplementedError exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3>Releases</h3>
+<ul>
+  <li><a href="iris_pipeline.ParseSubarrayMapStep.html">0.4.0</a></li>
+</ul>
+<h3>In Development</h3>
+<ul>
+  <li><a href="../../master/index.html">master</a></li>
+</ul>
+
+
+<h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">ParseSubarrayMapStep</a></li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/api/iris_pipeline.ParseSubarrayMapStep.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/iris_pipeline.ParseSubarrayMapStep.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2020, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.2.1. &nbsp;
+    Last built 09 Oct 2020. <br/>
+  </p>
+</footer>
+  </body>
+</html>
