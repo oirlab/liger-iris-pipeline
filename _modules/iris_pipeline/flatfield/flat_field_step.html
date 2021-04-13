@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iris_pipeline.flatfield.flat_field_step &#8212; IRISpipeline v0.5.dev</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../../index.html">IRISpipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      <li><a href="../../index.html" >Module code</a> &#187;</li>
+      <li><a href="../../iris_pipeline.html" accesskey="U">iris_pipeline</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for iris_pipeline.flatfield.flat_field_step</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">iris_pipeline</span>
+<span class="kn">from</span> <span class="nn">jwst.stpipe</span> <span class="kn">import</span> <span class="n">Step</span>
+<span class="kn">from</span> <span class="nn">jwst</span> <span class="kn">import</span> <span class="n">datamodels</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">flat_field</span>
+
+<span class="c1"># For the following types of data, it is OK -- and in some cases</span>
+<span class="c1"># required -- for the extract_2d step to have been run.  For all</span>
+<span class="c1"># other types of data, the extract_2d step must not have been run.</span>
+<span class="n">EXTRACT_2D_IS_OK</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;FlatFieldStep&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="FlatFieldStep"><a class="viewcode-back" href="../../../api/iris_pipeline.flatfield.FlatFieldStep.html#iris_pipeline.FlatFieldStep">[docs]</a><span class="k">class</span> <span class="nc">FlatFieldStep</span><span class="p">(</span><span class="n">Step</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Flat-field a science image using a flatfield reference image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reference_file_types</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;flat&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="FlatFieldStep.process"><a class="viewcode-back" href="../../../api/iris_pipeline.flatfield.FlatFieldStep.html#iris_pipeline.FlatFieldStep.process">[docs]</a>    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+
+        <span class="n">input_model</span> <span class="o">=</span> <span class="n">datamodels</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="n">exposure_type</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">exposure</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+        <span class="c1"># Figure out what kind of input data model is in use.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Input is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+
+        <span class="c1"># Check whether extract_2d has been run.</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">input_model</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">cal_step</span><span class="o">.</span><span class="n">extract_2d</span> <span class="o">==</span> <span class="s2">&quot;COMPLETE&quot;</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">exposure_type</span> <span class="ow">in</span> <span class="n">EXTRACT_2D_IS_OK</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;The extract_2d step has been run, but for &quot;</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> data it should not have been run, so ...&quot;</span><span class="p">,</span>
+                <span class="n">exposure_type</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;flat fielding will be skipped.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_step</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">flat_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_reference_file</span><span class="p">(</span><span class="n">input_model</span><span class="p">,</span> <span class="s2">&quot;flat&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Using FLAT reference file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flat_filename</span><span class="p">)</span>
+
+        <span class="c1"># Check for a valid reference file</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flat_filename</span> <span class="o">==</span> <span class="s2">&quot;N/A&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No FLAT reference file found&quot;</span><span class="p">)</span>
+            <span class="n">missing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Flat-field step will be skipped&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_step</span><span class="p">(</span><span class="n">input_model</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Opening flat as FlatModel&quot;</span><span class="p">)</span>
+        <span class="n">flat_model</span> <span class="o">=</span> <span class="n">iris_pipeline</span><span class="o">.</span><span class="n">datamodels</span><span class="o">.</span><span class="n">TMTFlatModel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flat_filename</span><span class="p">)</span>
+
+        <span class="c1"># Do the flat-field correction</span>
+        <span class="n">output_model</span> <span class="o">=</span> <span class="n">flat_field</span><span class="o">.</span><span class="n">do_correction</span><span class="p">(</span>
+            <span class="n">input_model</span><span class="p">,</span>
+            <span class="n">flat_model</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Close the inputs</span>
+        <span class="n">input_model</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">flat_model</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">output_model</span></div>
+
+<div class="viewcode-block" id="FlatFieldStep.skip_step"><a class="viewcode-back" href="../../../api/iris_pipeline.flatfield.FlatFieldStep.html#iris_pipeline.FlatFieldStep.skip_step">[docs]</a>    <span class="k">def</span> <span class="nf">skip_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the calibration switch to SKIPPED.</span>
+
+<span class="sd">        This method makes a copy of input_model, sets the calibration</span>
+<span class="sd">        switch for the flat_field step to SKIPPED in the copy, closes</span>
+<span class="sd">        input_model, and returns the copy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">input_model</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">cal_step</span><span class="o">.</span><span class="n">flat_field</span> <span class="o">=</span> <span class="s2">&quot;SKIPPED&quot;</span>
+        <span class="n">input_model</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
+    Last built 13 Apr 2021. <br/>
+  </p>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROPPipeline &#8212; IRISpipeline v0.5.dev</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SubtractImagesStep" href="iris_pipeline.SubtractImagesStep.html" />
+    <link rel="prev" title="ProcessImagerL2Pipeline" href="iris_pipeline.ProcessImagerL2Pipeline.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="iris_pipeline.SubtractImagesStep.html" title="SubtractImagesStep">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="iris_pipeline.ProcessImagerL2Pipeline.html" title="ProcessImagerL2Pipeline">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">IRISpipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      
+      <li>ROPPipeline</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="roppipeline">
+<h1>ROPPipeline<a class="headerlink" href="#roppipeline" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="iris_pipeline.ROPPipeline">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">iris_pipeline.</span></code><code class="sig-name descname"><span class="pre">ROPPipeline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/rop.html#ROPPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/rop.py#L21" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ROPPipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">jwst.stpipe.pipeline.Pipeline</span></code></p>
+<p>Detector1Pipeline for IRIS</p>
+<p>See <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step.__init__</span></code> for the parameters.</p>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iris_pipeline.ROPPipeline.spec" title="iris_pipeline.ROPPipeline.spec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spec</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iris_pipeline.ROPPipeline.step_defs" title="iris_pipeline.ROPPipeline.step_defs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step_defs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iris_pipeline.ROPPipeline.process" title="iris_pipeline.ROPPipeline.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input)</p></td>
+<td><p>This is where real work happens.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iris_pipeline.ROPPipeline.setup_output" title="iris_pipeline.ROPPipeline.setup_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setup_output</span></code></a>(input)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt id="iris_pipeline.ROPPipeline.spec">
+<code class="sig-name descname"><span class="pre">spec</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">save_calibrated_ramp</span> <span class="pre">=</span> <span class="pre">boolean(default=False)\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#iris_pipeline.ROPPipeline.spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="iris_pipeline.ROPPipeline.step_defs">
+<code class="sig-name descname"><span class="pre">step_defs</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'nonlincorr':</span> <span class="pre">&lt;class</span> <span class="pre">'iris_pipeline.readout.nonlincorr_step.NonlincorrStep'&gt;,</span> <span class="pre">'readoutsamp':</span> <span class="pre">&lt;class</span> <span class="pre">'iris_pipeline.readout.readoutsamp_step.ReadoutsampStep'&gt;}</span></em><a class="headerlink" href="#iris_pipeline.ROPPipeline.step_defs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="iris_pipeline.ROPPipeline.process">
+<code class="sig-name descname"><span class="pre">process</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/rop.html#ROPPipeline.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/rop.py#L38" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ROPPipeline.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is where real work happens. Every Step subclass has to
+override this method. The default behaviour is to raise a
+NotImplementedError exception.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iris_pipeline.ROPPipeline.setup_output">
+<code class="sig-name descname"><span class="pre">setup_output</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/rop.html#ROPPipeline.setup_output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/rop.py#L46" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ROPPipeline.setup_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">ROPPipeline</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/api/iris_pipeline.ROPPipeline.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/iris_pipeline.ROPPipeline.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
+    Last built 13 Apr 2021. <br/>
+  </p>
+</footer>
+  </body>
+</html>

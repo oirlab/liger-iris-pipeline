@@ -1,6 +1,0 @@
-niriss_soss_set_input
-=====================
-
-.. currentmodule:: jwst.assign_wcs
-
-.. autofunction:: niriss_soss_set_input

@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProcessFlatfieldL2 &#8212; IRISpipeline v0.5.dev</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ProcessImagerL2Pipeline" href="iris_pipeline.ProcessImagerL2Pipeline.html" />
+    <link rel="prev" title="ParseSubarrayMapStep" href="iris_pipeline.ParseSubarrayMapStep.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="iris_pipeline.ProcessImagerL2Pipeline.html" title="ProcessImagerL2Pipeline">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="iris_pipeline.ParseSubarrayMapStep.html" title="ParseSubarrayMapStep">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">IRISpipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      
+      <li>ProcessFlatfieldL2</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="processflatfieldl2">
+<h1>ProcessFlatfieldL2<a class="headerlink" href="#processflatfieldl2" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="iris_pipeline.ProcessFlatfieldL2">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">iris_pipeline.</span></code><code class="sig-name descname"><span class="pre">ProcessFlatfieldL2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/preprocess_flatfield.html#ProcessFlatfieldL2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/preprocess_flatfield.py#L16" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ProcessFlatfieldL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">jwst.stpipe.pipeline.Pipeline</span></code></p>
+<p>ProcessFlatfieldL2: Remove dark and normalize exposure to create
+a flat field to be later added to the CRDS.</p>
+<p>Included steps are:
+dark_current, normalize</p>
+<p>See <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step.__init__</span></code> for the parameters.</p>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iris_pipeline.ProcessFlatfieldL2.step_defs" title="iris_pipeline.ProcessFlatfieldL2.step_defs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">step_defs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#iris_pipeline.ProcessFlatfieldL2.process" title="iris_pipeline.ProcessFlatfieldL2.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input)</p></td>
+<td><p>This is where real work happens.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#iris_pipeline.ProcessFlatfieldL2.process_exposure_product" title="iris_pipeline.ProcessFlatfieldL2.process_exposure_product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process_exposure_product</span></code></a>(exp_product[, …])</p></td>
+<td><p>Process an exposure found in the association product</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt id="iris_pipeline.ProcessFlatfieldL2.step_defs">
+<code class="sig-name descname"><span class="pre">step_defs</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'dark_current':</span> <span class="pre">&lt;class</span> <span class="pre">'iris_pipeline.dark_current.dark_current_step.DarkCurrentStep'&gt;,</span> <span class="pre">'normalize':</span> <span class="pre">&lt;class</span> <span class="pre">'iris_pipeline.normalize.normalize_step.NormalizeStep'&gt;}</span></em><a class="headerlink" href="#iris_pipeline.ProcessFlatfieldL2.step_defs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="iris_pipeline.ProcessFlatfieldL2.process">
+<code class="sig-name descname"><span class="pre">process</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/preprocess_flatfield.html#ProcessFlatfieldL2.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/preprocess_flatfield.py#L31" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ProcessFlatfieldL2.process" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is where real work happens. Every Step subclass has to
+override this method. The default behaviour is to raise a
+NotImplementedError exception.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="iris_pipeline.ProcessFlatfieldL2.process_exposure_product">
+<code class="sig-name descname"><span class="pre">process_exposure_product</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp_product</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asn_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/pipeline/preprocess_flatfield.html#ProcessFlatfieldL2.process_exposure_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/pipeline/preprocess_flatfield.py#L65" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.ProcessFlatfieldL2.process_exposure_product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process an exposure found in the association product</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>exp_product: dict</strong></dt><dd><p>A Level2b association product.</p>
+</dd>
+<dt><strong>pool_name: str</strong></dt><dd><p>The pool file name. Used for recording purposes only.</p>
+</dd>
+<dt><strong>asn_file: str</strong></dt><dd><p>The name of the association file.
+Used for recording purposes only.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">ProcessFlatfieldL2</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/api/iris_pipeline.ProcessFlatfieldL2.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/iris_pipeline.ProcessFlatfieldL2.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
+    Last built 13 Apr 2021. <br/>
+  </p>
+</footer>
+  </body>
+</html>
