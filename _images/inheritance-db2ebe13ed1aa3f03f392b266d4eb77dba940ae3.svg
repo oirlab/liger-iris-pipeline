@@ -11,7 +11,7 @@
 <!-- BackgroundStep -->
 <g id="node1" class="node">
 <title>BackgroundStep</title>
-<g id="a_node1"><a xlink:href="../../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep" xlink:title="BackgroundStep: &#160;Subtract background exposures from target exposures." target="_top">
+<g id="a_node1"><a xlink:href="../../api/iris_pipeline.background.BackgroundStep.html#iris_pipeline.background.BackgroundStep" xlink:title="BackgroundStep: &#160;Subtract background exposures from target exposures." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="195.5,-56 99.5,-56 99.5,-37 195.5,-37 195.5,-56"/>
 <text text-anchor="middle" x="147.5" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">BackgroundStep</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- SubtractImagesStep -->
 <g id="node3" class="node">
 <title>SubtractImagesStep</title>
-<g id="a_node3"><a xlink:href="../../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep" xlink:title="SubtractImagesStep: &#160;Subtract two exposures from one" target="_top">
+<g id="a_node3"><a xlink:href="../../api/iris_pipeline.background.SubtractImagesStep.html#iris_pipeline.background.SubtractImagesStep" xlink:title="SubtractImagesStep: &#160;Subtract two exposures from one" target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="205,-19 90,-19 90,0 205,0 205,-19"/>
 <text text-anchor="middle" x="147.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">SubtractImagesStep</text>
 </a>

@@ -11,7 +11,7 @@
 <!-- DQInitStep -->
 <g id="node1" class="node">
 <title>DQInitStep</title>
-<g id="a_node1"><a xlink:href="../../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep" xlink:title="Initialize the Data Quality extension from the" target="_top">
+<g id="a_node1"><a xlink:href="../../api/iris_pipeline.dq_init.DQInitStep.html#iris_pipeline.dq_init.DQInitStep" xlink:title="Initialize the Data Quality extension from the" target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="159,-19 90,-19 90,0 159,0 159,-19"/>
 <text text-anchor="middle" x="124.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">DQInitStep</text>
 </a>

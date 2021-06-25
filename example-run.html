@@ -4,18 +4,21 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Example pipeline execution &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
     <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
@@ -323,10 +326,10 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<div class="section" id="Example-pipeline-execution">
+<section id="Example-pipeline-execution">
 <h1>Example pipeline execution<a class="headerlink" href="#Example-pipeline-execution" title="Permalink to this headline">¶</a></h1>
 <p>Here is an example of what it takes to configure and run a pipeline with flat-fielding and background subtraction.</p>
-<div class="section" id="Setup-CRDS">
+<section id="Setup-CRDS">
 <h2>Setup CRDS<a class="headerlink" href="#Setup-CRDS" title="Permalink to this headline">¶</a></h2>
 <p>Make sure you have a local checkout of the CRDS cache as explained in the <a class="reference internal" href="getting-started.html"><span class="doc">Getting started page</span></a>. Either run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">setup_local_crds.sh</span></code> to setup the enviroment variables in the shell or execute <code class="docutils literal notranslate"><span class="pre">setup_local_crds.py</span></code> for Python. This is needed to point the CRDS software to the CRDS cache. Optionally source this in your shell configuration to automatically set this up.</p>
 <div class="nbinput nblast docutils container">
@@ -338,8 +341,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Get-input-simulations">
+</section>
+<section id="Get-input-simulations">
 <h2>Get input simulations<a class="headerlink" href="#Get-input-simulations" title="Permalink to this headline">¶</a></h2>
 <p>Download simulated input FITS files for the IRIS imager from <a class="reference external" href="https://figshare.com/articles/TMT_IRIS_test_simulations/9941939">Figshare</a>. It contains a raw science frame, a raw flat frame and a raw background frame.</p>
 <div class="nbinput nblast docutils container">
@@ -382,8 +385,8 @@ raw_background_frame_cal.fits  raw_science_frame_sci.fits
 raw_flat_frame_cal.fits
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Preprocess-the-flat-frame">
+</section>
+<section id="Preprocess-the-flat-frame">
 <h2>Preprocess the flat frame<a class="headerlink" href="#Preprocess-the-flat-frame" title="Permalink to this headline">¶</a></h2>
 <p>First we need to remove the dark frame from the flat frame and normalize it. A dark frame is already available in the CRDS and the pipeline knows how to retrieve it based on the metadata in the FITS file headers.</p>
 <p>We can check in the package documentation what are the available pipelines and check the configuration options of the pipeline.ProcessFlatfieldL2 class.</p>
@@ -403,37 +406,37 @@ raw_flat_frame_cal.fits
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-13 00:11:23,345 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
-2021-04-13 00:11:23,357 - CRDS - ERROR -  Error determining best reference for &#39;pars-normalizestep&#39;  =   Unknown reference type &#39;pars-normalizestep&#39;
-2021-04-13 00:11:23,365 - CRDS - ERROR -  Error determining best reference for &#39;pars-processflatfieldl2&#39;  =   Unknown reference type &#39;pars-processflatfieldl2&#39;
-2021-04-13 00:11:23,368 - stpipe.ProcessFlatfieldL2 - INFO - ProcessFlatfieldL2 instance created.
-2021-04-13 00:11:23,369 - stpipe.ProcessFlatfieldL2.dark_current - INFO - DarkCurrentStep instance created.
-2021-04-13 00:11:23,369 - stpipe.ProcessFlatfieldL2.normalize - INFO - NormalizeStep instance created.
-2021-04-13 00:11:23,370 - stpipe - INFO - Hostname: fv-az101-378
-2021-04-13 00:11:23,370 - stpipe - INFO - OS: Linux
-2021-04-13 00:11:23,419 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 running with args (&#39;iris_example_data/raw_flat_frame_cal.fits&#39;,).
-2021-04-13 00:11:23,421 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;steps&#39;: {&#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}, &#39;normalize&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}}}
-2021-04-13 00:11:23,636 - stpipe.ProcessFlatfieldL2 - INFO - Prefetching reference files for dataset: &#39;raw_flat_frame_cal.fits&#39; reftypes = [&#39;dark&#39;]
-2021-04-13 00:11:23,645 - stpipe.ProcessFlatfieldL2 - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
-2021-04-13 00:11:23,646 - stpipe.ProcessFlatfieldL2 - INFO - Starting preprocess flatfield ...
-2021-04-13 00:11:23,646 - stpipe.ProcessFlatfieldL2 - INFO - Processing product iris_example_data/raw_flat_frame
-2021-04-13 00:11:23,646 - stpipe.ProcessFlatfieldL2 - INFO - Working on input iris_example_data/raw_flat_frame_cal.fits ...
-2021-04-13 00:11:23,903 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
-2021-04-13 00:11:23,904 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}
-2021-04-13 00:11:23,928 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
-2021-04-13 00:11:24,370 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current done
-2021-04-13 00:11:24,424 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
-2021-04-13 00:11:24,425 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}
-2021-04-13 00:11:25,005 - stpipe.ProcessFlatfieldL2.normalize - INFO - running normalize with method median
-2021-04-13 00:11:25,053 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize done
-2021-04-13 00:11:25,054 - stpipe.ProcessFlatfieldL2 - INFO - Finished processing product iris_example_data/raw_flat_frame
-2021-04-13 00:11:25,054 - stpipe.ProcessFlatfieldL2 - INFO - ... ending preprocess flatfield
-2021-04-13 00:11:25,388 - stpipe.ProcessFlatfieldL2 - INFO - Saved model in raw_flat_frame_flat.fits
-2021-04-13 00:11:25,388 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 done
+2021-06-25 15:55:47,637 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
+2021-06-25 15:55:47,647 - CRDS - ERROR -  Error determining best reference for &#39;pars-normalizestep&#39;  =   Unknown reference type &#39;pars-normalizestep&#39;
+2021-06-25 15:55:47,655 - CRDS - ERROR -  Error determining best reference for &#39;pars-processflatfieldl2&#39;  =   Unknown reference type &#39;pars-processflatfieldl2&#39;
+2021-06-25 15:55:47,656 - stpipe.ProcessFlatfieldL2 - INFO - ProcessFlatfieldL2 instance created.
+2021-06-25 15:55:47,657 - stpipe.ProcessFlatfieldL2.dark_current - INFO - DarkCurrentStep instance created.
+2021-06-25 15:55:47,658 - stpipe.ProcessFlatfieldL2.normalize - INFO - NormalizeStep instance created.
+2021-06-25 15:55:47,658 - stpipe - INFO - Hostname: fv-az95-151
+2021-06-25 15:55:47,658 - stpipe - INFO - OS: Linux
+2021-06-25 15:55:47,687 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 running with args (&#39;iris_example_data/raw_flat_frame_cal.fits&#39;,).
+2021-06-25 15:55:47,689 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;steps&#39;: {&#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}, &#39;normalize&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}}}
+2021-06-25 15:55:47,908 - stpipe.ProcessFlatfieldL2 - INFO - Prefetching reference files for dataset: &#39;raw_flat_frame_cal.fits&#39; reftypes = [&#39;dark&#39;]
+2021-06-25 15:55:47,915 - stpipe.ProcessFlatfieldL2 - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
+2021-06-25 15:55:47,916 - stpipe.ProcessFlatfieldL2 - INFO - Starting preprocess flatfield ...
+2021-06-25 15:55:47,916 - stpipe.ProcessFlatfieldL2 - INFO - Processing product iris_example_data/raw_flat_frame
+2021-06-25 15:55:47,916 - stpipe.ProcessFlatfieldL2 - INFO - Working on input iris_example_data/raw_flat_frame_cal.fits ...
+2021-06-25 15:55:48,163 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
+2021-06-25 15:55:48,163 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;dark_output&#39;: None}
+2021-06-25 15:55:48,183 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
+2021-06-25 15:55:48,604 - stpipe.ProcessFlatfieldL2.dark_current - INFO - Step dark_current done
+2021-06-25 15:55:48,639 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize running with args (&lt;IRISImageModel(4096, 4096) from raw_flat_frame_cal.fits&gt;,).
+2021-06-25 15:55:48,639 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;iris_example_data&#39;, &#39;method&#39;: &#39;median&#39;}
+2021-06-25 15:55:49,089 - stpipe.ProcessFlatfieldL2.normalize - INFO - running normalize with method median
+2021-06-25 15:55:49,114 - stpipe.ProcessFlatfieldL2.normalize - INFO - Step normalize done
+2021-06-25 15:55:49,114 - stpipe.ProcessFlatfieldL2 - INFO - Finished processing product iris_example_data/raw_flat_frame
+2021-06-25 15:55:49,115 - stpipe.ProcessFlatfieldL2 - INFO - ... ending preprocess flatfield
+2021-06-25 15:55:49,416 - stpipe.ProcessFlatfieldL2 - INFO - Saved model in raw_flat_frame_flat.fits
+2021-06-25 15:55:49,416 - stpipe.ProcessFlatfieldL2 - INFO - Step ProcessFlatfieldL2 done
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Configure-the-image-processing-pipeline">
+</section>
+<section id="Configure-the-image-processing-pipeline">
 <h2>Configure the image processing pipeline<a class="headerlink" href="#Configure-the-image-processing-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">`ProcessImagerL2Pipeline</span></code> &lt;api/iris_pipeline.pipeline.ProcessImagerL2Pipeline.rst#iris_pipeline.ProcessImagerL2Pipeline&gt;`__ can be configured using a INI-style configuration file:</p>
 <div class="nbinput docutils container">
@@ -491,8 +494,8 @@ override_flat = &#39;raw_flat_frame_flat.fits&#39;
 Writing flat_field.cfg
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Define-the-input-data">
+</section>
+<section id="Define-the-input-data">
 <h2>Define the input data<a class="headerlink" href="#Define-the-input-data" title="Permalink to this headline">¶</a></h2>
 <p>JWST created a specification for defining how input files should be used by a pipeline, it is a JSON file named an association, see the <a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/associations/overview.html">JWST documentation</a>.</p>
 <p>In our example we need to specify a input raw science frame ad a background to be subtracted:</p>
@@ -534,8 +537,8 @@ Writing flat_field.cfg
 Writing association.json
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Execute-the-pipeline-from-the-command-line">
+</section>
+<section id="Execute-the-pipeline-from-the-command-line">
 <h2>Execute the pipeline from the command line<a class="headerlink" href="#Execute-the-pipeline-from-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Execute the pipeline from the command line We can use tmtrun from a terminal to execute the pipeline:</p>
 <div class="nbinput docutils container">
@@ -552,72 +555,62 @@ Writing association.json
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2021-04-13 00:11:27,235 - stpipe - WARNING - /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/astropy/io/fits/hdu/hdulist.py:1192: VerifyWarning: Error validating header for HDU #0 (note: Astropy uses zero-based indexing).
-    Header size is not multiple of 2880: 323
-There may be extra bytes after the last HDU or the file is corrupted.
-  len(self), indent(str(exc))), VerifyWarning)
-
-2021-04-13 00:11:28,618 - CRDS - ERROR -  Error determining best reference for &#39;pars-backgroundstep&#39;  =   Unknown reference type &#39;pars-backgroundstep&#39;
-2021-04-13 00:11:28,882 - CRDS - ERROR -  Error determining best reference for &#39;pars-assignwcsstep&#39;  =   Unknown reference type &#39;pars-assignwcsstep&#39;
-2021-04-13 00:11:29,195 - CRDS - ERROR -  Error determining best reference for &#39;pars-parsesubarraymapstep&#39;  =   Unknown reference type &#39;pars-parsesubarraymapstep&#39;
-2021-04-13 00:11:29,485 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
-2021-04-13 00:11:29,887 - CRDS - ERROR -  Error determining best reference for &#39;pars-flatfieldstep&#39;  =   Unknown reference type &#39;pars-flatfieldstep&#39;
-2021-04-13 00:11:30,239 - CRDS - ERROR -  Error determining best reference for &#39;pars-photomstep&#39;  =   Unknown reference type &#39;pars-photomstep&#39;
-2021-04-13 00:11:30,692 - CRDS - ERROR -  Error determining best reference for &#39;pars-resamplestep&#39;  =   Unknown reference type &#39;pars-resamplestep&#39;
-2021-04-13 00:11:31,116 - CRDS - ERROR -  Error determining best reference for &#39;pars-processimagerl2pipeline&#39;  =   Unknown reference type &#39;pars-processimagerl2pipeline&#39;
-2021-04-13 00:11:31,120 - stpipe - WARNING - /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/astropy/io/fits/hdu/hdulist.py:1192: VerifyWarning: Error validating header for HDU #0 (note: Astropy uses zero-based indexing).
-    Header size is not multiple of 2880: 103
-There may be extra bytes after the last HDU or the file is corrupted.
-  len(self), indent(str(exc))), VerifyWarning)
-
-2021-04-13 00:11:31,123 - stpipe.ProcessImagerL2Pipeline - INFO - ProcessImagerL2Pipeline instance created.
-2021-04-13 00:11:31,123 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - BackgroundStep instance created.
-2021-04-13 00:11:31,125 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - AssignWcsStep instance created.
-2021-04-13 00:11:31,125 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - ParseSubarrayMapStep instance created.
-2021-04-13 00:11:31,126 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - DarkCurrentStep instance created.
-2021-04-13 00:11:31,127 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - FlatFieldStep instance created.
-2021-04-13 00:11:31,128 - stpipe.ProcessImagerL2Pipeline.photom - INFO - PhotomStep instance created.
-2021-04-13 00:11:31,129 - stpipe.ProcessImagerL2Pipeline.resample - INFO - ResampleStep instance created.
-2021-04-13 00:11:31,129 - stpipe - INFO - Hostname: fv-az101-378
-2021-04-13 00:11:31,129 - stpipe - INFO - OS: Linux
-2021-04-13 00:11:31,206 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline running with args (&#39;association.json&#39;,).
-2021-04-13 00:11:31,213 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;save_bsub&#39;: False, &#39;steps&#39;: {&#39;bkg_subtract&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}, &#39;assign_wcs&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}, &#39;parse_subarray_map&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}, &#39;flat_field&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;photom&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;resample&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;pixfrac&#39;: 1.0, &#39;kernel&#39;: &#39;square&#39;, &#39;fillval&#39;: &#39;INDEF&#39;, &#39;weight_type&#39;: &#39;exptime&#39;, &#39;single&#39;: False, &#39;blendheaders&#39;: True}}}
-2021-04-13 00:11:31,483 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetching reference files for dataset: &#39;raw_science_frame_sci.fits&#39; reftypes = [&#39;dark&#39;]
-2021-04-13 00:11:31,492 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
-2021-04-13 00:11:31,492 - stpipe.ProcessImagerL2Pipeline - INFO - Override for FLAT reference file is &#39;/home/runner/work/iris_pipeline/iris_pipeline/docs/raw_flat_frame_flat.fits&#39;.
-2021-04-13 00:11:31,493 - stpipe.ProcessImagerL2Pipeline - INFO - Starting calwebb_image2 ...
-2021-04-13 00:11:31,501 - stpipe.ProcessImagerL2Pipeline - INFO - Processing product test_iris_subtract_bg_flat
-2021-04-13 00:11:31,502 - stpipe.ProcessImagerL2Pipeline - INFO - Working on input iris_example_data/raw_science_frame_sci.fits ...
-2021-04-13 00:11:31,805 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;, [&#39;iris_example_data/raw_background_frame_cal.fits&#39;]).
-2021-04-13 00:11:31,806 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: &#39;bsub&#39;, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}
-2021-04-13 00:11:37,396 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract done
-2021-04-13 00:11:37,452 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
-2021-04-13 00:11:37,453 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}
-2021-04-13 00:11:37,453 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step skipped.
-2021-04-13 00:11:37,453 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs done
-2021-04-13 00:11:37,497 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
-2021-04-13 00:11:37,498 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
-2021-04-13 00:11:37,512 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - No SUBARR_MAP extension found
-2021-04-13 00:11:37,513 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map done
-2021-04-13 00:11:37,558 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
-2021-04-13 00:11:37,559 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}
-2021-04-13 00:11:37,582 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
-2021-04-13 00:11:37,980 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current done
-2021-04-13 00:11:38,031 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
-2021-04-13 00:11:38,032 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
-2021-04-13 00:11:38,751 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field done
-2021-04-13 00:11:38,803 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
-2021-04-13 00:11:38,804 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
-2021-04-13 00:11:38,804 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step skipped.
-2021-04-13 00:11:38,804 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom done
-2021-04-13 00:11:38,804 - stpipe.ProcessImagerL2Pipeline - INFO - Finished processing product test_iris_subtract_bg_flat
-2021-04-13 00:11:38,805 - stpipe.ProcessImagerL2Pipeline - INFO - ... ending calwebb_image2
-2021-04-13 00:11:39,170 - stpipe.ProcessImagerL2Pipeline - INFO - Saved model in test_iris_subtract_bg_flat_cal.fits
-2021-04-13 00:11:39,171 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline done
+2021-06-25 15:55:52,393 - CRDS - ERROR -  Error determining best reference for &#39;pars-backgroundstep&#39;  =   Unknown reference type &#39;pars-backgroundstep&#39;
+2021-06-25 15:55:52,639 - CRDS - ERROR -  Error determining best reference for &#39;pars-assignwcsstep&#39;  =   Unknown reference type &#39;pars-assignwcsstep&#39;
+2021-06-25 15:55:52,888 - CRDS - ERROR -  Error determining best reference for &#39;pars-parsesubarraymapstep&#39;  =   Unknown reference type &#39;pars-parsesubarraymapstep&#39;
+2021-06-25 15:55:53,198 - CRDS - ERROR -  Error determining best reference for &#39;pars-darkcurrentstep&#39;  =   Unknown reference type &#39;pars-darkcurrentstep&#39;
+2021-06-25 15:55:53,654 - CRDS - ERROR -  Error determining best reference for &#39;pars-flatfieldstep&#39;  =   Unknown reference type &#39;pars-flatfieldstep&#39;
+2021-06-25 15:55:53,992 - CRDS - ERROR -  Error determining best reference for &#39;pars-photomstep&#39;  =   Unknown reference type &#39;pars-photomstep&#39;
+2021-06-25 15:55:54,415 - CRDS - ERROR -  Error determining best reference for &#39;pars-resamplestep&#39;  =   Unknown reference type &#39;pars-resamplestep&#39;
+2021-06-25 15:55:54,859 - CRDS - ERROR -  Error determining best reference for &#39;pars-processimagerl2pipeline&#39;  =   Unknown reference type &#39;pars-processimagerl2pipeline&#39;
+2021-06-25 15:55:54,865 - stpipe.ProcessImagerL2Pipeline - INFO - ProcessImagerL2Pipeline instance created.
+2021-06-25 15:55:54,866 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - BackgroundStep instance created.
+2021-06-25 15:55:54,867 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - AssignWcsStep instance created.
+2021-06-25 15:55:54,867 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - ParseSubarrayMapStep instance created.
+2021-06-25 15:55:54,868 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - DarkCurrentStep instance created.
+2021-06-25 15:55:54,869 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - FlatFieldStep instance created.
+2021-06-25 15:55:54,869 - stpipe.ProcessImagerL2Pipeline.photom - INFO - PhotomStep instance created.
+2021-06-25 15:55:54,870 - stpipe.ProcessImagerL2Pipeline.resample - INFO - ResampleStep instance created.
+2021-06-25 15:55:54,871 - stpipe - INFO - Hostname: fv-az95-151
+2021-06-25 15:55:54,871 - stpipe - INFO - OS: Linux
+2021-06-25 15:55:54,946 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline running with args (&#39;association.json&#39;,).
+2021-06-25 15:55:54,951 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: True, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;save_bsub&#39;: False, &#39;steps&#39;: {&#39;bkg_subtract&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}, &#39;assign_wcs&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}, &#39;parse_subarray_map&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;dark_current&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}, &#39;flat_field&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;photom&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}, &#39;resample&#39;: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;pixfrac&#39;: 1.0, &#39;kernel&#39;: &#39;square&#39;, &#39;fillval&#39;: &#39;INDEF&#39;, &#39;weight_type&#39;: &#39;exptime&#39;, &#39;single&#39;: False, &#39;blendheaders&#39;: True}}}
+2021-06-25 15:55:55,207 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetching reference files for dataset: &#39;raw_science_frame_sci.fits&#39; reftypes = [&#39;dark&#39;]
+2021-06-25 15:55:55,213 - stpipe.ProcessImagerL2Pipeline - INFO - Prefetch for DARK reference file is &#39;/home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;.
+2021-06-25 15:55:55,214 - stpipe.ProcessImagerL2Pipeline - INFO - Override for FLAT reference file is &#39;/home/runner/work/iris_pipeline/iris_pipeline/docs/raw_flat_frame_flat.fits&#39;.
+2021-06-25 15:55:55,214 - stpipe.ProcessImagerL2Pipeline - INFO - Starting calwebb_image2 ...
+2021-06-25 15:55:55,224 - stpipe.ProcessImagerL2Pipeline - INFO - Processing product test_iris_subtract_bg_flat
+2021-06-25 15:55:55,224 - stpipe.ProcessImagerL2Pipeline - INFO - Working on input iris_example_data/raw_science_frame_sci.fits ...
+2021-06-25 15:55:55,487 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;, [&#39;iris_example_data/raw_background_frame_cal.fits&#39;]).
+2021-06-25 15:55:55,488 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: &#39;bsub&#39;, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;sigma&#39;: 3.0, &#39;maxiters&#39;: None}
+2021-06-25 15:56:00,783 - stpipe.ProcessImagerL2Pipeline.bkg_subtract - INFO - Step bkg_subtract done
+2021-06-25 15:56:00,825 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2021-06-25 15:56:00,826 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;slit_y_low&#39;: -0.55, &#39;slit_y_high&#39;: 0.55}
+2021-06-25 15:56:00,827 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step skipped.
+2021-06-25 15:56:00,828 - stpipe.ProcessImagerL2Pipeline.assign_wcs - INFO - Step assign_wcs done
+2021-06-25 15:56:00,853 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2021-06-25 15:56:00,853 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2021-06-25 15:56:00,868 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - No SUBARR_MAP extension found
+2021-06-25 15:56:00,869 - stpipe.ProcessImagerL2Pipeline.parse_subarray_map - INFO - Step parse_subarray_map done
+2021-06-25 15:56:00,894 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2021-06-25 15:56:00,895 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;, &#39;dark_output&#39;: None}
+2021-06-25 15:56:00,919 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Using DARK reference file /home/runner/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits
+2021-06-25 15:56:01,336 - stpipe.ProcessImagerL2Pipeline.dark_current - INFO - Step dark_current done
+2021-06-25 15:56:01,372 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2021-06-25 15:56:01,373 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: False, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2021-06-25 15:56:02,033 - stpipe.ProcessImagerL2Pipeline.flat_field - INFO - Step flat_field done
+2021-06-25 15:56:02,069 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom running with args (&lt;IRISImageModel(4096, 4096) from raw_science_frame_sci.fits&gt;,).
+2021-06-25 15:56:02,070 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom parameters are: {&#39;pre_hooks&#39;: [], &#39;post_hooks&#39;: [], &#39;output_file&#39;: None, &#39;output_dir&#39;: None, &#39;output_ext&#39;: &#39;.fits&#39;, &#39;output_use_model&#39;: False, &#39;output_use_index&#39;: True, &#39;save_results&#39;: False, &#39;skip&#39;: True, &#39;suffix&#39;: None, &#39;search_output_file&#39;: True, &#39;input_dir&#39;: &#39;&#39;}
+2021-06-25 15:56:02,070 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step skipped.
+2021-06-25 15:56:02,071 - stpipe.ProcessImagerL2Pipeline.photom - INFO - Step photom done
+2021-06-25 15:56:02,071 - stpipe.ProcessImagerL2Pipeline - INFO - Finished processing product test_iris_subtract_bg_flat
+2021-06-25 15:56:02,072 - stpipe.ProcessImagerL2Pipeline - INFO - ... ending calwebb_image2
+2021-06-25 15:56:02,436 - stpipe.ProcessImagerL2Pipeline - INFO - Saved model in test_iris_subtract_bg_flat_cal.fits
+2021-06-25 15:56:02,436 - stpipe.ProcessImagerL2Pipeline - INFO - Step ProcessImagerL2Pipeline done
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Plot-the-reduced-frame">
+</section>
+<section id="Plot-the-reduced-frame">
 <h2>Plot the reduced frame<a class="headerlink" href="#Plot-the-reduced-frame" title="Permalink to this headline">¶</a></h2>
 <p>Finally we can use <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> to load the data and plot them:</p>
 <div class="nbinput docutils container">
@@ -655,8 +648,8 @@ There may be extra bytes after the last HDU or the file is corrupted.
 </pre></div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -691,8 +684,8 @@ There may be extra bytes after the last HDU or the file is corrupted.
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

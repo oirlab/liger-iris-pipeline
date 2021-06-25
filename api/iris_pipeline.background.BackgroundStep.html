@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>BackgroundStep &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -77,11 +78,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="backgroundstep">
+  <section id="backgroundstep">
 <h1>BackgroundStep<a class="headerlink" href="#backgroundstep" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="iris_pipeline.background.BackgroundStep">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">iris_pipeline.background.</span></code><code class="sig-name descname"><span class="pre">BackgroundStep</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_validate_kwds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/background/background_step.html#BackgroundStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/background/background_step.py#L11" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.background.BackgroundStep" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="iris_pipeline.background.BackgroundStep">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">iris_pipeline.background.</span></span><span class="sig-name descname"><span class="pre">BackgroundStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_validate_kwds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/background/background_step.html#BackgroundStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/background/background_step.py#L11" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.background.BackgroundStep" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">jwst.stpipe.step.Step</span></code></p>
 <p>BackgroundStep:  Subtract background exposures from target exposures.</p>
 <p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step</span></code> instance.</p>
@@ -131,14 +132,14 @@ variables on the new Step instance.</p>
 </table>
 <p class="rubric">Attributes Documentation</p>
 <dl class="py attribute">
-<dt id="iris_pipeline.background.BackgroundStep.spec">
-<code class="sig-name descname"><span class="pre">spec</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">sigma</span> <span class="pre">=</span> <span class="pre">float(default=3.0)</span>&#160; <span class="pre">#</span> <span class="pre">Clipping</span> <span class="pre">threshold\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">maxiters</span> <span class="pre">=</span> <span class="pre">integer(default=None)</span>&#160; <span class="pre">#</span> <span class="pre">Number</span> <span class="pre">of</span> <span class="pre">clipping</span> <span class="pre">iterations\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#iris_pipeline.background.BackgroundStep.spec" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="iris_pipeline.background.BackgroundStep.spec">
+<span class="sig-name descname"><span class="pre">spec</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">sigma</span> <span class="pre">=</span> <span class="pre">float(default=3.0)</span>&#160; <span class="pre">#</span> <span class="pre">Clipping</span> <span class="pre">threshold\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">maxiters</span> <span class="pre">=</span> <span class="pre">integer(default=None)</span>&#160; <span class="pre">#</span> <span class="pre">Number</span> <span class="pre">of</span> <span class="pre">clipping</span> <span class="pre">iterations\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#iris_pipeline.background.BackgroundStep.spec" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Methods Documentation</p>
 <dl class="py method">
-<dt id="iris_pipeline.background.BackgroundStep.process">
-<code class="sig-name descname"><span class="pre">process</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bkg_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/background/background_step.html#BackgroundStep.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/background/background_step.py#L21" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.background.BackgroundStep.process" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="iris_pipeline.background.BackgroundStep.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bkg_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/iris_pipeline/background/background_step.html#BackgroundStep.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/background/background_step.py#L21" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#iris_pipeline.background.BackgroundStep.process" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subtract the background signal from target exposures by subtracting
 designated background images from them.</p>
 <dl class="field-list simple">
@@ -161,7 +162,7 @@ designated background images from them.</p>
 
 </dd></dl>
 
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -187,8 +188,8 @@ designated background images from them.</p>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

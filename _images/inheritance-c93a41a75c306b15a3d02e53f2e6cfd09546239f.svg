@@ -11,7 +11,7 @@
 <!-- FlatFieldStep -->
 <g id="node1" class="node">
 <title>FlatFieldStep</title>
-<g id="a_node1"><a xlink:href="../../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep" xlink:title="Flat&#45;field a science image using a flatfield reference image." target="_top">
+<g id="a_node1"><a xlink:href="../../api/iris_pipeline.flatfield.FlatFieldStep.html#iris_pipeline.flatfield.FlatFieldStep" xlink:title="Flat&#45;field a science image using a flatfield reference image." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="170,-19 90,-19 90,0 170,0 170,-19"/>
 <text text-anchor="middle" x="130" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">FlatFieldStep</text>
 </a>

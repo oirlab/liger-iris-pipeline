@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Calibration &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -75,9 +76,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="calibration">
+  <section id="calibration">
 <h1>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="calibration-files">
+<section id="calibration-files">
 <h2>Calibration files<a class="headerlink" href="#calibration-files" title="Permalink to this headline">¶</a></h2>
 <p>Auxiliary data used in DRP algorithms are called calibration data. This includes both on-sky data (that is not of the astronomical target itself), daytime calibration frames, and other sub-component metadata. Metadata is non-image information that will typically come from the header of raw FITS files, or from IRIS, and/or the adaptive optics system via the observatory telemetry service. The NFIRAOS Science Calibration Unit (NSCU) will include a calibration system that will facilitate the taking of
 daytime calibration frames, such as arc lamp spectra, white light flat field images, and pinhole grids for measuring distortion.
@@ -239,8 +240,8 @@ The following table summarizes the required calibration files necessary for the 
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="access-calibration-files-via-the-calibration-reference-data-system-crds">
+</section>
+<section id="access-calibration-files-via-the-calibration-reference-data-system-crds">
 <h2>Access calibration files via the Calibration Reference Data System (CRDS)<a class="headerlink" href="#access-calibration-files-via-the-calibration-reference-data-system-crds" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://hst-crds.stsci.edu/static/users_guide/overview.html">Calibration Reference Data System
 (CRDS)</a>
@@ -271,7 +272,7 @@ easy to upgrade this to newer releases of CRDS by Space Telescope.</p>
 leverage the extensive set of tools and documentation available and
 would not require modifications to <code class="docutils literal notranslate"><span class="pre">stpipe</span></code>; otherwise, we will
 implement support for the DMS API into (our own fork of) <code class="docutils literal notranslate"><span class="pre">stpipe</span></code>.</p>
-<div class="section" id="structure-of-the-files-in-crds">
+<section id="structure-of-the-files-in-crds">
 <h3>Structure of the files in CRDS<a class="headerlink" href="#structure-of-the-files-in-crds" title="Permalink to this headline">¶</a></h3>
 <p>The complete documentation of CRDS is available <a class="reference external" href="https://jwst-crds.stsci.edu/static/users_guide/index.html">from Space Telescope</a>,
 in this section we will provide a quick overview of the structure of the files in the CRDS cache we use for TMT/IRIS.</p>
@@ -298,8 +299,8 @@ automatically downloaded when a user clones the repository.
 In production, scientists would just interface with the CRDS server and the local CRDS cache will be
 automatically created and keep updated by synchronizing with the server. A Github repository with
 the CRDS Cache is just useful during the development phase.</p>
-</div>
-<div class="section" id="retrieve-files-from-the-crds">
+</section>
+<section id="retrieve-files-from-the-crds">
 <h3>Retrieve files from the CRDS<a class="headerlink" href="#retrieve-files-from-the-crds" title="Permalink to this headline">¶</a></h3>
 <p>Within <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code>, all the subclasses of <code class="xref py py-class docutils literal notranslate"><span class="pre">jwst.Step</span></code> can recall a configuration file using the
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">self.get_reference_file</span></code> method and passing the input model (whose metadata will be used to find the right calibration file)
@@ -311,8 +312,8 @@ and the type of calibration file requested.</p>
 <span class="s1">&#39;~/crds_cache/references/tmt/iris/tmt_iris_dark_0001.fits&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ingest-new-calibration-files-into-crds">
+</section>
+<section id="ingest-new-calibration-files-into-crds">
 <h3>Ingest new calibration files into CRDS<a class="headerlink" href="#ingest-new-calibration-files-into-crds" title="Permalink to this headline">¶</a></h3>
 <p>Users that would like to use a custom calibration file just occasionally can override them using options
 to the calibration pipeline, see for example the <code class="docutils literal notranslate"><span class="pre">override_flat</span></code> configuration option to the flat-fielding
@@ -342,9 +343,9 @@ if you are creating a file using <code class="docutils literal notranslate"><spa
 <li><p>Add the FITS calibration file in the CRDS cache <code class="docutils literal notranslate"><span class="pre">references/tmt/iris/</span></code> folder</p></li>
 <li><p>Optionally add all new files and modified files to the repository and send a Pull Request to the <code class="docutils literal notranslate"><span class="pre">tmt-crds-cache</span></code> repository</p></li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -379,8 +380,8 @@ if you are creating a file using <code class="docutils literal notranslate"><spa
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

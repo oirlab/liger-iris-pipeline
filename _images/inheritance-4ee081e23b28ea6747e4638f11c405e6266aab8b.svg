@@ -11,7 +11,7 @@
 <!-- AssignWcsStep -->
 <g id="node1" class="node">
 <title>AssignWcsStep</title>
-<g id="a_node1"><a xlink:href="../../api/iris_pipeline.AssignWcsStep.html#iris_pipeline.AssignWcsStep" xlink:title="AssignWcsStep: Create a gWCS object and store it in ``Model.meta``." target="_top">
+<g id="a_node1"><a xlink:href="../../api/iris_pipeline.assign_wcs.AssignWcsStep.html#iris_pipeline.assign_wcs.AssignWcsStep" xlink:title="AssignWcsStep: Create a gWCS object and store it in ``Model.meta``." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="181,-19 90,-19 90,0 181,0 181,-19"/>
 <text text-anchor="middle" x="135.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">AssignWcsStep</text>
 </a>

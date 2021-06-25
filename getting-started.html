@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Getting started &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -75,9 +76,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="getting-started">
+  <section id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="requirements">
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>First we need to install the requirements of the <code class="docutils literal notranslate"><span class="pre">jwst</span></code> package,
 see <a class="reference external" href="https://github.com/spacetelescope/jwst/">the JWST instructions</a>,
@@ -88,7 +89,7 @@ reported here for convenience:</p>
 </div>
 <p>then we need to install the <code class="docutils literal notranslate"><span class="pre">jwst</span></code> package, currently <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code>
 is being tested with <code class="docutils literal notranslate"><span class="pre">jwst</span></code> 0.17.0:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jwst</span><span class="o">==</span><span class="mf">0.17</span><span class="o">.</span><span class="mi">0</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jwst</span><span class="o">==</span><span class="mf">0.17.0</span>
 </pre></div>
 </div>
 <p>Then you need to download the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> cache:</p>
@@ -109,8 +110,8 @@ cache instead of trying to connect to the JWST instance:</p>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="compilation-requirements">
+</section>
+<section id="compilation-requirements">
 <h2>Compilation requirements<a class="headerlink" href="#compilation-requirements" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="index.html#module-iris_pipeline" title="iris_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_pipeline</span></code></a> also includes the <code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_readout</span></code> C library wrapped with <code class="xref py py-obj docutils literal notranslate"><span class="pre">cython</span></code>,
 therefore we require GCC, <code class="xref py py-obj docutils literal notranslate"><span class="pre">autotools</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">libcfitsio</span></code> to compile the Python
@@ -120,8 +121,8 @@ to include that folder in the search path:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">C_INCLUDE_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">cfitsio</span><span class="o">/</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="development-install">
+</section>
+<section id="development-install">
 <h2>Development install<a class="headerlink" href="#development-install" title="Permalink to this headline">¶</a></h2>
 <p>First fork the repository under your account on Github,
 then clone your fork on your machine.</p>
@@ -141,7 +142,7 @@ so you should do that manually:</p>
 </pre></div>
 </div>
 <p>or symlink the <code class="docutils literal notranslate"><span class="pre">tmtrun</span></code> script from the conda environment <code class="xref py py-obj docutils literal notranslate"><span class="pre">bin/</span></code> folder.</p>
-<div class="section" id="run-the-unit-tests">
+<section id="run-the-unit-tests">
 <h3>Run the unit tests<a class="headerlink" href="#run-the-unit-tests" title="Permalink to this headline">¶</a></h3>
 <p>Some of the unit tests of <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> are Jupyter Notebooks and they need
 the <a class="reference external" href="https://github.com/computationalmodelling/nbval">nbval py.test plugin</a> to be executed.
@@ -149,9 +150,9 @@ Once <code class="docutils literal notranslate"><span class="pre">py.test</span>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -185,8 +186,8 @@ Once <code class="docutils literal notranslate"><span class="pre">py.test</span>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

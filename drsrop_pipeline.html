@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>DRS-ROP Pipeline &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -76,28 +77,28 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="drs-rop-pipeline">
+  <section id="drs-rop-pipeline">
 <h1>DRS-ROP Pipeline<a class="headerlink" href="#drs-rop-pipeline" title="Permalink to this headline">¶</a></h1>
 <p>The DRS_ROP Pipeline works on detector level readouts. The current steps implemented in the pipeline are
 - Non-linearity Correction
 - Detector Readout Sampling</p>
-<div class="section" id="non-linearity-correction">
+<section id="non-linearity-correction">
 <h2>Non-linearity Correction<a class="headerlink" href="#non-linearity-correction" title="Permalink to this headline">¶</a></h2>
 <p>Non-linearity correction step corrects for the non-linear response of the detector to incoming flux. This step is executed before sampling algorithms.</p>
-</div>
-<div class="section" id="detector-readout-sampling">
+</section>
+<section id="detector-readout-sampling">
 <h2>Detector Readout Sampling<a class="headerlink" href="#detector-readout-sampling" title="Permalink to this headline">¶</a></h2>
 <p>The H4RG detecors are readout in non-destructive reads and sampling algorithms are used to estimate the accumulated electrons in the detector for an integration time. The sampling algorithms currently implemented in the pipeline are
 - Correlated Double Sampling
 - Multi Correlated Double Sampling
 - Up-the-Ramp Sampling</p>
-</div>
-<div class="section" id="requirements">
+</section>
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>The sampling algorithms use the drsrop_clib module.
 <a class="reference external" href="https://github.com/oirlab/iris_readout">https://github.com/oirlab/iris_readout</a></p>
-</div>
-<div class="section" id="running-the-examples">
+</section>
+<section id="running-the-examples">
 <h2>Running the Examples<a class="headerlink" href="#running-the-examples" title="Permalink to this headline">¶</a></h2>
 <p>There is a example run in the iris_pipeline/readout/tests directory. The sample ramp is given in the sample_ramp.fits.
 sampling.cfg gives the configurations for the pipeline</p>
@@ -112,8 +113,8 @@ sampling.cfg gives the configurations for the pipeline</p>
 </pre></div>
 </div>
 <p>The sampling mode is set by the <code class="docutils literal notranslate"><span class="pre">mode</span></code> keyword which can be <code class="docutils literal notranslate"><span class="pre">mcds</span></code> or <code class="docutils literal notranslate"><span class="pre">utr</span></code>. MCDS algorithm also requires the group number, the number of reads to be co-added. This is currently hardcoded in this version.</p>
-</div>
-<div class="section" id="execute-the-pipeline-from-the-command-line">
+</section>
+<section id="execute-the-pipeline-from-the-command-line">
 <h2>Execute the pipeline from the command line<a class="headerlink" href="#execute-the-pipeline-from-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">strun</span></code> from a terminal to execute the pipeline:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmtrun</span> <span class="n">sampling</span><span class="o">.</span><span class="n">cfg</span> <span class="n">sample_ramp</span><span class="o">.</span><span class="n">fits</span>
@@ -138,8 +139,8 @@ sampling.cfg gives the configurations for the pipeline</p>
 </pre></div>
 </div>
 <p>This creates a sample_rop.fits file in the working directory that is the processed</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -172,8 +173,8 @@ sampling.cfg gives the configurations for the pipeline</p>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>How To Create Reference files in ASDF format &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -77,7 +78,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="how-to-create-reference-files-in-asdf-format">
+  <section id="how-to-create-reference-files-in-asdf-format">
 <h1>How To Create Reference files in ASDF format<a class="headerlink" href="#how-to-create-reference-files-in-asdf-format" title="Permalink to this headline">¶</a></h1>
 <p>Imported from JWST</p>
 <p>All WCS reference files are in <a class="reference external" href="http://asdf-standard.readthedocs.org/en/latest/">ASDF</a>  format.
@@ -98,7 +99,7 @@ reference files is using the datamodels in the jwst pipeline
 <p>The rest of this document provides a brief description and examples of models in
 <a class="reference external" href="http://astropy.readthedocs.org/en/latest/modeling/index.html">astropy.modeling</a>
 which are most relevant to WCS and examples of creating WCS reference files.</p>
-<div class="section" id="create-a-transform">
+<section id="create-a-transform">
 <h2>Create a transform<a class="headerlink" href="#create-a-transform" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://astropy.readthedocs.org/en/latest/modeling/index.html">astropy.modeling</a>
 is a framework for representing, evaluating and fitting models. All available
@@ -114,7 +115,7 @@ models can be imported from the <code class="docutils literal notranslate"><span
 easy to implement new ones. Models are initialized with their parameter values.
 They are evaluated by passing the inputs directly, similar
 to the way functions are called. For example,</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_x</span> <span class="o">=</span> <span class="n">astmodels</span><span class="o">.</span><span class="n">Polynomial2D</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0_0</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">c1_0</span><span class="o">=.</span><span class="mi">11</span><span class="p">,</span> <span class="n">c2_0</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">c0_1</span><span class="o">=.</span><span class="mi">43</span><span class="p">,</span> <span class="n">c0_2</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">c1_1</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_x</span> <span class="o">=</span> <span class="n">astmodels</span><span class="o">.</span><span class="n">Polynomial2D</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0_0</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span> <span class="n">c1_0</span><span class="o">=</span><span class="mf">.11</span><span class="p">,</span> <span class="n">c2_0</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">c0_1</span><span class="o">=</span><span class="mf">.43</span><span class="p">,</span> <span class="n">c0_2</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">c1_1</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">poly_x</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>   
 <span class="go">    3.639999</span>
 </pre></div>
@@ -150,7 +151,7 @@ or creating axes, or switching the order of the inputs.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Mapping</span></code> takes a tuple of integers and an optional number of inputs. The tuple
 represents indices into the inputs. For example, to represent a 2D Polynomial distortion
 in <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, preceded by a shift in both axes:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_y</span> <span class="o">=</span> <span class="n">astmodels</span><span class="o">.</span><span class="n">Polynomial2D</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0_0</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">c1_0</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">c2_0</span><span class="o">=.</span><span class="mi">023</span><span class="p">,</span> <span class="n">c0_1</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c0_2</span><span class="o">=.</span><span class="mi">01</span><span class="p">,</span> <span class="n">c1_1</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_y</span> <span class="o">=</span> <span class="n">astmodels</span><span class="o">.</span><span class="n">Polynomial2D</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0_0</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span> <span class="n">c1_0</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">c2_0</span><span class="o">=</span><span class="mf">.023</span><span class="p">,</span> <span class="n">c0_1</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c0_2</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span> <span class="n">c1_1</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">shift_x</span> <span class="o">&amp;</span> <span class="n">shift_y</span> <span class="o">|</span> <span class="n">astmodels</span><span class="o">.</span><span class="n">Mapping</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">|</span> <span class="n">poly_x</span> <span class="o">&amp;</span> <span class="n">poly_y</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
 <span class="go">    (5872.03, 8465.401)</span>
@@ -173,8 +174,8 @@ with all inputs and the operator is applied to the results, e.g. <code class="do
 <span class="go">    -152.2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-the-reference-file">
+</section>
+<section id="create-the-reference-file">
 <h2>Create the reference file<a class="headerlink" href="#create-the-reference-file" title="Permalink to this headline">¶</a></h2>
 <p>The DictortionModel in jwst.datamodels is used as an example of how to create a reference file. Similarly data models should be used to create other types of reference files as this process provides validaiton of the file structure.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">jwst.datamodels</span> <span class="kn">import</span> <span class="n">DistortionModel</span>
@@ -193,8 +194,8 @@ with all inputs and the operator is applied to the results, e.g. <code class="do
 <span class="go">&#39;new_distortion.asdf&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="save-a-transform-to-an-asdf-file">
+</section>
+<section id="save-a-transform-to-an-asdf-file">
 <h2>Save a transform to an ASDF file<a class="headerlink" href="#save-a-transform-to-an-asdf-file" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://asdf.readthedocs.io/en/latest/">asdf</a> is used to read and write reference files in
 <a class="reference external" href="http://asdf-standard.readthedocs.org/en/latest/">ASDF</a> format. Once the model is create using the rules in the above section, it needs to be assigned to the ASDF tree.</p>
@@ -214,8 +215,8 @@ catch any errors due to inconsistent inputs/outputs or invalid parameters.</p>
 <span class="go">    -152.2</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -246,8 +247,8 @@ catch any errors due to inconsistent inputs/outputs or invalid parameters.</p>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

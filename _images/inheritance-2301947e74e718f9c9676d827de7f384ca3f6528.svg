@@ -11,7 +11,7 @@
 <!-- AssignWcsStep -->
 <g id="node1" class="node">
 <title>AssignWcsStep</title>
-<g id="a_node1"><a xlink:href="../api/iris_pipeline.AssignWcsStep.html#iris_pipeline.AssignWcsStep" xlink:title="AssignWcsStep: Create a gWCS object and store it in ``Model.meta``." target="_top">
+<g id="a_node1"><a xlink:href="../api/iris_pipeline.assign_wcs.AssignWcsStep.html#iris_pipeline.assign_wcs.AssignWcsStep" xlink:title="AssignWcsStep: Create a gWCS object and store it in ``Model.meta``." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="282,-315 191,-315 191,-296 282,-296 282,-315"/>
 <text text-anchor="middle" x="236.5" y="-303" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">AssignWcsStep</text>
 </a>
@@ -35,7 +35,7 @@
 <!-- BackgroundStep -->
 <g id="node3" class="node">
 <title>BackgroundStep</title>
-<g id="a_node3"><a xlink:href="../api/iris_pipeline.BackgroundStep.html#iris_pipeline.BackgroundStep" xlink:title="BackgroundStep: &#160;Subtract background exposures from target exposures." target="_top">
+<g id="a_node3"><a xlink:href="../api/iris_pipeline.background.BackgroundStep.html#iris_pipeline.background.BackgroundStep" xlink:title="BackgroundStep: &#160;Subtract background exposures from target exposures." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="284.5,-278 188.5,-278 188.5,-259 284.5,-259 284.5,-278"/>
 <text text-anchor="middle" x="236.5" y="-266" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">BackgroundStep</text>
 </a>
@@ -50,7 +50,7 @@
 <!-- DQInitStep -->
 <g id="node4" class="node">
 <title>DQInitStep</title>
-<g id="a_node4"><a xlink:href="../api/iris_pipeline.DQInitStep.html#iris_pipeline.DQInitStep" xlink:title="Initialize the Data Quality extension from the" target="_top">
+<g id="a_node4"><a xlink:href="../api/iris_pipeline.dq_init.DQInitStep.html#iris_pipeline.dq_init.DQInitStep" xlink:title="Initialize the Data Quality extension from the" target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="271,-241 202,-241 202,-222 271,-222 271,-241"/>
 <text text-anchor="middle" x="236.5" y="-229" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">DQInitStep</text>
 </a>
@@ -65,7 +65,7 @@
 <!-- FlatFieldStep -->
 <g id="node5" class="node">
 <title>FlatFieldStep</title>
-<g id="a_node5"><a xlink:href="../api/iris_pipeline.FlatFieldStep.html#iris_pipeline.FlatFieldStep" xlink:title="Flat&#45;field a science image using a flatfield reference image." target="_top">
+<g id="a_node5"><a xlink:href="../api/iris_pipeline.flatfield.FlatFieldStep.html#iris_pipeline.flatfield.FlatFieldStep" xlink:title="Flat&#45;field a science image using a flatfield reference image." target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="276.5,-204 196.5,-204 196.5,-185 276.5,-185 276.5,-204"/>
 <text text-anchor="middle" x="236.5" y="-192" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">FlatFieldStep</text>
 </a>
@@ -140,7 +140,7 @@
 <!-- SubtractImagesStep -->
 <g id="node13" class="node">
 <title>SubtractImagesStep</title>
-<g id="a_node13"><a xlink:href="../api/iris_pipeline.SubtractImagesStep.html#iris_pipeline.SubtractImagesStep" xlink:title="SubtractImagesStep: &#160;Subtract two exposures from one" target="_top">
+<g id="a_node13"><a xlink:href="../api/iris_pipeline.background.SubtractImagesStep.html#iris_pipeline.background.SubtractImagesStep" xlink:title="SubtractImagesStep: &#160;Subtract two exposures from one" target="_top">
 <polygon fill="white" stroke="black" stroke-width="0.5" points="294,-19 179,-19 179,0 294,0 294,-19"/>
 <text text-anchor="middle" x="236.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">SubtractImagesStep</text>
 </a>

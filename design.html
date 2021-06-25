@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>IRIS Data Reduction System design &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -75,10 +76,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="iris-data-reduction-system-design">
+  <section id="iris-data-reduction-system-design">
 <h1>IRIS Data Reduction System design<a class="headerlink" href="#iris-data-reduction-system-design" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="purpose">
+</section>
+<section id="purpose">
 <h1>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h1>
 <p>The IRIS Data Reduction System is planned to perform:</p>
 <ul class="simple">
@@ -98,8 +99,8 @@ developed later and will possibly be based on existing community
 software tools like <a class="reference external" href="http://ds9.si.edu/site/Home.html">DS9</a> or
 <a class="reference external" href="https://cubeviz.readthedocs.io/">cubeviz</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="software-infrastructure">
+</section>
+<section id="software-infrastructure">
 <h1>Software infrastructure<a class="headerlink" href="#software-infrastructure" title="Permalink to this headline">¶</a></h1>
 <p>We rely on the excellent work mostly by Space Telescope to grow the
 Python in Astronomy ecosystem around the <code class="docutils literal notranslate"><span class="pre">astropy</span></code> package. They also
@@ -122,8 +123,8 @@ instruments on board of JWST</p></li>
 and publishing them on the <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code>
 repository <a class="reference external" href="https://github.com/oirlab/iris_pipeline">https://github.com/oirlab/iris_pipeline</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="file-format">
+</section>
+<section id="file-format">
 <h1>File format<a class="headerlink" href="#file-format" title="Permalink to this headline">¶</a></h1>
 <p>All data will be stored in FITS file format, following as closest as possible
 the conventions by JWST, see <a class="reference external" href="https://jwst-docs.stsci.edu/understanding-data-files">https://jwst-docs.stsci.edu/understanding-data-files</a>.</p>
@@ -150,18 +151,18 @@ FITS headers, e.g. acquisition time, pupil, detector name.</p>
 </div></blockquote>
 <p>All models are defined in <a class="reference external" href="https://github.com/oirlab/iris_pipeline/blob/master/iris_pipeline/datamodels/__init__.py">iris_pipeline.datamodels</a>, and their schemas available <a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/datamodels/schemas">within the package itself</a>, some of those models are just abstractions to group similar functionality but
 are never used in practice.</p>
-</div>
-<div class="section" id="example-run">
+</section>
+<section id="example-run">
 <h1>Example run<a class="headerlink" href="#example-run" title="Permalink to this headline">¶</a></h1>
 <p>The best way to understand how <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> works is to checkout an
 <a class="reference external" href="example-run">example reduction</a> of a raw science frame to a reduced
 science frame with flat-fielding and background subtraction.</p>
-</div>
-<div class="section" id="access-calibration-files-via-the-calibration-reference-data-system-crds">
+</section>
+<section id="access-calibration-files-via-the-calibration-reference-data-system-crds">
 <h1>Access calibration files via the Calibration Reference Data System (CRDS)<a class="headerlink" href="#access-calibration-files-via-the-calibration-reference-data-system-crds" title="Permalink to this headline">¶</a></h1>
 <p>See <a class="reference external" href="calibration-database">the section about Calibration</a></p>
-</div>
-<div class="section" id="metadata">
+</section>
+<section id="metadata">
 <h1>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference internal" href="index.html#module-iris_pipeline" title="iris_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_pipeline</span></code></a> requires a set of metadata from TMT and from other subsystems to process the data,
 see the <a class="reference external" href="https://github.com/tmt-icd/IRIS-Model-Files/blob/master/drs/drs-assembly/subscribe-model.conf">list of required metadata</a>.</p>
@@ -201,7 +202,7 @@ Sky</p></td>
 </tr>
 </tbody>
 </table>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -233,8 +234,8 @@ Sky</p></td>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>

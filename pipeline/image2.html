@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>image2: Stage 2 Imaging Processing &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootstrap-astropy.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -77,7 +78,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="image2-stage-2-imaging-processing">
+  <section id="image2-stage-2-imaging-processing">
 <span id="image2"></span><h1>image2: Stage 2 Imaging Processing<a class="headerlink" href="#image2-stage-2-imaging-processing" title="Permalink to this headline">¶</a></h1>
 <dl class="field-list simple">
 <dt class="field-odd">Config</dt>
@@ -113,13 +114,13 @@ are still in the class to simplify the future porting process.</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../flatfield/index.html#flatfield-step"><span class="std std-ref">flat_field</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/photom/index.html#photom-step" title="(in jwst v0.1.dev50+g434c540)"><span class="xref std std-ref">photom</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/photom/index.html#photom-step" title="(in jwst v1.2.4.dev11+gfc8a4077)"><span class="xref std std-ref">photom</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/resample/index.html#resample-step" title="(in jwst v0.1.dev50+g434c540)"><span class="xref std std-ref">resample</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference external" href="https://jwst-pipeline.readthedocs.io/en/latest/jwst/resample/index.html#resample-step" title="(in jwst v1.2.4.dev11+gfc8a4077)"><span class="xref std std-ref">resample</span></a></p></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="arguments">
+<section id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">image2</span></code> pipeline has one optional argument:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">save_bsub</span>  <span class="n">boolean</span>  <span class="n">default</span><span class="o">=</span><span class="kc">False</span>
@@ -129,10 +130,10 @@ are still in the class to simplify the future porting process.</p>
 the background subtraction step will be saved to an intermediate file,
 using a product type of “_bsub” or “_bsubints”, depending on whether the
 data are 2D (averaged over integrations) or 3D (per-integration results).</p>
-</div>
-<div class="section" id="inputs">
+</section>
+<section id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="d-or-3d-countrate-data">
+<section id="d-or-3d-countrate-data">
 <h3>2D or 3D countrate data<a class="headerlink" href="#d-or-3d-countrate-data" title="Permalink to this headline">¶</a></h3>
 <dl class="field-list simple">
 <dt class="field-odd">Data model</dt>
@@ -149,11 +150,11 @@ multiple inputs can be used, in which case the processing steps will be
 applied to each input exposure, one at a time. If “_rateints” products are
 used as input, each step applies its algorithm to each
 integration in the exposure, where appropriate.</p>
-</div>
-</div>
-<div class="section" id="outputs">
+</section>
+</section>
+<section id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="d-or-3d-background-subtracted-data">
+<section id="d-or-3d-background-subtracted-data">
 <h3>2D or 3D background-subtracted data<a class="headerlink" href="#d-or-3d-background-subtracted-data" title="Permalink to this headline">¶</a></h3>
 <dl class="field-list simple">
 <dt class="field-odd">Data model</dt>
@@ -168,8 +169,8 @@ to <code class="docutils literal notranslate"><span class="pre">True</span></cod
 <a class="reference internal" href="../background/index.html#background-step"><span class="std std-ref">background</span></a> step.
 If the input is a “_rate” product, this will be a “_bsub” product, while
 “_rateints” inputs will be saved as “_bsubints.”</p>
-</div>
-<div class="section" id="d-or-3d-calibrated-data">
+</section>
+<section id="d-or-3d-calibrated-data">
 <h3>2D or 3D calibrated data<a class="headerlink" href="#d-or-3d-calibrated-data" title="Permalink to this headline">¶</a></h3>
 <dl class="field-list simple">
 <dt class="field-odd">Data model</dt>
@@ -182,9 +183,9 @@ If the input is a “_rate” product, this will be a “_bsub” product, while
 <p>The output is a fully calibrated, but unrectified, exposure, using
 the product type suffix “_cal” or “_calints”, depending on the type of
 input, e.g. “jw80600012001_02101_00003_mirimage_cal.fits”.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -222,8 +223,8 @@ input, e.g. “jw80600012001_02101_00003_mirimage_cal.fits”.</p>
     <a href="#">Back to Top</a></p>
   <p>
     &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 3.5.4. &nbsp;
-    Last built 13 Apr 2021. <br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
+    Last built 25 Jun 2021. <br/>
   </p>
 </footer>
   </body>
