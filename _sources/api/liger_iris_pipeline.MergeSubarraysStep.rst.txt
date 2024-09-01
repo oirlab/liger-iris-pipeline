@@ -1,0 +1,17 @@
+MergeSubarraysStep
+==================
+
+.. currentmodule:: liger_iris_pipeline
+
+.. autoclass:: MergeSubarraysStep
+   :show-inheritance:
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~MergeSubarraysStep.process
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

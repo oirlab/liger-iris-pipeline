@@ -1,36 +1,36 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Algorithms &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <title>Algorithms &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="icon" href="_static/astropy_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Support for subarrays" href="subarrays.html" />
-    <link rel="prev" title="AssignWcsStep" href="api/iris_pipeline.assign_wcs.AssignWcsStep.html" />
+    <link rel="prev" title="AssignWcsStep" href="api/liger_iris_pipeline.assign_wcs.AssignWcsStep.html" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
 
   </head><body>
 <div class="topbar">
-  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
   <ul>
     
     <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
@@ -58,13 +58,13 @@
 	</a>
       </li>
       <li class="right">
-	<a href="api/iris_pipeline.assign_wcs.AssignWcsStep.html" title="AssignWcsStep">
+	<a href="api/liger_iris_pipeline.assign_wcs.AssignWcsStep.html" title="AssignWcsStep">
 	  &laquo; previous
 	</a>
 	 |
       </li>
       <li>
-	<a href="index.html">IRISpipeline v0.5.dev</a>
+	<a href="index.html">liger_iris_pipeline v0.5.dev</a>
 	 &#187;
       </li>
       
@@ -79,12 +79,12 @@
           <div class="body" role="main">
             
   <section id="algorithms">
-<h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h1>
 <p>Algorithms to be implemented for the IRIS imager and Integral Field
 Spectrograph. Once the actual classes are implemented in
-<a class="reference internal" href="index.html#module-iris_pipeline" title="iris_pipeline"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris_pipeline</span></code></a>, we will just link their implementations.</p>
+<a class="reference internal" href="index.html#module-liger_iris_pipeline" title="liger_iris_pipeline"><code class="xref py py-mod docutils literal notranslate"><span class="pre">liger_iris_pipeline</span></code></a>, we will just link their implementations.</p>
 <section id="generate-master-dark">
-<h2>Generate master dark<a class="headerlink" href="#generate-master-dark" title="Permalink to this headline">¶</a></h2>
+<h2>Generate master dark<a class="headerlink" href="#generate-master-dark" title="Link to this heading">¶</a></h2>
 <p>The master dark is generated by the median of 5-10 individual dark
 frames taken at the same exposure. This removes any of the
 frame-to-frame noise variation. Individual dark frames are zero
@@ -98,7 +98,7 @@ allow any light to hit the detector.</p>
 </div>
 </section>
 <section id="dark-subtraction">
-<h2>Dark subtraction<a class="headerlink" href="#dark-subtraction" title="Permalink to this headline">¶</a></h2>
+<h2>Dark subtraction<a class="headerlink" href="#dark-subtraction" title="Link to this heading">¶</a></h2>
 <p>Each science and calibration frame will have dark current, residual
 electric current that is flowing through the array when there is no
 light. Dark current increases with time, so all science and calibration
@@ -112,7 +112,7 @@ frames.</p>
 </div>
 </section>
 <section id="remove-detector-artifacts">
-<h2>Remove detector artifacts<a class="headerlink" href="#remove-detector-artifacts" title="Permalink to this headline">¶</a></h2>
+<h2>Remove detector artifacts<a class="headerlink" href="#remove-detector-artifacts" title="Link to this heading">¶</a></h2>
 <p>The detector will have two types of artifacts; permanent/semi-permanent
 and transient artifacts. Dead pixels, hot pixels or “frozen” pixel fall
 with the permanent/semi-permanent artifacts while cosmic rays (CR) are
@@ -154,7 +154,7 @@ numbers (i.e. 3, 5, 7…).</p>
 </div>
 </section>
 <section id="flat-fielding">
-<h2>Flat Fielding<a class="headerlink" href="#flat-fielding" title="Permalink to this headline">¶</a></h2>
+<h2>Flat Fielding<a class="headerlink" href="#flat-fielding" title="Link to this heading">¶</a></h2>
 <p>The response of individual pixels may vary significantly pixel-to-pixel.
 In order to correct for this in the imager and the IFS slicer, it is
 necessary illuminate the detector with a uniform light source. This can
@@ -174,7 +174,7 @@ the normalized flats. Sources detected in sky flats or science flats
 will be masked out.</p>
 </section>
 <section id="scaled-sky-subtraction">
-<h2>Scaled sky-subtraction<a class="headerlink" href="#scaled-sky-subtraction" title="Permalink to this headline">¶</a></h2>
+<h2>Scaled sky-subtraction<a class="headerlink" href="#scaled-sky-subtraction" title="Link to this heading">¶</a></h2>
 <p>Imager: Science images can as be used sky in sparse or medium density
 fields (density compared to the dither size). In high density fields or
 a source that fills the detectors, a separate sky will be needed. The
@@ -229,7 +229,7 @@ wavelength variations in the sky lines across the cube will still be
 accurately matched and cancelled out in the sky subtraction.</p>
 </section>
 <section id="flux-calibration">
-<h2>Flux calibration<a class="headerlink" href="#flux-calibration" title="Permalink to this headline">¶</a></h2>
+<h2>Flux calibration<a class="headerlink" href="#flux-calibration" title="Link to this heading">¶</a></h2>
 <div class="line-block">
 <div class="line">Imager: To convert from DN to flux (erg/s/cm^2/Hz) or AB magnitude a
 standard star needs to be observed in the same instrument
@@ -275,7 +275,7 @@ multiplied by the ratio (flux/count rate) from the standard
 </div>
 </section>
 <section id="mosaic-combine-sci">
-<h2>Mosaic/Combine SCI<a class="headerlink" href="#mosaic-combine-sci" title="Permalink to this headline">¶</a></h2>
+<h2>Mosaic/Combine SCI<a class="headerlink" href="#mosaic-combine-sci" title="Link to this heading">¶</a></h2>
 <p>Imager: Mosaicking in the imager will be based on the dither pattern
 selected, and integer and non-integer pixel shifts will be supported.
 The dithers will be stored in the FITS header keywords and there will be
@@ -296,9 +296,9 @@ absolute deviation (MAD).</p>
 </section>
 </section>
 <section id="imager-algorithms">
-<h1>Imager Algorithms<a class="headerlink" href="#imager-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>Imager Algorithms<a class="headerlink" href="#imager-algorithms" title="Link to this heading">¶</a></h1>
 <section id="field-distortion-correction">
-<h2>Field distortion correction<a class="headerlink" href="#field-distortion-correction" title="Permalink to this headline">¶</a></h2>
+<h2>Field distortion correction<a class="headerlink" href="#field-distortion-correction" title="Link to this heading">¶</a></h2>
 <p>The field distortion correction will correct the distortion in the
 imager field due to the optics of the system. These distortions can be
 chromatic and may need to be corrected per band. A calibration file with
@@ -310,9 +310,9 @@ on the new distortion solution.</p>
 </section>
 </section>
 <section id="ifs-algorithms">
-<h1>IFS Algorithms<a class="headerlink" href="#ifs-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>IFS Algorithms<a class="headerlink" href="#ifs-algorithms" title="Link to this heading">¶</a></h1>
 <section id="spectral-extraction">
-<h2>Spectral extraction<a class="headerlink" href="#spectral-extraction" title="Permalink to this headline">¶</a></h2>
+<h2>Spectral extraction<a class="headerlink" href="#spectral-extraction" title="Link to this heading">¶</a></h2>
 <p>Lenslet: Flux from an individual lenslet will be spread out into
 neighboring lenslets. Depending on the spacing between the lenslets,
 will determine how much flux falls into a neighboring lenslet. In order
@@ -334,7 +334,7 @@ will be used over the spectrum, optimizing signal-to-noise (Horne
 and sky-subtraction algorithms .</p>
 </section>
 <section id="wavelength-calibration">
-<h2>Wavelength calibration<a class="headerlink" href="#wavelength-calibration" title="Permalink to this headline">¶</a></h2>
+<h2>Wavelength calibration<a class="headerlink" href="#wavelength-calibration" title="Link to this heading">¶</a></h2>
 <p>Wavelength calibration is performed using on arc lamps taken during
 daytime calibrations, typically Ar, Kr, and Xe. The arc lamps provide
 better velocity resolution and stability over OH skylines. A global
@@ -349,7 +349,7 @@ anticipate checking the solution monthly for any changes. The solutions
 will be static based on the input lamp spectra and date they were taken.</p>
 </section>
 <section id="cube-assembly">
-<h2>Cube assembly<a class="headerlink" href="#cube-assembly" title="Permalink to this headline">¶</a></h2>
+<h2>Cube assembly<a class="headerlink" href="#cube-assembly" title="Link to this heading">¶</a></h2>
 <p>The spectral data cubes are assembled in this algorithm. The algorithm
 takes each extracted spectrum from spectral extraction routine and maps
 them to an x, y position on the sky (spatial rectification) based on the
@@ -359,7 +359,7 @@ wavelength), which is common among data cubes with wavelength and
 frequency (i.e. VLT/SINFONI, ALMA and VLA).</p>
 </section>
 <section id="residual-adc">
-<h2>Residual ADC<a class="headerlink" href="#residual-adc" title="Permalink to this headline">¶</a></h2>
+<h2>Residual ADC<a class="headerlink" href="#residual-adc" title="Link to this heading">¶</a></h2>
 <p>If necessary, implement residual ADC module (TBD). The ADC corrects the
 for the refraction caused by the atmosphere, at varying airmasses (or
 elevation). If the residuals from ADC correction are significant (like
@@ -373,7 +373,7 @@ table, the DRS will have the correct spectral trace for the extraction.
 See instrument dispersion for how this is dealt with internally.</p>
 </section>
 <section id="telluric-correction">
-<h2>Telluric correction<a class="headerlink" href="#telluric-correction" title="Permalink to this headline">¶</a></h2>
+<h2>Telluric correction<a class="headerlink" href="#telluric-correction" title="Link to this heading">¶</a></h2>
 <p>Telluric absorption is caused by the Earths atmosphere, in which all
 spectra are attenuated by it. In order to correct for it, typically a
 featureless star is used to measure the attenuation carefully and apply
@@ -403,9 +403,9 @@ observed target spectrum.</p>
 </section>
 </section>
 <section id="advanced-algorithms">
-<h1>Advanced Algorithms<a class="headerlink" href="#advanced-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>Advanced Algorithms<a class="headerlink" href="#advanced-algorithms" title="Link to this heading">¶</a></h1>
 <section id="optimizing-readouts">
-<h2>Optimizing readouts<a class="headerlink" href="#optimizing-readouts" title="Permalink to this headline">¶</a></h2>
+<h2>Optimizing readouts<a class="headerlink" href="#optimizing-readouts" title="Link to this heading">¶</a></h2>
 <p>All of the algorithms used with ROP-DRS, including the various sampling
 techniques (i.e UTR, MCDS), will be available offline for an end user
 that wants extra control of optimizing the readouts of their science.
@@ -413,7 +413,7 @@ For example, a user may want to include readouts with a specific seeing
 constraint (i.e. removing poor seeing frames).</p>
 </section>
 <section id="psf-reconstruction">
-<h2>PSF-reconstruction<a class="headerlink" href="#psf-reconstruction" title="Permalink to this headline">¶</a></h2>
+<h2>PSF-reconstruction<a class="headerlink" href="#psf-reconstruction" title="Link to this heading">¶</a></h2>
 <p>Knowledge of the PSF is essential in the reduction of AO data. However,
 this is challenging because of changing conditions (seeing) and the rate
 at which they change as well as the structure of the PSF. In order to
@@ -423,9 +423,9 @@ and IFS. Laurent Jolissaint et al. 2011 (AO4ELT 2011)</p>
 </section>
 </section>
 <section id="calibration-algorithms">
-<h1>Calibration algorithms<a class="headerlink" href="#calibration-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>Calibration algorithms<a class="headerlink" href="#calibration-algorithms" title="Link to this heading">¶</a></h1>
 <section id="rectmats">
-<h2>Rectmats<a class="headerlink" href="#rectmats" title="Permalink to this headline">¶</a></h2>
+<h2>Rectmats<a class="headerlink" href="#rectmats" title="Link to this heading">¶</a></h2>
 <p>IFS lenslets: Rectmat (or rectification matrix) is a calibration file
 used for the spectral extraction of the IFS lenslet data for a specific
 scale and filter. An individual rectmat contains information about each
@@ -436,7 +436,7 @@ information can also be used to remove the variation from
 lenslet-to-lenslet, similar to a flat field.</p>
 </section>
 <section id="distortion-solution">
-<h2>Distortion solution<a class="headerlink" href="#distortion-solution" title="Permalink to this headline">¶</a></h2>
+<h2>Distortion solution<a class="headerlink" href="#distortion-solution" title="Link to this heading">¶</a></h2>
 <p>The distortion solution algorithm will determine the distortion of the
 image on the imager. It will be constructed by using a static uniform
 grid pinholes (pinhole mask) and on sky calibration using dense stellar
@@ -447,18 +447,18 @@ tasks such as; (1) SExtractor, for detecting the sources and (2) SCAMP,
 for determining the distortion.</p>
 </section>
 <section id="super-sky">
-<h2>Super sky<a class="headerlink" href="#super-sky" title="Permalink to this headline">¶</a></h2>
+<h2>Super sky<a class="headerlink" href="#super-sky" title="Link to this heading">¶</a></h2>
 <p>Super sky frames are median combined sky frames. The purpose of
 combining them is increase the signal-to-noise of the sky. The super sky
 frames are used for scaled sky subtraction of the imager (in the case
 where the source fills the imager) and the IFS slicer.</p>
 </section>
 <section id="super-dark">
-<h2>Super dark<a class="headerlink" href="#super-dark" title="Permalink to this headline">¶</a></h2>
+<h2>Super dark<a class="headerlink" href="#super-dark" title="Link to this heading">¶</a></h2>
 <p>See generate master dark</p>
 </section>
 <section id="instrumental-dispersion">
-<h2>Instrumental dispersion<a class="headerlink" href="#instrumental-dispersion" title="Permalink to this headline">¶</a></h2>
+<h2>Instrumental dispersion<a class="headerlink" href="#instrumental-dispersion" title="Link to this heading">¶</a></h2>
 <p>The optics of IRIS (including from NFIRAOS) can cause spectral
 curvature, or instrumental chromatic dispersion. A white light fiber can
 be used to map the dispersion (x and y position of the spectra) in the
@@ -466,7 +466,7 @@ system. In OSIRIS, most of the instrumental dispersion was caused by the
 dichroic used in the AO system.</p>
 </section>
 <section id="normalize-flats">
-<h2>Normalize flats<a class="headerlink" href="#normalize-flats" title="Permalink to this headline">¶</a></h2>
+<h2>Normalize flats<a class="headerlink" href="#normalize-flats" title="Link to this heading">¶</a></h2>
 <p>Imager: The normalize flats algorithm takes the imaging flats and
 generates a normalized flat (values 1 or close to one) which are used to
 correct the pixel-to-pixel variation. To normalize the imaging flats, N
@@ -496,7 +496,7 @@ the detector).</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
 <ul>
 <li><a class="reference internal" href="#">Algorithms</a><ul>
@@ -544,14 +544,14 @@ the detector).</p>
     </div>
 <footer class="footer">
   <p class="pull-right">
-    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/algorithms.rst">Edit This Page on Github</a> &nbsp;
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/algorithms.rst">Edit This Page on Github</a> &nbsp;
     <a href="_sources/algorithms.rst.txt"
        rel="nofollow">Page Source</a> &nbsp;
     <a href="#">Back to Top</a></p>
   <p>
-    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
-    Last built 29 Jun 2021. <br/>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
   </p>
 </footer>
   </body>

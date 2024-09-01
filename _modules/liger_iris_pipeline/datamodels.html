@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>liger_iris_pipeline.datamodels &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <link rel="icon" href="../../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../../index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li>
+	<a href="../../index.html">liger_iris_pipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      <li><a href="../index.html" >Module code</a> &#187;</li>
+      <li><a href="../liger_iris_pipeline.html" accesskey="U">liger_iris_pipeline</a> &#187;</li>
+      
+       
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for liger_iris_pipeline.datamodels</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">registry</span>
+
+<span class="kn">from</span> <span class="nn">.cube</span> <span class="kn">import</span> <span class="n">CubeModel</span>
+<span class="kn">from</span> <span class="nn">.model_base</span> <span class="kn">import</span> <span class="n">LigerIrisDataModel</span>
+<span class="kn">from</span> <span class="nn">.liger_iris_image</span> <span class="kn">import</span> <span class="n">LigerIrisImageModel</span>
+<span class="kn">from</span> <span class="nn">.ramp</span> <span class="kn">import</span> <span class="n">RampModel</span>
+<span class="kn">from</span> <span class="nn">.mask</span> <span class="kn">import</span> <span class="n">MaskModel</span>
+<span class="kn">from</span> <span class="nn">.flat</span> <span class="kn">import</span> <span class="n">FlatModel</span>
+<span class="kn">from</span> <span class="nn">.dark</span> <span class="kn">import</span> <span class="n">DarkModel</span>
+<span class="kn">from</span> <span class="nn">.reference</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ReferenceImageModel</span><span class="p">,</span>
+    <span class="n">ReferenceCubeModel</span><span class="p">,</span>
+    <span class="n">ReferenceQuadModel</span><span class="p">,</span>
+    <span class="n">ReferenceFileModel</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;CubeModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LigerIrisDataModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LigerIrisImageModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RampModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaskModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ReferenceImageModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FlatModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DarkModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ReferenceCubeModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ReferenceQuadModel&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ReferenceFileModel&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">_all_models</span> <span class="o">=</span> <span class="n">__all__</span>
+<span class="n">_local_dict</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()</span>
+<span class="n">_defined_models</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">_local_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_all_models</span><span class="p">}</span>
+
+<div class="viewcode-block" id="monkeypatch_jwst_datamodels">
+<a class="viewcode-back" href="../../api/liger_iris_pipeline.monkeypatch_jwst_datamodels.html#liger_iris_pipeline.monkeypatch_jwst_datamodels">[docs]</a>
+<span class="k">def</span> <span class="nf">monkeypatch_jwst_datamodels</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">stdatamodels.jwst.datamodels</span>
+
+    <span class="n">stdatamodels</span><span class="o">.</span><span class="n">jwst</span><span class="o">.</span><span class="n">datamodels</span><span class="o">.</span><span class="n">_defined_models</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_defined_models</span><span class="p">)</span>
+
+    <span class="c1"># Current ModelContainer is hardcoded to &quot;jwst&quot;</span>
+    <span class="kn">from</span> <span class="nn">jwst.datamodels</span> <span class="kn">import</span> <span class="n">ModelContainer</span>
+    <span class="n">ModelContainer</span><span class="o">.</span><span class="n">crds_observatory</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span> <span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">crds_observatory</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;ligeriri&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right"> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
+  </p>
+</footer>
+  </body>
+</html>

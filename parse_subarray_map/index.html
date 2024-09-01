@@ -1,34 +1,34 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Parse Subarray Map &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <title>Parse Subarray Map &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="icon" href="../_static/astropy_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ParseSubarrayMapStep" href="../api/iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html" />
-    <link rel="prev" title="FlatFieldStep" href="../api/iris_pipeline.flatfield.FlatFieldStep.html" />
+    <link rel="next" title="ParseSubarrayMapStep" href="../api/liger_iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html" />
+    <link rel="prev" title="FlatFieldStep" href="../api/liger_iris_pipeline.flatfield.FlatFieldStep.html" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
 
   </head><body>
 <div class="topbar">
-  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
   <ul>
     
     <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
@@ -51,18 +51,18 @@
     <h3>Navigation</h3>
     <ul>
       <li class="right">
-	<a href="../api/iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html" title="ParseSubarrayMapStep">
+	<a href="../api/liger_iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html" title="ParseSubarrayMapStep">
 	  next &raquo;
 	</a>
       </li>
       <li class="right">
-	<a href="../api/iris_pipeline.flatfield.FlatFieldStep.html" title="FlatFieldStep">
+	<a href="../api/liger_iris_pipeline.flatfield.FlatFieldStep.html" title="FlatFieldStep">
 	  &laquo; previous
 	</a>
 	 |
       </li>
       <li>
-	<a href="../index.html">IRISpipeline v0.5.dev</a>
+	<a href="../index.html">liger_iris_pipeline v0.5.dev</a>
 	 &#187;
       </li>
       <li><a href="../available-steps.html" accesskey="U">Available algorithms</a> &#187;</li>
@@ -78,11 +78,11 @@
           <div class="body" role="main">
             
   <section id="parse-subarray-map">
-<span id="parse-subarray-map-step"></span><h1>Parse Subarray Map<a class="headerlink" href="#parse-subarray-map" title="Permalink to this headline">¶</a></h1>
+<span id="parse-subarray-map-step"></span><h1>Parse Subarray Map<a class="headerlink" href="#parse-subarray-map" title="Link to this heading">¶</a></h1>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <section id="subarr-map-extension">
-<h3>SUBARR_MAP extension<a class="headerlink" href="#subarr-map-extension" title="Permalink to this headline">¶</a></h3>
+<h3>SUBARR_MAP extension<a class="headerlink" href="#subarr-map-extension" title="Link to this heading">¶</a></h3>
 <p>This pipeline step is only useful for full raw science frames which
 have been acquired concurrently with subarrays.</p>
 <p>Each subarray is processed separately and the full science frame is
@@ -94,7 +94,7 @@ then a rectangle of 1 at the location of subarray 1, a rectangle of 2
 at the location of subarray 2 and so on. Subarrays cannot overlap.</p>
 </section>
 <section id="parse-subarray-map-extension">
-<h3>Parse subarray map extension<a class="headerlink" href="#parse-subarray-map-extension" title="Permalink to this headline">¶</a></h3>
+<h3>Parse subarray map extension<a class="headerlink" href="#parse-subarray-map-extension" title="Link to this heading">¶</a></h3>
 <p>This step gets the information from this extension and duplicates it
 into the header as <code class="xref py py-obj docutils literal notranslate"><span class="pre">IRISImageModel.meta.subarray_map</span></code>,
 which is a ASDF-based property in the FITS file which encodes the metadata
@@ -106,26 +106,22 @@ of the subarrays as a list of dictionaries:</p>
 filter out bad data, e.g. when taking <code class="xref py py-obj docutils literal notranslate"><span class="pre">mean</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">median</span></code>, automatically filters
 them out. The bit used for that is <code class="xref py py-obj docutils literal notranslate"><span class="pre">SUBARRAY_DQ_BIT</span></code> in <code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_subarray_map_step.py</span></code>.</p>
 </section>
-<section id="module-iris_pipeline.parse_subarray_map">
-<span id="iris-pipeline-parse-subarray-map-package"></span><h3>iris_pipeline.parse_subarray_map Package<a class="headerlink" href="#module-iris_pipeline.parse_subarray_map" title="Permalink to this headline">¶</a></h3>
+<section id="module-liger_iris_pipeline.parse_subarray_map">
+<span id="liger-iris-pipeline-parse-subarray-map-package"></span><h3>liger_iris_pipeline.parse_subarray_map Package<a class="headerlink" href="#module-liger_iris_pipeline.parse_subarray_map" title="Link to this heading">¶</a></h3>
 <section id="classes">
-<h4>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h4>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+<h4>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h4>
+<table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html#iris_pipeline.parse_subarray_map.ParseSubarrayMapStep" title="iris_pipeline.parse_subarray_map.ParseSubarrayMapStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseSubarrayMapStep</span></code></a>([name, parent, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/liger_iris_pipeline.parse_subarray_map.ParseSubarrayMapStep.html#liger_iris_pipeline.parse_subarray_map.ParseSubarrayMapStep" title="liger_iris_pipeline.parse_subarray_map.ParseSubarrayMapStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseSubarrayMapStep</span></code></a>([name, parent, ...])</p></td>
 <td><p>ParseSubarrayMapStep: Parse a subarray map extension, if available, and create header metadata and data quality flag accordingly</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="class-inheritance-diagram">
-<h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h4>
-<div class="graphviz"><object data="../_images/inheritance-53a0d294f35206abf6d6feac9685f550aa2be757.svg" type="image/svg+xml" class="inheritance graphviz">
-<p class="warning">Inheritance diagram of iris_pipeline.parse_subarray_map.parse_subarray_map_step.ParseSubarrayMapStep</p></object></div>
+<h4>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Link to this heading">¶</a></h4>
+<div class="graphviz"><object data="../_images/inheritance-3b634cf30a95226f95007ca8e8b05fad29dcb0c1.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of liger_iris_pipeline.parse_subarray_map.parse_subarray_map_step.ParseSubarrayMapStep</p></object></div>
 </section>
 </section>
 </section>
@@ -136,14 +132,14 @@ them out. The bit used for that is <code class="xref py py-obj docutils literal 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
 <ul>
 <li><a class="reference internal" href="#">Parse Subarray Map</a><ul>
 <li><a class="reference internal" href="#description">Description</a><ul>
 <li><a class="reference internal" href="#subarr-map-extension">SUBARR_MAP extension</a></li>
 <li><a class="reference internal" href="#parse-subarray-map-extension">Parse subarray map extension</a></li>
-<li><a class="reference internal" href="#module-iris_pipeline.parse_subarray_map">iris_pipeline.parse_subarray_map Package</a><ul>
+<li><a class="reference internal" href="#module-liger_iris_pipeline.parse_subarray_map">liger_iris_pipeline.parse_subarray_map Package</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
 </ul>
@@ -161,14 +157,14 @@ them out. The bit used for that is <code class="xref py py-obj docutils literal 
     </div>
 <footer class="footer">
   <p class="pull-right">
-    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/parse_subarray_map/index.rst">Edit This Page on Github</a> &nbsp;
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/parse_subarray_map/index.rst">Edit This Page on Github</a> &nbsp;
     <a href="../_sources/parse_subarray_map/index.rst.txt"
        rel="nofollow">Page Source</a> &nbsp;
     <a href="#">Back to Top</a></p>
   <p>
-    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
-    Last built 29 Jun 2021. <br/>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
   </p>
 </footer>
   </body>

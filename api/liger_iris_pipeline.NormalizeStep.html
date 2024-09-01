@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NormalizeStep &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ParseSubarrayMapStep" href="liger_iris_pipeline.ParseSubarrayMapStep.html" />
+    <link rel="prev" title="MergeSubarraysStep" href="liger_iris_pipeline.MergeSubarraysStep.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="liger_iris_pipeline.ParseSubarrayMapStep.html" title="ParseSubarrayMapStep">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="liger_iris_pipeline.MergeSubarraysStep.html" title="MergeSubarraysStep">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">liger_iris_pipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      
+      <li>NormalizeStep</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="normalizestep">
+<h1>NormalizeStep<a class="headerlink" href="#normalizestep" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="liger_iris_pipeline.NormalizeStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">liger_iris_pipeline.</span></span><span class="sig-name descname"><span class="pre">NormalizeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_validate_kwds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/liger_iris_pipeline/normalize/normalize_step.html#NormalizeStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline/tree/master/liger_iris_pipeline/normalize/normalize_step.py#L9" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#liger_iris_pipeline.NormalizeStep" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">JwstStep</span></code></p>
+<p>NormalizeStep: Normalize a frame by dividing
+by its own mean, median or mode</p>
+<p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the Step instance.  Used in logging messages
+and in cache filenames.  If not provided, one will be
+generated based on the class name.</p>
+</dd>
+<dt><strong>parent</strong><span class="classifier">Step instance, optional</span></dt><dd><p>The parent step of this step.  Used to determine a
+fully-qualified name for this step, and to determine
+the mode in which to run this step.</p>
+</dd>
+<dt><strong>config_file</strong><span class="classifier">str or pathlib.Path, optional</span></dt><dd><p>The path to the config file that this step was initialized
+with.  Use to determine relative path names of other config files.</p>
+</dd>
+<dt><strong>**kws</strong><span class="classifier">dict</span></dt><dd><p>Additional parameters to set.  These will be set as member
+variables on the new Step instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#liger_iris_pipeline.NormalizeStep.spec" title="liger_iris_pipeline.NormalizeStep.spec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spec</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#liger_iris_pipeline.NormalizeStep.process" title="liger_iris_pipeline.NormalizeStep.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input)</p></td>
+<td><p>This is where real work happens.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="liger_iris_pipeline.NormalizeStep.spec">
+<span class="sig-name descname"><span class="pre">spec</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">method</span> <span class="pre">=</span> <span class="pre">string(default='median')\n</span>&#160;&#160;&#160; <span class="pre">&quot;</span></em><a class="headerlink" href="#liger_iris_pipeline.NormalizeStep.spec" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="liger_iris_pipeline.NormalizeStep.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/liger_iris_pipeline/normalize/normalize_step.html#NormalizeStep.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline/tree/master/liger_iris_pipeline/normalize/normalize_step.py#L19" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#liger_iris_pipeline.NormalizeStep.process" title="Link to this definition">¶</a></dt>
+<dd><p>This is where real work happens. Every Step subclass has to
+override this method. The default behaviour is to raise a
+NotImplementedError exception.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">NormalizeStep</a><ul>
+<li><a class="reference internal" href="#liger_iris_pipeline.NormalizeStep"><code class="docutils literal notranslate"><span class="pre">NormalizeStep</span></code></a><ul>
+<li><a class="reference internal" href="#liger_iris_pipeline.NormalizeStep.spec"><code class="docutils literal notranslate"><span class="pre">NormalizeStep.spec</span></code></a></li>
+<li><a class="reference internal" href="#liger_iris_pipeline.NormalizeStep.process"><code class="docutils literal notranslate"><span class="pre">NormalizeStep.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/api/liger_iris_pipeline.NormalizeStep.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/liger_iris_pipeline.NormalizeStep.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
+  </p>
+</footer>
+  </body>
+</html>

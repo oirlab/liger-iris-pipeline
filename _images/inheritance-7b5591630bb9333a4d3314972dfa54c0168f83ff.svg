@@ -1,0 +1,104 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="444pt" height="101pt" viewBox="0.00 0.00 444.00 101.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 97)">
+<ns0:title>inheritance1d460d449b</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>JwstPipeline</ns0:title>
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="261,-56 185,-56 185,-37 261,-37 261,-56" />
+<ns0:text text-anchor="middle" x="223" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">JwstPipeline</ns0:text>
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>ProcessFlatfieldL2</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../api/liger_iris_pipeline.pipeline.ProcessFlatfieldL2.html#liger_iris_pipeline.pipeline.ProcessFlatfieldL2" ns1:title="ProcessFlatfieldL2: Remove dark and normalize exposure to create" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="419,-93 314,-93 314,-74 419,-74 419,-93" />
+<ns0:text text-anchor="middle" x="366.5" y="-81" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ProcessFlatfieldL2</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>JwstPipeline-&gt;ProcessFlatfieldL2</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M260.44,-56.03C279.76,-61.08 303.6,-67.31 323.67,-72.56" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="323.41,-74.3 328.69,-73.88 324.3,-70.92 323.41,-74.3" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>ProcessImagerL2Pipeline</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../api/liger_iris_pipeline.pipeline.ProcessImagerL2Pipeline.html#liger_iris_pipeline.pipeline.ProcessImagerL2Pipeline" ns1:title="ProcessImagerL2Pipeline: Processes JWST imaging-mode slope data from Level-2a to" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="436,-56 297,-56 297,-37 436,-37 436,-56" />
+<ns0:text text-anchor="middle" x="366.5" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ProcessImagerL2Pipeline</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge6" class="edge">
+<ns0:title>JwstPipeline-&gt;ProcessImagerL2Pipeline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M261.18,-46.5C270.61,-46.5 281.07,-46.5 291.63,-46.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="291.82,-48.25 296.82,-46.5 291.82,-44.75 291.82,-48.25" />
+</ns0:g>
+
+<ns0:g id="node7" class="node">
+<ns0:title>ROPPipeline</ns0:title>
+<ns0:g id="a_node7"><ns0:a ns1:href="../api/liger_iris_pipeline.pipeline.ROPPipeline.html#liger_iris_pipeline.pipeline.ROPPipeline" ns1:title="Detector1Pipeline for IRIS" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="404.5,-19 328.5,-19 328.5,0 404.5,0 404.5,-19" />
+<ns0:text text-anchor="middle" x="366.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ROPPipeline</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge7" class="edge">
+<ns0:title>JwstPipeline-&gt;ROPPipeline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M260.44,-36.97C279.76,-31.92 303.6,-25.69 323.67,-20.44" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="324.3,-22.08 328.69,-19.12 323.41,-18.7 324.3,-22.08" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Pipeline</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:title="A Pipeline is a way of combining a number of steps together.">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="147.5,-75 91.5,-75 91.5,-56 147.5,-56 147.5,-75" />
+<ns0:text text-anchor="middle" x="119.5" y="-63" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Pipeline</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Pipeline-&gt;JwstPipeline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M147.7,-60.41C157.58,-58.56 168.99,-56.42 179.85,-54.39" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="180.21,-56.1 184.8,-53.46 179.57,-52.66 180.21,-56.1" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>JwstStep</ns0:title>
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="149,-38 90,-38 90,-19 149,-19 149,-38" />
+<ns0:text text-anchor="middle" x="119.5" y="-26" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">JwstStep</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>JwstStep-&gt;JwstPipeline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M149.04,-33.56C158.62,-35.26 169.5,-37.19 179.89,-39.03" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="179.72,-40.78 184.95,-39.93 180.33,-37.33 179.72,-40.78" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>Step</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:title="Step">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="54,-56 0,-56 0,-37 54,-37 54,-56" />
+<ns0:text text-anchor="middle" x="27" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Step</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>Step-&gt;Pipeline</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.18,-52C64.23,-54.11 75.81,-56.54 86.36,-58.75" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="86.19,-60.5 91.44,-59.82 86.91,-57.08 86.19,-60.5" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>Step-&gt;JwstStep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.18,-41.29C63.78,-39.38 74.78,-37.2 84.94,-35.18" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="85.29,-36.89 89.85,-34.2 84.6,-33.46 85.29,-36.89" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

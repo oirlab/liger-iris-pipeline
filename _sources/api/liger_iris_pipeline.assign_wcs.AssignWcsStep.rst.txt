@@ -1,0 +1,27 @@
+AssignWcsStep
+=============
+
+.. currentmodule:: liger_iris_pipeline.assign_wcs
+
+.. autoclass:: AssignWcsStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.reference_file_types
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~AssignWcsStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: reference_file_types
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process

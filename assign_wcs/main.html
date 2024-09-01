@@ -1,25 +1,25 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Description &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <title>Description &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script type="text/javascript" src="../_static/sidebar.js"></script>
     <script type="text/javascript" src="../_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="../_static/astropy_logo.ico"/>
+    <link rel="icon" href="../_static/astropy_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Reference Files" href="reference_files.html" />
@@ -28,7 +28,7 @@
 
   </head><body>
 <div class="topbar">
-  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
   <ul>
     
     <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
@@ -62,7 +62,7 @@
 	 |
       </li>
       <li>
-	<a href="../index.html">IRISpipeline v0.5.dev</a>
+	<a href="../index.html">liger_iris_pipeline v0.5.dev</a>
 	 &#187;
       </li>
       <li><a href="../available-steps.html" >Available algorithms</a> &#187;</li>
@@ -79,7 +79,7 @@
           <div class="body" role="main">
             
   <section id="description">
-<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
+<h1>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">assign_wcs</span></code> associates a WCS object with each science exposure. The WCS object transforms
 positions in the detector frame to positions in a world coordinate frame - ICRS and wavelength.
 In general there may be intermediate coordinate frames depending on the instrument.
@@ -95,15 +95,15 @@ and the input positions are 0-based.</p>
 SCI header. Distortion and spectral models are not implemented yet and will be stored in reference files in the
 <a class="reference external" href="http://asdf-standard.readthedocs.org/en/latest/">ASDF</a>  format.</p>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <p>See an example script to process a file with FITS WCS keywords in the header:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">iris_pipeline</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">liger_iris_pipeline</span>
 <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
-<span class="n">iris_pipeline</span><span class="o">.</span><span class="n">monkeypatch_jwst_datamodels</span><span class="p">()</span>
+<span class="n">liger_iris_pipeline</span><span class="o">.</span><span class="n">monkeypatch_jwst_datamodels</span><span class="p">()</span>
 
 <span class="n">input_filename</span> <span class="o">=</span><span class="s2">&quot;iris_sim_gc_filterKN3_fix.fits&quot;</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">iris_pipeline</span><span class="o">.</span><span class="n">assign_wcs</span><span class="o">.</span><span class="n">AssignWcsStep</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">liger_iris_pipeline</span><span class="o">.</span><span class="n">assign_wcs</span><span class="o">.</span><span class="n">AssignWcsStep</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">input_filename</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">wcs</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">4096</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4096</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">pix</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -115,7 +115,7 @@ SCI header. Distortion and spectral models are not implemented yet and will be s
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
 <ul>
 <li><a class="reference internal" href="#">Description</a><ul>
@@ -131,14 +131,14 @@ SCI header. Distortion and spectral models are not implemented yet and will be s
     </div>
 <footer class="footer">
   <p class="pull-right">
-    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/assign_wcs/main.rst">Edit This Page on Github</a> &nbsp;
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/assign_wcs/main.rst">Edit This Page on Github</a> &nbsp;
     <a href="../_sources/assign_wcs/main.rst.txt"
        rel="nofollow">Page Source</a> &nbsp;
     <a href="#">Back to Top</a></p>
   <p>
-    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
-    Last built 29 Jun 2021. <br/>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
   </p>
 </footer>
   </body>

@@ -1,0 +1,56 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="308pt" height="64pt" viewBox="0.00 0.00 308.00 64.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 60)">
+<ns0:title>inheritance7b8d629a9d</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>BackgroundStep</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../api/liger_iris_pipeline.background.BackgroundStep.html#liger_iris_pipeline.background.BackgroundStep" ns1:title="BackgroundStep: &#160;Subtract background exposures from target exposures." target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="290.5,-56 194.5,-56 194.5,-37 290.5,-37 290.5,-56" />
+<ns0:text text-anchor="middle" x="242.5" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">BackgroundStep</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>JwstStep</ns0:title>
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="149,-37 90,-37 90,-18 149,-18 149,-37" />
+<ns0:text text-anchor="middle" x="119.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">JwstStep</ns0:text>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>JwstStep-&gt;BackgroundStep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M149.18,-32C161.13,-33.88 175.39,-36.12 189.09,-38.27" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="188.9,-40.01 194.11,-39.06 189.44,-36.55 188.9,-40.01" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>SubtractImagesStep</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../api/liger_iris_pipeline.background.SubtractImagesStep.html#liger_iris_pipeline.background.SubtractImagesStep" ns1:title="SubtractImagesStep: &#160;Subtract two exposures from one" target="_top">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="300,-19 185,-19 185,0 300,0 300,-19" />
+<ns0:text text-anchor="middle" x="242.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">SubtractImagesStep</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>JwstStep-&gt;SubtractImagesStep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M149.18,-23.23C158.51,-21.85 169.25,-20.25 180.04,-18.64" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="180.31,-20.37 184.99,-17.91 179.79,-16.91 180.31,-20.37" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>Step</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:title="Step">
+<ns0:polygon fill="white" stroke="black" stroke-width="0.5" points="54,-37 0,-37 0,-18 54,-18 54,-37" />
+<ns0:text text-anchor="middle" x="27" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Step</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>Step-&gt;JwstStep</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M54.18,-27.5C63.69,-27.5 74.58,-27.5 84.66,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="84.85,-29.25 89.85,-27.5 84.85,-25.75 84.85,-29.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

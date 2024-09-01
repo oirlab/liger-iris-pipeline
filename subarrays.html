@@ -1,34 +1,34 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Support for subarrays &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <title>Support for subarrays &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="icon" href="_static/astropy_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="monkeypatch_jwst_datamodels" href="api/iris_pipeline.monkeypatch_jwst_datamodels.html" />
+    <link rel="next" title="monkeypatch_jwst_datamodels" href="api/liger_iris_pipeline.monkeypatch_jwst_datamodels.html" />
     <link rel="prev" title="Algorithms" href="algorithms.html" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
 
   </head><body>
 <div class="topbar">
-  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
   <ul>
     
     <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
@@ -51,7 +51,7 @@
     <h3>Navigation</h3>
     <ul>
       <li class="right">
-	<a href="api/iris_pipeline.monkeypatch_jwst_datamodels.html" title="monkeypatch_jwst_datamodels">
+	<a href="api/liger_iris_pipeline.monkeypatch_jwst_datamodels.html" title="monkeypatch_jwst_datamodels">
 	  next &raquo;
 	</a>
       </li>
@@ -62,7 +62,7 @@
 	 |
       </li>
       <li>
-	<a href="index.html">IRISpipeline v0.5.dev</a>
+	<a href="index.html">liger_iris_pipeline v0.5.dev</a>
 	 &#187;
       </li>
       
@@ -77,7 +77,7 @@
           <div class="body" role="main">
             
   <section id="support-for-subarrays">
-<h1>Support for subarrays<a class="headerlink" href="#support-for-subarrays" title="Permalink to this headline">¶</a></h1>
+<h1>Support for subarrays<a class="headerlink" href="#support-for-subarrays" title="Link to this heading">¶</a></h1>
 <p>Support for subarrays is currently only implemented for the imager and it supports
 datasets where only a custom subset of the 2D array is observed.</p>
 <p>The keywords of <code class="xref py py-class docutils literal notranslate"><span class="pre">IRISImageModel</span></code> which defines the parameters of the
@@ -97,19 +97,19 @@ array in Python, you should add 1 to the keyword before saving it into the metad
 frames, 1 for the first subarray and so on.</p>
 <p>The name of an entire frame is “FULL”.</p>
 <section id="subarrays-and-reference-files">
-<h2>Subarrays and reference files<a class="headerlink" href="#subarrays-and-reference-files" title="Permalink to this headline">¶</a></h2>
+<h2>Subarrays and reference files<a class="headerlink" href="#subarrays-and-reference-files" title="Link to this heading">¶</a></h2>
 <p>Flat frames, darks and background files either in CRDS or using local overrides
 can either be saved as subarrays
 or can be saved as full frames. In case they are saved as full frames, after being
 accessed they are sliced according to the metadata in the input subarray.</p>
 </section>
 <section id="example-usage">
-<h2>Example usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
+<h2>Example usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
 <p>As usage examples, check the notebooks or the <code class="docutils literal notranslate"><span class="pre">test_image2.py</span></code> script in the
-<a class="reference external" href="https://github.com/oirlab/iris_pipeline/tree/master/iris_pipeline/tests">unit tests folder in the repository</a></p>
+<a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline/tree/master/liger_iris_pipeline/tests">unit tests folder in the repository</a></p>
 </section>
 <section id="related-steps">
-<h2>Related steps<a class="headerlink" href="#related-steps" title="Permalink to this headline">¶</a></h2>
+<h2>Related steps<a class="headerlink" href="#related-steps" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="parse_subarray_map/index.html">Parse Subarray Map</a><ul>
@@ -133,7 +133,7 @@ accessed they are sliced according to the metadata in the input subarray.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
 <ul>
 <li><a class="reference internal" href="#">Support for subarrays</a><ul>
@@ -151,14 +151,14 @@ accessed they are sliced according to the metadata in the input subarray.</p>
     </div>
 <footer class="footer">
   <p class="pull-right">
-    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/subarrays.rst">Edit This Page on Github</a> &nbsp;
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/subarrays.rst">Edit This Page on Github</a> &nbsp;
     <a href="_sources/subarrays.rst.txt"
        rel="nofollow">Page Source</a> &nbsp;
     <a href="#">Back to Top</a></p>
   <p>
-    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
-    Last built 29 Jun 2021. <br/>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
   </p>
 </footer>
   </body>

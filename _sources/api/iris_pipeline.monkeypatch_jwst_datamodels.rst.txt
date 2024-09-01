@@ -1,6 +1,0 @@
-monkeypatch_jwst_datamodels
-===========================
-
-.. currentmodule:: iris_pipeline
-
-.. autofunction:: monkeypatch_jwst_datamodels

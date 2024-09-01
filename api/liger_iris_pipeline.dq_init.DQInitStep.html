@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DQInitStep &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <link rel="icon" href="../_static/astropy_logo.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Background Image Subtraction" href="../background/index.html" />
+    <link rel="prev" title="Reference Files" href="../dq_init/reference_files.html" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
+
+  </head><body>
+<div class="topbar">
+  <a class="brand" title="Documentation Home" href="../index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <ul>
+    
+    <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
+    <li><a title="General Index" href="../genindex.html">Index</a></li>
+    <li><a title="Module Index" href="../py-modindex.html">Modules</a></li>
+    <li>
+      
+      
+<form action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      
+    </li>
+  </ul>
+</div>
+
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right">
+	<a href="../background/index.html" title="Background Image Subtraction">
+	  next &raquo;
+	</a>
+      </li>
+      <li class="right">
+	<a href="../dq_init/reference_files.html" title="Reference Files">
+	  &laquo; previous
+	</a>
+	 |
+      </li>
+      <li>
+	<a href="../index.html">liger_iris_pipeline v0.5.dev</a>
+	 &#187;
+      </li>
+      <li><a href="../available-steps.html" >Available algorithms</a> &#187;</li>
+      <li><a href="../dq_init/index.html" accesskey="U">Data Quality (DQ) Initialization</a> &#187;</li>
+      
+      <li>DQInitStep</li> 
+    </ul>
+</div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="dqinitstep">
+<h1>DQInitStep<a class="headerlink" href="#dqinitstep" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="liger_iris_pipeline.dq_init.DQInitStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">liger_iris_pipeline.dq_init.</span></span><span class="sig-name descname"><span class="pre">DQInitStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_validate_kwds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kws</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/liger_iris_pipeline/dq_init/dq_init_step.html#DQInitStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline/tree/master/liger_iris_pipeline/dq_init/dq_init_step.py#L12" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#liger_iris_pipeline.dq_init.DQInitStep" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">JwstStep</span></code></p>
+<p>Initialize the Data Quality extension from the
+mask reference file.</p>
+<p>The dq_init step initializes the pixeldq attribute of the
+input datamodel using the MASK reference file.  For some
+FGS exp_types, initalize the dq attribute of the input model
+instead.  The dq attribute of the MASK model is bitwise OR’d
+with the pixeldq (or dq) attribute of the input model.</p>
+<p>Create a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Step</span></code> instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the Step instance.  Used in logging messages
+and in cache filenames.  If not provided, one will be
+generated based on the class name.</p>
+</dd>
+<dt><strong>parent</strong><span class="classifier">Step instance, optional</span></dt><dd><p>The parent step of this step.  Used to determine a
+fully-qualified name for this step, and to determine
+the mode in which to run this step.</p>
+</dd>
+<dt><strong>config_file</strong><span class="classifier">str or pathlib.Path, optional</span></dt><dd><p>The path to the config file that this step was initialized
+with.  Use to determine relative path names of other config files.</p>
+</dd>
+<dt><strong>**kws</strong><span class="classifier">dict</span></dt><dd><p>Additional parameters to set.  These will be set as member
+variables on the new Step instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Attributes Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#liger_iris_pipeline.dq_init.DQInitStep.reference_file_types" title="liger_iris_pipeline.dq_init.DQInitStep.reference_file_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_file_types</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#liger_iris_pipeline.dq_init.DQInitStep.process" title="liger_iris_pipeline.dq_init.DQInitStep.process"><code class="xref py py-obj docutils literal notranslate"><span class="pre">process</span></code></a>(input)</p></td>
+<td><p>Perform the dq_init calibration step</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="liger_iris_pipeline.dq_init.DQInitStep.reference_file_types">
+<span class="sig-name descname"><span class="pre">reference_file_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['mask']</span></em><a class="headerlink" href="#liger_iris_pipeline.dq_init.DQInitStep.reference_file_types" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="liger_iris_pipeline.dq_init.DQInitStep.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/liger_iris_pipeline/dq_init/dq_init_step.html#DQInitStep.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline/tree/master/liger_iris_pipeline/dq_init/dq_init_step.py#L25" title="Push the Edit button on the next page"><span class="edit-on-github viewcode-link">&nbsp;<span class="pre">[edit</span> <span class="pre">on</span> <span class="pre">github]</span></span></a><a class="headerlink" href="#liger_iris_pipeline.dq_init.DQInitStep.process" title="Link to this definition">¶</a></dt>
+<dd><p>Perform the dq_init calibration step</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>input</strong><span class="classifier">JWST datamodel</span></dt><dd><p>input jwst datamodel</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>output_model</strong><span class="classifier">JWST datamodel</span></dt><dd><p>result JWST datamodel</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
+<ul>
+<li><a class="reference internal" href="#">DQInitStep</a><ul>
+<li><a class="reference internal" href="#liger_iris_pipeline.dq_init.DQInitStep"><code class="docutils literal notranslate"><span class="pre">DQInitStep</span></code></a><ul>
+<li><a class="reference internal" href="#liger_iris_pipeline.dq_init.DQInitStep.reference_file_types"><code class="docutils literal notranslate"><span class="pre">DQInitStep.reference_file_types</span></code></a></li>
+<li><a class="reference internal" href="#liger_iris_pipeline.dq_init.DQInitStep.process"><code class="docutils literal notranslate"><span class="pre">DQInitStep.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<footer class="footer">
+  <p class="pull-right">
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/api/liger_iris_pipeline.dq_init.DQInitStep.rst">Edit This Page on Github</a> &nbsp;
+    <a href="../_sources/api/liger_iris_pipeline.dq_init.DQInitStep.rst.txt"
+       rel="nofollow">Page Source</a> &nbsp;
+    <a href="#">Back to Top</a></p>
+  <p>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
+  </p>
+</footer>
+  </body>
+</html>

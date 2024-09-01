@@ -1,34 +1,34 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Getting started &#8212; IRISpipeline v0.5.dev</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <title>Getting Started &#8212; liger_iris_pipeline v0.5.dev</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-astropy.css?v=9d21690f" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=3b3f3827"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <script type="text/javascript" src="_static/copybutton.js"></script>
-    <link rel="shortcut icon" href="_static/astropy_logo.ico"/>
+    <link rel="icon" href="_static/astropy_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Example pipeline execution" href="example-run.html" />
-    <link rel="prev" title="iris_pipeline Documentation" href="index.html" />
+    <link rel="prev" title="liger_iris_pipeline Documentation" href="index.html" />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600' rel='stylesheet' type='text/css'/>
 
   </head><body>
 <div class="topbar">
-  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
+  <a class="brand" title="Documentation Home" href="index.html"><span id="logotext1">liger_iris_pipeline</span><span id="logotext2"></span><span id="logotext3">:docs</span></a>
   <ul>
     
     <li><a class="homelink" title="Astropy Homepage" href="http://www.astropy.org"></a></li>
@@ -56,17 +56,17 @@
 	</a>
       </li>
       <li class="right">
-	<a href="index.html" title="iris_pipeline Documentation">
+	<a href="index.html" title="liger_iris_pipeline Documentation">
 	  &laquo; previous
 	</a>
 	 |
       </li>
       <li>
-	<a href="index.html">IRISpipeline v0.5.dev</a>
+	<a href="index.html">liger_iris_pipeline v0.5.dev</a>
 	 &#187;
       </li>
       
-      <li>Getting started</li> 
+      <li>Getting Started</li> 
     </ul>
 </div>
   
@@ -77,80 +77,59 @@
           <div class="body" role="main">
             
   <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>First we need to install the requirements of the <code class="docutils literal notranslate"><span class="pre">jwst</span></code> package,
-see <a class="reference external" href="https://github.com/spacetelescope/jwst/">the JWST instructions</a>,
-reported here for convenience:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">jwst_dev</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.7</span> <span class="n">astropy</span>
-<span class="n">source</span> <span class="n">activate</span> <span class="n">jwst_dev</span>
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<section id="python-environment">
+<h2>Python Environment<a class="headerlink" href="#python-environment" title="Link to this heading">¶</a></h2>
+<p>It is highly recommended users create a new Python environment with either <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a> or <a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">Anaconda</a>. The pipeline supports Python versions 3.11 or newer; older versions of Python may work but have not been tested. Once configured, activate the new Python environment.</p>
+</section>
+<section id="crds">
+<h2>CRDS<a class="headerlink" href="#crds" title="Link to this heading">¶</a></h2>
+<p>For now, we rely on the <a class="reference external" href="https://hst-crds.stsci.edu/static/users_guide/index.html">Calibration Reference Data System</a> (CRDS) API used by Space Telescope Science Intitute (STScI) to retrieve calibration data products necessary for data reduction. The CRDS defines a set of <a class="reference external" href="https://github.com/oirlab/liger-iris-crds-cache/blob/master/mappings/ligeriri/liger_iris_iris_flat_0001.rmap">rules</a> on how to choose the right calibraiton file(s) given an observation’s metadata. The CRDS will eventually be replaced with the appropriate interfaces to Keck and TMT, but we aim to maintain a minimal interface common to both facilities. Below we download and install the CRDS and cache tailored for Liger &amp; IRIS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/oirlab/liger_iris_crds
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/oirlab/liger-iris-crds-cache<span class="w"> </span><span class="nv">$HOME</span>/crds_cache
+<span class="nb">cd</span><span class="w"> </span>liger_iris_crds
+pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
-<p>then we need to install the <code class="docutils literal notranslate"><span class="pre">jwst</span></code> package, currently <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code>
-is being tested with <code class="docutils literal notranslate"><span class="pre">jwst</span></code> 0.17.0:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jwst</span><span class="o">==</span><span class="mf">0.17.0</span>
-</pre></div>
-</div>
-<p>Then you need to download the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> cache:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/oirlab/tmt-crds-cache <span class="nv">$HOME</span>/crds_cache
-</pre></div>
-</div>
-<p>the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> cache contains metadata for IRIS, the calibration files, flat fields,
-and a set of <a class="reference external" href="https://github.com/oirlab/tmt-crds-cache/blob/master/mappings/tmt/tmt_iris_flat_0001.rmap">rules</a> on how to choose the right calibration file given a set of metadata,
-you can browse the content on <a class="reference external" href="https://github.com/oirlab/tmt-crds-cache">Github</a>.</p>
-<p>We need to set some environment variables so that <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> will use the local
-cache instead of trying to connect to the JWST instance:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> setup_local_crds.sh
-</pre></div>
-</div>
-<p>Finally, we need a custom version of the <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> library that contains some modules specific to TMT:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">oirlab</span><span class="o">/</span><span class="n">tmt</span><span class="o">-</span><span class="n">crds</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">tmt</span><span class="o">-</span><span class="n">crds</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+<p>We then must define several environment variables so that <code class="docutils literal notranslate"><span class="pre">CRDS</span></code> will use the local cache instead of trying to connect to the JWST instance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>setup_local_crds.sh
 </pre></div>
 </div>
 </section>
-<section id="compilation-requirements">
-<h2>Compilation requirements<a class="headerlink" href="#compilation-requirements" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="index.html#module-iris_pipeline" title="iris_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_pipeline</span></code></a> also includes the <code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_readout</span></code> C library wrapped with <code class="xref py py-obj docutils literal notranslate"><span class="pre">cython</span></code>,
-therefore we require GCC, <code class="xref py py-obj docutils literal notranslate"><span class="pre">autotools</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">libcfitsio</span></code> to compile the Python
-extension.</p>
-<p>In Debian/Ubuntu, the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cfitsio</span></code> headers are installed under a prefix, so we need
-to include that folder in the search path:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">C_INCLUDE_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">cfitsio</span><span class="o">/</span>
+<section id="compilation-of-readout-code">
+<h2>Compilation of Readout Code<a class="headerlink" href="#compilation-of-readout-code" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="index.html#module-liger_iris_pipeline" title="liger_iris_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">liger_iris_pipeline</span></code></a> also includes the <code class="xref py py-obj docutils literal notranslate"><span class="pre">liger_iris_readout</span></code> C library wrapped with <code class="xref py py-obj docutils literal notranslate"><span class="pre">Cython</span></code>. Therefore we require <code class="xref py py-obj docutils literal notranslate"><span class="pre">GCC</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">autotools</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">libcfitsio</span></code> to compile the Python extension.</p>
+<p>In Debian/Ubuntu, the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cfitsio</span></code> headers are installed under a prefix, so we need to include that folder in the search path:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">C_INCLUDE_PATH</span><span class="o">=</span>/usr/include/cfitsio/
 </pre></div>
 </div>
+<p>In macOS, <code class="xref py py-obj docutils literal notranslate"><span class="pre">cfitsio</span></code> can be installed with a package manager such as <a class="reference external" href="https://brew.sh/">HomeBrew</a>. Once installed, the path to <code class="xref py py-obj docutils literal notranslate"><span class="pre">cfitsio</span></code> can be found with <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">info</span> <span class="pre">cfitsio</span></code>.</p>
 </section>
 <section id="development-install">
-<h2>Development install<a class="headerlink" href="#development-install" title="Permalink to this headline">¶</a></h2>
-<p>First fork the repository under your account on Github,
-then clone your fork on your machine.</p>
-<p>Initialize the <code class="xref py py-obj docutils literal notranslate"><span class="pre">git</span></code> submodule for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">iris_readout</span></code> C library:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">init</span>
-<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span>
+<h2>Development Install<a class="headerlink" href="#development-install" title="Link to this heading">¶</a></h2>
+<p><strong>Recommended</strong>: Fork the repository <a class="reference external" href="https://github.com/oirlab/liger_iris_pipeline">liger_iris_pipeline</a> under your account on GitHub, then clone your fork on your machine.</p>
+<p>Initialize the <code class="xref py py-obj docutils literal notranslate"><span class="pre">git</span></code> submodule for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">liger_iris_readout</span></code> C library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>liger_iris_pipeline
+git<span class="w"> </span>submodule<span class="w"> </span>init
+git<span class="w"> </span>submodule<span class="w"> </span>update
 </pre></div>
 </div>
-<p>Then enter the root folder and create a development install
-with:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<p>Then enter the root folder and create a development install with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
-<p>The development install doesn’t add the <code class="docutils literal notranslate"><span class="pre">tmtrun</span></code> script to the path,
-so you should do that manually:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/scripts/:<span class="nv">$PATH</span>
-</pre></div>
-</div>
-<p>or symlink the <code class="docutils literal notranslate"><span class="pre">tmtrun</span></code> script from the conda environment <code class="xref py py-obj docutils literal notranslate"><span class="pre">bin/</span></code> folder.</p>
-<section id="run-the-unit-tests">
-<h3>Run the unit tests<a class="headerlink" href="#run-the-unit-tests" title="Permalink to this headline">¶</a></h3>
-<p>Some of the unit tests of <code class="docutils literal notranslate"><span class="pre">iris_pipeline</span></code> are Jupyter Notebooks and they need
-the <a class="reference external" href="https://github.com/computationalmodelling/nbval">nbval py.test plugin</a> to be executed.
-Once <code class="docutils literal notranslate"><span class="pre">py.test</span></code> and <code class="docutils literal notranslate"><span class="pre">nbval</span></code> are installed, execute from the root of the package:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">test</span>
+<p>The option <code class="xref py py-obj docutils literal notranslate"><span class="pre">-e</span></code> will use the cloned repo’s code directly as the source code (i.e. it will <strong>not</strong> be installed to site-packages/).</p>
+<p>Lastly, we manually add the scripts to the path:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/scripts/:<span class="nv">$PATH</span>
 </pre></div>
 </div>
 </section>
+<section id="run-the-unit-tests">
+<h2>Run the unit tests<a class="headerlink" href="#run-the-unit-tests" title="Link to this heading">¶</a></h2>
+<p>Some of the unit tests of <code class="docutils literal notranslate"><span class="pre">liger_iris_pipeline</span></code> are Jupyter Notebooks and they need the <a class="reference external" href="https://github.com/computationalmodelling/nbval">nbval py.test plugin</a> to be executed. Once <code class="docutils literal notranslate"><span class="pre">py.test</span></code> and <code class="docutils literal notranslate"><span class="pre">nbval</span></code> are installed, execute from the root of the package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>setup.py<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -159,16 +138,15 @@ Once <code class="docutils literal notranslate"><span class="pre">py.test</span>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><h3>Page Contents</h3>
 <ul>
-<li><a class="reference internal" href="#">Getting started</a><ul>
-<li><a class="reference internal" href="#requirements">Requirements</a></li>
-<li><a class="reference internal" href="#compilation-requirements">Compilation requirements</a></li>
-<li><a class="reference internal" href="#development-install">Development install</a><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#python-environment">Python Environment</a></li>
+<li><a class="reference internal" href="#crds">CRDS</a></li>
+<li><a class="reference internal" href="#compilation-of-readout-code">Compilation of Readout Code</a></li>
+<li><a class="reference internal" href="#development-install">Development Install</a></li>
 <li><a class="reference internal" href="#run-the-unit-tests">Run the unit tests</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -180,14 +158,14 @@ Once <code class="docutils literal notranslate"><span class="pre">py.test</span>
     </div>
 <footer class="footer">
   <p class="pull-right">
-    <a href="https://github.com/oirlab/iris_pipeline/tree/master/docs/getting-started.rst">Edit This Page on Github</a> &nbsp;
+    <a href="https://github.com/oirlab/liger_iris_pipeline/tree/master/docs/getting-started.rst">Edit This Page on Github</a> &nbsp;
     <a href="_sources/getting-started.rst.txt"
        rel="nofollow">Page Source</a> &nbsp;
     <a href="#">Back to Top</a></p>
   <p>
-    &copy; Copyright 2021, Andrea Zonca, Arun Surya.<br/>
-    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 4.0.2. &nbsp;
-    Last built 29 Jun 2021. <br/>
+    &copy; Copyright 2024, Andrea Zonca, Arun Surya, Bryson Cale.<br/>
+    Created using <a href="http://www.sphinx-doc.org/en/stable/">Sphinx</a> 8.0.2. &nbsp;
+    Last built 01 Sep 2024. <br/>
   </p>
 </footer>
   </body>

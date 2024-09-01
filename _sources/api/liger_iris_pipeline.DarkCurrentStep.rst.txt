@@ -1,0 +1,29 @@
+DarkCurrentStep
+===============
+
+.. currentmodule:: liger_iris_pipeline
+
+.. autoclass:: DarkCurrentStep
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~DarkCurrentStep.reference_file_types
+      ~DarkCurrentStep.spec
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~DarkCurrentStep.process
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: reference_file_types
+   .. autoattribute:: spec
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: process
